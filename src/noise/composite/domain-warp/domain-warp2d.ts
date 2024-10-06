@@ -18,7 +18,7 @@ import { fBm2D } from '../fbm/fbm2d.js';
  * @returns A noise value typically in the range [-amplitude, amplitude], although the
  *          exact range can vary based on the parameters used.
  */
-type DomainWarpNoise2D = (
+export type DomainWarpNoise2D = (
   x: number,
   y: number,
   warpStrength?: number,
@@ -42,7 +42,7 @@ export function domainWarp2D(noise2D: Noise2D): DomainWarpNoise2D {
     x: number,
     y: number,
     warpStrength: number = 1.0,
-    octaves: number = 1,
+    octaves: number = 2,
     lacunarity: number = 2.0,
     gain: number = 0.5,
     frequency: number = 1.0,

@@ -1,51 +1,54 @@
 import { RandomNumberGenerator } from './types.js';
 
 /**
- * Interface for objects that can be used with randomPickWeighted.
+ * A function that extracts a weight from an object of type T.
  */
-export interface WeightedRandomObject {
-  weight: number;
-}
+export type WeightExtractor<T extends object> = (item: T) => number;
 
 /**
- * Select a random index from an array of objects with a weight property.
- *
- * @param weightedObjects - An array of objects with a weight property.
+ * Select a random index from an array of objects based on their weights.
+ * @param items - An array of objects.
+ * @param getWeight - A function that extracts the weight from an item. Defaults to assuming the item is a number.
  * @param random - Random number generator that returns a value between 0.0 and 1.0.
- * @returns Selected random index.
+ * @returns Selected random index, or -1 if the array is empty.
  */
-export function randomWeightedIndex<T extends WeightedRandomObject>(
-  weightedObjects: T[],
+export function randomWeightedIndex<T extends object>(
+  items: T[],
+  getWeight: WeightExtractor<T>,
   random: RandomNumberGenerator = Math.random,
 ): number {
-  const totalWeight = weightedObjects.reduce(
-    (sum, choice) => sum + choice.weight,
-    0,
-  );
-  let randomNum = random() * totalWeight;
+  if (items.length === 0) {
+    return -1;
+  }
 
-  for (let i = 0; i < weightedObjects.length; i++) {
-    randomNum -= weightedObjects[i].weight;
+  const totalWeight = items.reduce((sum, item) => sum + getWeight(item), 0);
+  if (totalWeight <= 0) {
+    return -1;
+  }
+
+  let randomNum = random() * totalWeight;
+  for (let i = 0; i < items.length; i++) {
+    randomNum -= getWeight(items[i]);
     if (randomNum <= 0) return i;
   }
 
-  return weightedObjects.length - 1;
+  return items.length - 1;
 }
 
 /**
- * Pick a random item from an array of objects with a weight property.
- *
- * @param weightedItems - An array of objects with a weight property.
+ * Pick a random item from an array of objects based on their weights.
+ * @param items - An array of objects.
+ * @param getWeight - A function that extracts the weight from an item. Defaults to assuming the item is a number.
  * @param random - Random number generator that returns a value between 0.0 and 1.0.
- * @returns Selected random index.
+ * @returns Selected random item, or null if the array is empty.
  */
-export function pickWeightedRandom<T extends WeightedRandomObject>(
-  weightedItems: T[],
+export function pickWeightedRandom<T extends object>(
+  items: T[],
+  getWeight: WeightExtractor<T>,
   random: RandomNumberGenerator = Math.random,
 ): T | null {
-  if (weightedItems.length === 0) return null;
-
-  return weightedItems[randomWeightedIndex(weightedItems, random)];
+  const index = randomWeightedIndex(items, getWeight, random);
+  return index === -1 ? null : items[index];
 }
 
 /**

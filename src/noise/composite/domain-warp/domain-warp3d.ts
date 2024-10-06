@@ -22,7 +22,7 @@ import { fBm3D } from '../fbm/fbm3d.js';
  * @param offsetZ2 - Z offset for the third warp dimension.
  * @returns A noise value in the range [-amplitude, amplitude].
  */
-type DomainWarpNoise3D = (
+export type DomainWarpNoise3D = (
   x: number,
   y: number,
   z: number,
@@ -52,7 +52,7 @@ export function domainWarp3D(noise3D: Noise3D): DomainWarpNoise3D {
     y: number,
     z: number,
     warpStrength: number = 1.0,
-    octaves: number = 1,
+    octaves: number = 2,
     lacunarity: number = 2.0,
     gain: number = 0.5,
     frequency: number = 1.0,

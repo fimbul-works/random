@@ -29,13 +29,17 @@ import { fBm4D } from '../fbm/fbm4d.js';
  * @param offsetW3 - Z offset for the fourth warp dimension.
  * @returns A noise value in the range [-amplitude, amplitude].
  */
-type DomainWarpNoise4D = (
+export type DomainWarpNoise4D = (
   x: number,
   y: number,
   z: number,
   w: number,
-  warpStrength?: number,
-  warpOctaves?: number,
+  warpStrength: number,
+  octaves: number,
+  lacunarity: number,
+  gain: number,
+  frequency: number,
+  amplitude: number,
   offsetX1?: number,
   offsetY1?: number,
   offsetZ1?: number,
@@ -63,7 +67,7 @@ export function domainWarp4D(noise4D: Noise4D): DomainWarpNoise4D {
     z: number,
     w: number,
     warpStrength: number = 1.0,
-    octaves: number = 1,
+    octaves: number = 2,
     lacunarity: number = 2.0,
     gain: number = 0.5,
     frequency: number = 1.0,

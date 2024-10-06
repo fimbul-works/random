@@ -12,7 +12,7 @@ export function billowNoise4D(noise4D: Noise4D): OctaveNoise4D {
     y: number,
     z: number,
     w: number,
-    octaves: number = 6,
+    octaves: number = 2,
     lacunarity: number = 2.0,
     gain: number = 0.5,
     frequency: number = 1.0,

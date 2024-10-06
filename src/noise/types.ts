@@ -1,5 +1,3 @@
-import { Vec2, Vec3 } from '@claus-codes/vec';
-
 /**
  * Two dimensional noise.
  */
@@ -16,7 +14,7 @@ export type Noise3D = (x: number, y: number, z: number) => number;
 export type Noise4D = (x: number, y: number, z: number, w: number) => number;
 
 /**
- * Number of of dimentions.
+ * Number of of dimensions.
  */
 export type Dimension = 2 | 3;
 
@@ -24,6 +22,13 @@ export type Dimension = 2 | 3;
  * Type of distance function.
  */
 export type MetricName = 'euclidean' | 'manhattan' | 'chebyshev' | 'minkowski';
+
+/**
+ * Vector types based on dimentions.
+ */
+export type VecType<D extends Dimension> = D extends 2
+  ? [number, number]
+  : [number, number, number];
 
 /**
  * Distance function.
@@ -34,7 +39,9 @@ export type DistanceFunction<D extends Dimension> = (
   e?: number,
 ) => number;
 
-/**
- * Vector types based on dimentions.
- */
-export type VecType<D extends Dimension> = D extends 2 ? Vec2 : Vec3;
+export type InferDimension<T extends number[][]> = T[number] extends [
+  number,
+  number,
+]
+  ? 2
+  : 3;

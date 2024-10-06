@@ -9,47 +9,57 @@
 const FRAC = 2 ** -32;
 
 /**
- * Alea pseudo-random number generator.
- * @returns {number} - A pseudo-random number.
+ * Alea internal registry state.
+ */
+export type AleaState = [number, number, number, number];
+
+/**
+ * Implementation of the Alea random number generator.
  */
 export interface AleaRandomNumberGenerator {
   /**
-   * Return a pseudo-random number between 0.0 and 1.0.
+   * Return a random number between 0.0 and 1.0.
    */
   (): number;
 
   /**
    * Original seed number.
-   * @type {number}
    */
   seed: number;
 
   /**
-   * Get the internal registry state, to allow you to manually save it.
-   * @returns {[number, number, number, number]} - The internal registry state.
+   * Generate a random 32-bit integer.
+   * @returns A random 32-bit integer.
    */
-  getState: () => [number, number, number, number];
+  int: () => number;
+
+  /**
+   * Get the internal registry state, to allow you to manually save it.
+   * @returns The internal registry state.
+   */
+  getState: () => AleaState;
 
   /**
    * Set the internal registry state, to allow you to manually restore it.
    * @param state - The internal registry state.
    */
-  setState: (state: [number, number, number, number]) => void;
+  setState: (state: AleaState) => void;
 }
 
 /**
- * Creates a new Alea pseudo-random number generator.
+ * Creates a new Alea random number generator.
  * @param {number} seed - Seed number.
  * @param {number} MAGIC1 - Magic number.
  * @param {number} MAGIC2 - Another magic number.
- * @returns A new pseudo-random number generator.
+ * @returns A new random number generator.
  */
 export function createRandomAlea(
-  seed: number,
+  seed: number = Date.now(),
   MAGIC1: number = 69069,
   MAGIC2: number = 2091639,
 ): AleaRandomNumberGenerator {
   const originalSeed = seed;
+
   let r0: number,
     r1: number,
     r2: number,
@@ -75,9 +85,11 @@ export function createRandomAlea(
 
   random.seed = Object.freeze(originalSeed);
 
-  random.getState = (): [number, number, number, number] => [r0, r1, r2, i];
+  random.int = (): number => Math.floor(random() * 4294967296);
 
-  random.setState = (state: [number, number, number, number]) => {
+  random.getState = (): AleaState => [r0, r1, r2, i];
+
+  random.setState = (state: AleaState) => {
     r0 = state[0];
     r1 = state[1];
     r2 = state[2];

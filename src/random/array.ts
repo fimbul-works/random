@@ -46,7 +46,7 @@ export function shuffleArray<T>(
   const result: T[] = [];
   while (copy.length) {
     const index = randomIndex(copy, random);
-    result.push(copy.slice(index, 1)[0]);
+    result.push(copy.splice(index, 1)[0]);
   }
   return result;
 }

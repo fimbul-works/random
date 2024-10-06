@@ -1,6 +1,6 @@
 import { Noise2D } from '../../types.js';
-import { fBm2D } from '../fbm/fbm2d.js';
 import { domainWarp2D } from '../domain-warp/domain-warp2d.js';
+import { fBm2D } from '../fbm/fbm2d.js';
 
 /**
  * A function that generates 2D Swiss turbulence noise.
@@ -17,16 +17,16 @@ import { domainWarp2D } from '../domain-warp/domain-warp2d.js';
  * @param amplitude - The initial maximum absolute value that the noise function can produce.
  * @returns A noise value in the range [-amplitude, amplitude].
  */
-type SwissTurbulenceNoise2D = (
+export type SwissTurbulenceNoise2D = (
   x: number,
   y: number,
-  warpStrength: number,
-  turbulenceFactor: number,
-  octaves: number,
-  lacunarity: number,
-  gain: number,
-  frequency: number,
-  amplitude: number,
+  warpStrength?: number,
+  turbulenceFactor?: number,
+  octaves?: number,
+  lacunarity?: number,
+  gain?: number,
+  frequency?: number,
+  amplitude?: number,
 ) => number;
 
 /**
@@ -41,7 +41,7 @@ export function swissTurbulence2D(noise2D: Noise2D): SwissTurbulenceNoise2D {
     x: number,
     y: number,
     warpStrength: number = 0.15,
-    turbulenceFactor: number = 4.0,
+    turbulenceFactor: number = 1.0,
     octaves: number = 1,
     lacunarity: number = 2.0,
     gain: number = 0.5,

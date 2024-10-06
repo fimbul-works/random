@@ -16,18 +16,18 @@ import { Noise4D } from '../../types.js';
  * @param amplitude - The initial maximum absolute value that the noise function can produce.
  * @returns A noise value in the range [-amplitude, amplitude].
  */
-type RidgedMultifractalNoise4D = (
+export type RidgedMultifractalNoise4D = (
   x: number,
   y: number,
   z: number,
   w: number,
-  initialWeight: number,
-  octaves: number,
-  lacunarity: number,
-  gain: number,
-  offset: number,
-  frequency: number,
-  amplitude: number,
+  initialWeight?: number,
+  octaves?: number,
+  lacunarity?: number,
+  gain?: number,
+  offset?: number,
+  frequency?: number,
+  amplitude?: number,
 ) => number;
 
 /**

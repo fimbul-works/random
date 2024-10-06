@@ -7,4 +7,3 @@ export * from './ridged-multifractal/index.js';
 export * from './swiss-turbulence/index.js';
 export * from './turbulence/index.js';
 export * from './types.js';
-export * from './util.js';

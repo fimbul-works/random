@@ -1,6 +1,6 @@
 import { Noise4D } from '../../types.js';
-import { fBm4D } from '../fbm/fbm4d.js';
 import { domainWarp4D } from '../domain-warp/domain-warp4d.js';
+import { fBm4D } from '../fbm/fbm4d.js';
 
 /**
  * A function that generates 4D Swiss turbulence noise.
@@ -19,18 +19,18 @@ import { domainWarp4D } from '../domain-warp/domain-warp4d.js';
  * @param amplitude - The initial maximum absolute value that the noise function can produce.
  * @returns A noise value in the range [-amplitude, amplitude].
  */
-type SwissTurbulenceNoise4D = (
+export type SwissTurbulenceNoise4D = (
   x: number,
   y: number,
   z: number,
   w: number,
-  warpStrength: number,
-  turbulenceFactor: number,
-  octaves: number,
-  lacunarity: number,
-  gain: number,
-  frequency: number,
-  amplitude: number,
+  warpStrength?: number,
+  turbulenceFactor?: number,
+  octaves?: number,
+  lacunarity?: number,
+  gain?: number,
+  frequency?: number,
+  amplitude?: number,
 ) => number;
 
 /**
@@ -47,7 +47,7 @@ export function swissTurbulence4D(noise4D: Noise4D): SwissTurbulenceNoise4D {
     z: number,
     w: number,
     warpStrength: number = 0.15,
-    turbulenceFactor: number = 4.0,
+    turbulenceFactor: number = 1.0,
     octaves: number = 1,
     lacunarity: number = 2.0,
     gain: number = 0.5,

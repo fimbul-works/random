@@ -17,15 +17,17 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
+    "@types/node": "^22.7.4",
     "eslint": "^9.11.1",
     "globals": "^15.10.0",
     "prettier": "^3.3.3",
+    "tsx": "^4.19.1",
+    "typedoc": "^0.26.8",
     "typescript": "^5.6.2",
     "typescript-eslint": "^8.8.0",
     "vitest": "^2.1.1"
   },
   "dependencies": {
-    "@claus-codes/vec": "github:claus-codes/vec",
     "fast-2d-poisson-disk-sampling": "^1.0.3",
     "simplex-noise": "^4.0.3"
   }
