@@ -11,11 +11,9 @@
   },
   "exports": {
     ".": "./src/index.ts",
-    "./alea": "./src/alea.ts",
-    "./array": "./src/array.ts",
-    "./basic": "./src/basic.ts",
-    "./mash": "./src/mash.ts",
-    "./object": "./src/object.ts"
+    "./random": "./src/random/index.ts",
+    "./hash": "./src/hash/index.ts",
+    "./noise": "./src/noise/index.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
