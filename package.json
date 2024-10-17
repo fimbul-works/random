@@ -1,6 +1,6 @@
 {
   "name": "@claus-codes/util-random",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "dev": "tsc --watch",
@@ -10,10 +10,10 @@
     "test": "vitest run"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./random": "./src/random/index.ts",
-    "./hash": "./src/hash/index.ts",
-    "./noise": "./src/noise/index.ts"
+    ".": "./dist/index.js",
+    "./random": "./dist/random/index.js",
+    "./hash": "./dist/hash/index.js",
+    "./noise": "./dist/noise/index.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
