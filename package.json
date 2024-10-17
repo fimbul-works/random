@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc --build --clean && tsc",
-    "lint": "eslint .",
+    "lint": "eslint src",
     "format": "prettier --write \"**/*.{ts,md}\"",
     "test": "vitest run"
   },

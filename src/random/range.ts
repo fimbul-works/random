@@ -8,12 +8,12 @@ import { RandomNumberGenerator } from './types.js';
  * @param random - Random number generator that returns a value between 0.0 and 1.0.
  * @returns A random float.
  */
-export function randomFloatRange(
+export function randomRange(
   a: number,
   b: number,
   random: RandomNumberGenerator = Math.random,
 ): number {
-  return a > b ? randomFloatRange(b, a, random) : random() * (b - a) * a;
+  return a > b ? randomRange(b, a, random) : random() * (b - a) * a;
 }
 
 /**

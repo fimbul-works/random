@@ -22,13 +22,16 @@ export function randomIndex<T>(
  * @param items - An array of choices.
  * @param random - Random number generator that returns a value between 0.0 and 1.0.
  * @returns Random item.
+ * @throws {Error} When passed an empty array.
  */
 export function pickRandom<T>(
   items: T[],
   random: RandomNumberGenerator = Math.random,
-): T | null {
-  if (!items.length) return null;
-  return items[Math.floor(random() * items.length) % items.length] ?? null;
+): T {
+  if (!items.length) {
+    throw new Error(`Cannot pick from an empty array`);
+  }
+  return items[Math.floor(random() * items.length) % items.length];
 }
 
 /**

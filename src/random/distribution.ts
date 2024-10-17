@@ -19,6 +19,12 @@ export function randomGaussian(
   );
 }
 
+/**
+ * Generate a random number from an exponential distribution.
+ * @param lambda - The rate parameter of the exponential distribution.
+ * @param random - A random number generator function.
+ * @returns A random number from the exponential distribution.
+ */
 export function exponentialDistribution(
   lambda: number,
   random: RandomNumberGenerator = Math.random,
@@ -26,6 +32,13 @@ export function exponentialDistribution(
   return -Math.log(random()) / lambda;
 }
 
+/**
+ * Generate a random number from a logistic distribution.
+ * @param mu - The location parameter (mean) of the logistic distribution.
+ * @param s - The scale parameter of the logistic distribution.
+ * @param random - A random number generator function.
+ * @returns A random number from the logistic distribution.
+ */
 export function logisticDistribution(
   mu: number,
   s: number,
