@@ -1,3 +1,4 @@
+import { RandomNumberGenerator } from './types.js';
 /**
  * Return a random float in range.
  *
@@ -6,9 +7,7 @@
  * @param random - Random number generator that returns a value between 0.0 and 1.0.
  * @returns A random float.
  */
-export function randomRange(a, b, random = Math.random) {
-    return a > b ? randomRange(b, a, random) : random() * (b - a) * a;
-}
+export declare function randomRange(a: number, b: number, random?: RandomNumberGenerator): number;
 /**
  * Return a random integer in range.
  *
@@ -17,8 +16,4 @@ export function randomRange(a, b, random = Math.random) {
  * @param random - Random number generator that returns a value between 0.0 and 1.0.
  * @returns A random integer.
  */
-export function randomIntRange(a, b, random = Math.random) {
-    return a > b
-        ? randomIntRange(b, a, random)
-        : Math.floor(random() * (b - a + 1) + a);
-}
+export declare function randomIntRange(a: number, b: number, random?: RandomNumberGenerator): number;
