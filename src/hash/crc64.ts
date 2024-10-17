@@ -16,7 +16,7 @@ for (let i = 0n; i < 256n; i++) {
  * @param data - The input data to hash.
  * @returns The computed CRC-64 hash.
  */
-export function crc64(data: string | Uint8Array | Buffer | unknown): bigint {
+export function crc64(data: unknown): bigint {
   const bytes = getBytes(data);
   let crc = 0xffffffffffffffffn;
 

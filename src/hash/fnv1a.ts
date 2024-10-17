@@ -8,7 +8,7 @@ const FNV_OFFSET_BASIS = 2166136261n;
  * @param data - The input data to hash.
  * @returns The computed FNV-1a hash.
  */
-export function fnv1a(data: string | Uint8Array | Buffer | unknown): number {
+export function fnv1a(data: unknown): number {
   const bytes: Uint8Array = getBytes(data);
   let hash = FNV_OFFSET_BASIS;
 

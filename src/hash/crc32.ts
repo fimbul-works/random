@@ -16,7 +16,7 @@ for (let i = 0; i < 256; i++) {
  * @param data - The input data to hash.
  * @returns The computed CRC-32 hash.
  */
-export function crc32(data: string | Uint8Array | Buffer | unknown): number {
+export function crc32(data: unknown): number {
   const bytes = getBytes(data);
   let crc: number = 0xffffffff;
 

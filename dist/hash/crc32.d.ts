@@ -3,4 +3,4 @@
  * @param data - The input data to hash.
  * @returns The computed CRC-32 hash.
  */
-export declare function crc32(data: string | Uint8Array | Buffer | unknown): number;
+export declare function crc32(data: unknown): number;
