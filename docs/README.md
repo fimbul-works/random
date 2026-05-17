@@ -1,105 +1,16 @@
-# @fimbul-works/util-random
+# @fimbul-works/random
 
 ## Interfaces
-
-### Int64RandomNumberGenerator()
-
-Defined in: [types.ts:44](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L44)
-
-Implementation of the Alea random number generator.
-
-#### Extends
-
-- [`RandomNumberGenerator`](#randomnumbergenerator)\<`bigint`\>
-
-```ts
-Int64RandomNumberGenerator(): number;
-```
-
-Defined in: [types.ts:44](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L44)
-
-Return a random number between 0.0 and 1.0.
-
-#### Returns
-
-`number`
-
-#### Properties
-
-| Property | Modifier | Type | Description | Inherited from | Defined in |
-| ------ | ------ | ------ | ------ | ------ | ------ |
-| <a id="property-seed"></a> `seed?` | `readonly` | `bigint` | Read-only initial seed as an unsigned integer. | [`RandomNumberGenerator`](#randomnumbergenerator).[`seed`](#property-seed-1) | [types.ts:13](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L13) |
-
-#### Methods
-
-##### double()
-
-```ts
-double(): number;
-```
-
-Defined in: [types.ts:23](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L23)
-
-Return a random double-precision floating point number between 0.0 and 1.0.
-
-###### Returns
-
-`number`
-
-###### Inherited from
-
-[`RandomNumberGenerator`](#randomnumbergenerator).[`double`](#double-1)
-
-##### int()
-
-```ts
-int(): number;
-```
-
-Defined in: [types.ts:18](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L18)
-
-Return a random 32-bit number.
-
-###### Returns
-
-`number`
-
-###### Inherited from
-
-[`RandomNumberGenerator`](#randomnumbergenerator).[`int`](#int-1)
-
-##### int64()
-
-```ts
-int64(): bigint;
-```
-
-Defined in: [types.ts:48](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L48)
-
-Return a random 64-bit number.
-
-###### Returns
-
-`bigint`
-
-***
 
 ### RandomNumberGenerator()
 
 Defined in: [types.ts:4](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L4)
 
-Decorated random number generator function.
+Decorated PRNG function.
 
 #### Extended by
 
 - [`StatefulRandomNumberGenerator`](#statefulrandomnumbergenerator)
-- [`Int64RandomNumberGenerator`](#int64randomnumbergenerator)
-
-#### Type Parameters
-
-| Type Parameter | Default type |
-| ------ | ------ |
-| `T` | `number` |
 
 ```ts
 RandomNumberGenerator(): number;
@@ -117,7 +28,7 @@ Return a random number between 0.0 and 1.0.
 
 | Property | Modifier | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ | ------ |
-| <a id="property-seed-1"></a> `seed?` | `readonly` | `T` | Read-only initial seed as an unsigned integer. | [types.ts:13](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L13) |
+| <a id="property-seed"></a> `seed?` | `readonly` | `number` | Read-only initial seed as an unsigned integer. | [types.ts:13](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L13) |
 
 #### Methods
 
@@ -127,7 +38,7 @@ Return a random number between 0.0 and 1.0.
 double(): number;
 ```
 
-Defined in: [types.ts:23](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L23)
+Defined in: [types.ts:28](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L28)
 
 Return a random double-precision floating point number between 0.0 and 1.0.
 
@@ -149,30 +60,43 @@ Return a random 32-bit number.
 
 `number`
 
+##### int64()
+
+```ts
+int64(): bigint;
+```
+
+Defined in: [types.ts:23](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L23)
+
+Return a random 64-bit number.
+
+###### Returns
+
+`bigint`
+
 ***
 
 ### StatefulRandomNumberGenerator()
 
-Defined in: [types.ts:26](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L26)
+Defined in: [types.ts:31](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L31)
 
-Decorated random number generator function.
+Decorated PRNG function.
 
 #### Extends
 
-- [`RandomNumberGenerator`](#randomnumbergenerator)\<`S`\>
+- [`RandomNumberGenerator`](#randomnumbergenerator)
 
 #### Type Parameters
 
-| Type Parameter | Default type |
-| ------ | ------ |
-| `T` | - |
-| `S` | `number` |
+| Type Parameter |
+| ------ |
+| `T` |
 
 ```ts
 StatefulRandomNumberGenerator(): number;
 ```
 
-Defined in: [types.ts:26](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L26)
+Defined in: [types.ts:31](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L31)
 
 Return a random number between 0.0 and 1.0.
 
@@ -184,9 +108,9 @@ Return a random number between 0.0 and 1.0.
 
 | Property | Modifier | Type | Description | Inherited from | Defined in |
 | ------ | ------ | ------ | ------ | ------ | ------ |
-| <a id="property-getstate"></a> `getState` | `public` | () => `T` | Get the internal registry state. | - | [types.ts:32](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L32) |
-| <a id="property-seed-2"></a> `seed?` | `readonly` | `S` | Read-only initial seed as an unsigned integer. | [`RandomNumberGenerator`](#randomnumbergenerator).[`seed`](#property-seed-1) | [types.ts:13](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L13) |
-| <a id="property-setstate"></a> `setState` | `public` | (`state`) => `void` | Set the internal registry state | - | [types.ts:38](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L38) |
+| <a id="property-getstate"></a> `getState` | `public` | () => `T` | Get the internal registry state. | - | [types.ts:37](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L37) |
+| <a id="property-seed-1"></a> `seed?` | `readonly` | `number` | Read-only initial seed as an unsigned integer. | [`RandomNumberGenerator`](#randomnumbergenerator).[`seed`](#property-seed) | [types.ts:13](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L13) |
+| <a id="property-setstate"></a> `setState` | `public` | (`state`) => `void` | Set the internal registry state | - | [types.ts:43](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L43) |
 
 #### Methods
 
@@ -196,7 +120,7 @@ Return a random number between 0.0 and 1.0.
 double(): number;
 ```
 
-Defined in: [types.ts:23](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L23)
+Defined in: [types.ts:28](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L28)
 
 Return a random double-precision floating point number between 0.0 and 1.0.
 
@@ -206,7 +130,7 @@ Return a random double-precision floating point number between 0.0 and 1.0.
 
 ###### Inherited from
 
-[`RandomNumberGenerator`](#randomnumbergenerator).[`double`](#double-1)
+[`RandomNumberGenerator`](#randomnumbergenerator).[`double`](#double)
 
 ##### int()
 
@@ -224,7 +148,25 @@ Return a random 32-bit number.
 
 ###### Inherited from
 
-[`RandomNumberGenerator`](#randomnumbergenerator).[`int`](#int-1)
+[`RandomNumberGenerator`](#randomnumbergenerator).[`int`](#int)
+
+##### int64()
+
+```ts
+int64(): bigint;
+```
+
+Defined in: [types.ts:23](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L23)
+
+Return a random 64-bit number.
+
+###### Returns
+
+`bigint`
+
+###### Inherited from
+
+[`RandomNumberGenerator`](#randomnumbergenerator).[`int64`](#int64)
 
 ## Type Aliases
 
@@ -234,7 +176,7 @@ Return a random 32-bit number.
 type AleaState = [number, number, number, number];
 ```
 
-Defined in: [rng/alea.ts:16](https://github.com/claus-codes/util-random/blob/main/src/rng/alea.ts#L16)
+Defined in: [rng/alea.ts:12](https://github.com/claus-codes/util-random/blob/main/src/rng/alea.ts#L12)
 
 Alea internal registry state.
 
@@ -249,6 +191,30 @@ type MersenneTwisterState = [number[], number];
 Defined in: [rng/mersenne-twister.ts:12](https://github.com/claus-codes/util-random/blob/main/src/rng/mersenne-twister.ts#L12)
 
 Mersenne Twister internal state (state and state index).
+
+***
+
+### SFC32State
+
+```ts
+type SFC32State = [number, number, number, number];
+```
+
+Defined in: [rng/sfc32.ts:8](https://github.com/claus-codes/util-random/blob/main/src/rng/sfc32.ts#L8)
+
+SFC32 internal registry state.
+
+***
+
+### TycheiState
+
+```ts
+type TycheiState = [number, number, number, number];
+```
+
+Defined in: [rng/tychei.ts:8](https://github.com/claus-codes/util-random/blob/main/src/rng/tychei.ts#L8)
+
+Tyche-i internal registry state.
 
 ***
 
@@ -292,41 +258,65 @@ Defined in: [rng/xoshiro128-plus.ts:8](https://github.com/claus-codes/util-rando
 
 Xiroshiro-128 internal registry state.
 
-## Functions
+***
 
-### createMersenneTwister()
+### Xor128State
 
 ```ts
-function createMersenneTwister(seed?): StatefulRandomNumberGenerator<MersenneTwisterState>;
+type Xor128State = [number, number, number, number];
 ```
 
-Defined in: [rng/mersenne-twister.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/mersenne-twister.ts#L19)
+Defined in: [rng/xor128.ts:8](https://github.com/claus-codes/util-random/blob/main/src/rng/xor128.ts#L8)
 
-Creates a new Mersenne Twister random number generator.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| ------ | ------ | ------ |
-| `seed` | `number` | Seed for the random number generator. |
-
-#### Returns
-
-[`StatefulRandomNumberGenerator`](#statefulrandomnumbergenerator)\<[`MersenneTwisterState`](#mersennetwisterstate)\>
-
-A new random number generator.
+Xor128 internal registry state.
 
 ***
 
-### createRandomAlea()
+### Xor4096State
 
 ```ts
-function createRandomAlea(seed?): StatefulRandomNumberGenerator<AleaState>;
+type Xor4096State = [number, number[], number];
 ```
 
-Defined in: [rng/alea.ts:24](https://github.com/claus-codes/util-random/blob/main/src/rng/alea.ts#L24)
+Defined in: [rng/xor4096.ts:8](https://github.com/claus-codes/util-random/blob/main/src/rng/xor4096.ts#L8)
 
-Creates a new Alea random number generator.
+Xor4096 internal registry state.
+
+***
+
+### XorShift7State
+
+```ts
+type XorShift7State = [number[], number];
+```
+
+Defined in: [rng/xor-shift7.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/xor-shift7.ts#L9)
+
+XorShift7 internal registry state.
+
+***
+
+### XorWowState
+
+```ts
+type XorWowState = [number, number, number, number, number, number];
+```
+
+Defined in: [rng/xor-wow.ts:8](https://github.com/claus-codes/util-random/blob/main/src/rng/xor-wow.ts#L8)
+
+XorWow internal registry state.
+
+## Functions
+
+### createAlea()
+
+```ts
+function createAlea(seed?): StatefulRandomNumberGenerator<AleaState>;
+```
+
+Defined in: [rng/alea.ts:20](https://github.com/claus-codes/util-random/blob/main/src/rng/alea.ts#L20)
+
+Creates a new Alea PRNG.
 
 #### Parameters
 
@@ -338,32 +328,282 @@ Creates a new Alea random number generator.
 
 [`StatefulRandomNumberGenerator`](#statefulrandomnumbergenerator)\<[`AleaState`](#aleastate)\>
 
-A new random number generator
+A new PRNG
 
 ***
 
-### createXorShiftRandom()
+### createMersenneTwister()
 
 ```ts
-function createXorShiftRandom(seed?): RandomNumberGenerator;
+function createMersenneTwister(seed?): StatefulRandomNumberGenerator<MersenneTwisterState>;
 ```
 
-Defined in: [rng/xor-shift.ts:11](https://github.com/claus-codes/util-random/blob/main/src/rng/xor-shift.ts#L11)
+Defined in: [rng/mersenne-twister.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/mersenne-twister.ts#L19)
 
-xorShiftMash — A tiny stateful PRNG using xorShift mixed with Mash constants.
+Creates a new Mersenne Twister PRNG.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed` | `number` | Seed number |
+
+#### Returns
+
+[`StatefulRandomNumberGenerator`](#statefulrandomnumbergenerator)\<[`MersenneTwisterState`](#mersennetwisterstate)\>
+
+A new PRNG
+
+***
+
+### createMulberry32()
+
+```ts
+function createMulberry32(seed?): RandomNumberGenerator;
+```
+
+Defined in: [rng/mulberry32.ts:11](https://github.com/claus-codes/util-random/blob/main/src/rng/mulberry32.ts#L11)
+
+Creates a new Mulberry32 PRNG.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed` | `number` | The seed value for the PRNG |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)
+
+A new PRNG
+
+***
+
+### createParkMiller()
+
+```ts
+function createParkMiller(seed?): StatefulRandomNumberGenerator<number>;
+```
+
+Defined in: [rng/park-miller.ts:12](https://github.com/claus-codes/util-random/blob/main/src/rng/park-miller.ts#L12)
+
+Park-Miller LCG (MINSTD) PRNG.
+Reference: https://en.wikipedia.org/wiki/Lehmer_random_number_generator
+Reference: https://www.firstpr.com.au/dsp/rand31/
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed` | `number` | Seed number |
+
+#### Returns
+
+[`StatefulRandomNumberGenerator`](#statefulrandomnumbergenerator)\<`number`\>
+
+A new PRNG
+
+***
+
+### createSFC32()
+
+```ts
+function createSFC32(seed?): StatefulRandomNumberGenerator<SFC32State>;
+```
+
+Defined in: [rng/sfc32.ts:17](https://github.com/claus-codes/util-random/blob/main/src/rng/sfc32.ts#L17)
+
+SFC32 (Small Fast Chaotic) PRNG by Chris Doty-Humphrey.
+Reference: https://github.com/bryc/code/blob/master/jshash/PRNGs.md
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed` | `number` | Seed number |
+
+#### Returns
+
+[`StatefulRandomNumberGenerator`](#statefulrandomnumbergenerator)\<[`SFC32State`](#sfc32state)\>
+
+A new PRNG
+
+***
+
+### createSplitMix32()
+
+```ts
+function createSplitMix32(seed?): RandomNumberGenerator;
+```
+
+Defined in: [rng/splitmix32.ts:11](https://github.com/claus-codes/util-random/blob/main/src/rng/splitmix32.ts#L11)
+
+Creates a new SplitMix32 PRNG.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed` | `number` | Seed number |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)
+
+A new PRNG
+
+***
+
+### createTychei()
+
+```ts
+function createTychei(seed?): StatefulRandomNumberGenerator<TycheiState>;
+```
+
+Defined in: [rng/tychei.ts:17](https://github.com/claus-codes/util-random/blob/main/src/rng/tychei.ts#L17)
+
+Tyche-i PRNG by Samuel Neves and Filipe Araujo.
+Reference: https://link.springer.com/chapter/10.1007/978-3-642-31464-3_10
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed` | `number` | Seed number |
+
+#### Returns
+
+[`StatefulRandomNumberGenerator`](#statefulrandomnumbergenerator)\<[`TycheiState`](#tycheistate)\>
+
+A new PRNG
+
+***
+
+### createXor128()
+
+```ts
+function createXor128(seed?): StatefulRandomNumberGenerator<Xor128State>;
+```
+
+Defined in: [rng/xor128.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/xor128.ts#L19)
+
+Xor128 PRNG by George Marsaglia.
+Reference: https://doi.org/10.18637/jss.v008.i14
+Reference: https://www.semanticscholar.org/paper/Xorshift-RNGs-RNGs-Marsaglia/2f8b197c3b34d86478f1eaed1fb61f5b1c556fa5
+Reference: https://vigna.di.unimi.it/ftp/papers/xorshift.pdf
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed` | `number` | Seed number |
+
+#### Returns
+
+[`StatefulRandomNumberGenerator`](#statefulrandomnumbergenerator)\<[`Xor128State`](#xor128state)\>
+
+A new PRNG
+
+***
+
+### createXor4096()
+
+```ts
+function createXor4096(seed?): StatefulRandomNumberGenerator<Xor4096State>;
+```
+
+Defined in: [rng/xor4096.ts:17](https://github.com/claus-codes/util-random/blob/main/src/rng/xor4096.ts#L17)
+
+Xor4096 PRNG by Richard Brent.
+Reference: https://github.com/davidbau/seedrandom
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed` | `number` | Seed number |
+
+#### Returns
+
+[`StatefulRandomNumberGenerator`](#statefulrandomnumbergenerator)\<[`Xor4096State`](#xor4096state)\>
+
+A new PRNG
+
+***
+
+### createXorShift7()
+
+```ts
+function createXorShift7(seed?): StatefulRandomNumberGenerator<XorShift7State>;
+```
+
+Defined in: [rng/xor-shift7.ts:18](https://github.com/claus-codes/util-random/blob/main/src/rng/xor-shift7.ts#L18)
+
+XorShift7 PRNG by François Panneton and Pierre L'Ecuyer.
+Reference: https://www.iro.umontreal.ca/~lecuyer/myftp/papers/xorshift.pdf
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed` | `number` | Seed number |
+
+#### Returns
+
+[`StatefulRandomNumberGenerator`](#statefulrandomnumbergenerator)\<[`XorShift7State`](#xorshift7state)\>
+
+A new PRNG
+
+***
+
+### createXorShiftMash()
+
+```ts
+function createXorShiftMash(seed?): RandomNumberGenerator;
+```
+
+Defined in: [rng/xor-shift-mash.ts:12](https://github.com/claus-codes/util-random/blob/main/src/rng/xor-shift-mash.ts#L12)
+
+XorShiftMash — A tiny stateful PRNG using xorShift mixed with Mash constants.
 Highly deterministic and good for string-seeded procedural generation.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `seed` | `number` | Starting internal state (defaults to the original Mash constant). |
+| `seed` | `number` | Seed number |
 
 #### Returns
 
 [`RandomNumberGenerator`](#randomnumbergenerator)
 
-A stateful hash function with a `next` method.
+A new PRNG
+
+***
+
+### createXorWow()
+
+```ts
+function createXorWow(seed?): StatefulRandomNumberGenerator<XorWowState>;
+```
+
+Defined in: [rng/xor-wow.ts:17](https://github.com/claus-codes/util-random/blob/main/src/rng/xor-wow.ts#L17)
+
+XorWow PRNG by François Panneton and Pierre L'Ecuyer.
+Reference: https://www.iro.umontreal.ca/~lecuyer/myftp/papers/xorshift.pdf
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed` | `number` | Seed number |
+
+#### Returns
+
+[`StatefulRandomNumberGenerator`](#statefulrandomnumbergenerator)\<[`XorWowState`](#xorwowstate)\>
+
+A new PRNG
 
 ***
 
@@ -388,7 +628,7 @@ Reference: https://prng.di.unimi.it/xoshiro128plus.c
 
 [`StatefulRandomNumberGenerator`](#statefulrandomnumbergenerator)\<[`Xiroshiro128State`](#xiroshiro128state)\>
 
-A new random number generator
+A new PRNG
 
 ***
 
@@ -413,31 +653,7 @@ Reference: https://prng.di.unimi.it/xoshiro128plusplus.c
 
 [`StatefulRandomNumberGenerator`](#statefulrandomnumbergenerator)\<[`Xiroshiro128State`](#xiroshiro128state)\>
 
-A new random number generator
-
-***
-
-### mulberry32()
-
-```ts
-function mulberry32(seed?): RandomNumberGenerator;
-```
-
-Defined in: [rng/mulberry32.ts:10](https://github.com/claus-codes/util-random/blob/main/src/rng/mulberry32.ts#L10)
-
-Creates a new Mulberry32 random number generator.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| ------ | ------ | ------ |
-| `seed` | `number` | The seed value for the random number generator |
-
-#### Returns
-
-[`RandomNumberGenerator`](#randomnumbergenerator)
-
-A new random number generator
+A new PRNG
 
 ***
 
@@ -462,7 +678,7 @@ Pick a random item from an array.
 | Parameter | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
 | `items` | `T`[] | `undefined` | An array of choices. |
-| `random` | () => `number` | `Math.random` | Random number generator that returns a value between 0.0 and 1.0 |
+| `random` | () => `number` | `Math.random` | PRNG that returns a value between 0.0 and 1.0 |
 
 #### Returns
 
@@ -501,7 +717,7 @@ Pick a random item from an array of objects based on their weights.
 | ------ | ------ | ------ | ------ |
 | `items` | `T`[] | `undefined` | An array of objects |
 | `getWeight` | [`WeightExtractor`](#weightextractor)\<`T`\> | `undefined` | A function that extracts the weight from an item. Defaults to assuming the item is a number |
-| `random` | () => `number` | `Math.random` | Random number generator that returns a value between 0.0 and 1.0 |
+| `random` | () => `number` | `Math.random` | PRNG that returns a value between 0.0 and 1.0 |
 
 #### Returns
 
@@ -530,7 +746,7 @@ Generate a random number from an exponential distribution.
 | Parameter | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
 | `lambda` | `number` | `undefined` | The rate parameter of the exponential distribution |
-| `random` | () => `number` | `Math.random` | A random number generator function |
+| `random` | () => `number` | `Math.random` | A PRNG function |
 
 #### Returns
 
@@ -590,7 +806,7 @@ Return a random index using a length or an array as value.
 | Parameter | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
 | `length` | `number` \| `T`[] | `undefined` | Number or array. |
-| `random` | () => `number` | `Math.random` | Random number generator that returns a value between 0.0 and 1.0. |
+| `random` | () => `number` | `Math.random` | PRNG that returns a value between 0.0 and 1.0. |
 
 #### Returns
 
@@ -619,7 +835,7 @@ Return a random integer in range.
 | ------ | ------ | ------ | ------ |
 | `a` | `number` | `undefined` | First value |
 | `b` | `number` | `undefined` | Second value |
-| `random` | () => `number` | `Math.random` | Random number generator that returns a value between 0.0 and 1.0 |
+| `random` | () => `number` | `Math.random` | PRNG that returns a value between 0.0 and 1.0 |
 
 #### Returns
 
@@ -648,7 +864,7 @@ Generate a random number from a logistic distribution.
 | ------ | ------ | ------ | ------ |
 | `mu` | `number` | `undefined` | The location parameter (mean) of the logistic distribution |
 | `s` | `number` | `undefined` | The scale parameter of the logistic distribution |
-| `random` | () => `number` | `Math.random` | A random number generator function |
+| `random` | () => `number` | `Math.random` | A PRNG function |
 
 #### Returns
 
@@ -677,7 +893,7 @@ Return a random float in range.
 | ------ | ------ | ------ | ------ |
 | `a` | `number` | `undefined` | First value |
 | `b` | `number` | `undefined` | Second value |
-| `random` | () => `number` | `Math.random` | Random number generator that returns a value between 0.0 and 1.0 |
+| `random` | () => `number` | `Math.random` | PRNG that returns a value between 0.0 and 1.0 |
 
 #### Returns
 
@@ -741,7 +957,7 @@ Select a random index from an array of objects based on their weights.
 | ------ | ------ | ------ | ------ |
 | `items` | `T`[] | `undefined` | An array of objects |
 | `getWeight` | [`WeightExtractor`](#weightextractor)\<`T`\> | `undefined` | A function that extracts the weight from an item. Defaults to assuming the item is a number |
-| `random` | () => `number` | `Math.random` | Random number generator that returns a value between 0.0 and 1.0 |
+| `random` | () => `number` | `Math.random` | PRNG that returns a value between 0.0 and 1.0 |
 
 #### Returns
 
@@ -766,7 +982,7 @@ Pick a random key from an object with weight as the value.
 | Parameter | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
 | `keyAndWeight` | `Record`\<`string`, `number`\> | `undefined` | An object with keys and values as weight |
-| `random` | () => `number` | `Math.random` | Random number generator that returns a value between 0.0 and 1.0 |
+| `random` | () => `number` | `Math.random` | PRNG that returns a value between 0.0 and 1.0 |
 
 #### Returns
 
@@ -801,34 +1017,10 @@ Create a shuffled copy of an array.
 | Parameter | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
 | `arr` | `T`[] | `undefined` | The array to shuffle |
-| `random` | () => `number` | `Math.random` | Random number generator that returns a value between 0.0 and 1.0 |
+| `random` | () => `number` | `Math.random` | PRNG that returns a value between 0.0 and 1.0 |
 
 #### Returns
 
 `T`[]
 
 A shuffled copy of the array
-
-***
-
-### splitMix64()
-
-```ts
-function splitMix64(seed?): Int64RandomNumberGenerator;
-```
-
-Defined in: [rng/splitmix64.ts:11](https://github.com/claus-codes/util-random/blob/main/src/rng/splitmix64.ts#L11)
-
-Creates a new SplitMix64 random number generator.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| ------ | ------ | ------ |
-| `seed` | `bigint` | The seed value for the random number generator |
-
-#### Returns
-
-[`Int64RandomNumberGenerator`](#int64randomnumbergenerator)
-
-A new random number generator

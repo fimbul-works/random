@@ -9,12 +9,13 @@
     "rules": {
       "suspicious": {
         "noAssignInExpressions": "off",
-        "noExplicitAny": "off"
+        "noExplicitAny": "off",
+        "useIterableCallbackReturn": "off"
       },
       "style": {
         "useSingleVarDeclarator": "off",
         "noNonNullAssertion": "off"
-      }
+      },
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@fimbul-works/util-random",
+  "name": "@fimbul-works/random",
   "description": "Collection of random number generators and utility functions",
   "version": "0.1.5",
   "type": "module",
@@ -52,15 +52,20 @@
     "format": "npx biome format --write src",
     "test": "vitest",
     "sizes": "npx bundle-size",
+    "benchmark": "tsx benchmark/speed.ts",
+    "benchmark:quality": "tsx benchmark/quality.ts",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@fimbul-works/util-hash": "link:../util-hash"
+    "@fimbul-works/hash": "link:../util-hash"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.15",
     "@fimbul-works/bundle-size": "link:../bundle-size",
     "@types/node": "^25.8.0",
+    "mitata": "^1.0.34",
+    "picocolors": "^1.1.1",
+    "randomness": "^1.7.0",
     "tsdown": "^0.22.0",
     "tsx": "^4.22.0",
     "typedoc": "^0.28.19",

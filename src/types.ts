@@ -1,7 +1,7 @@
 /**
- * Decorated random number generator function.
+ * Decorated PRNG function.
  */
-export interface RandomNumberGenerator<T = number> {
+export interface RandomNumberGenerator {
   /**
    * Return a random number between 0.0 and 1.0.
    */
@@ -10,7 +10,7 @@ export interface RandomNumberGenerator<T = number> {
   /**
    * Read-only initial seed as an unsigned integer.
    */
-  readonly seed?: T;
+  readonly seed?: number;
 
   /**
    * Return a random 32-bit number.
@@ -18,12 +18,17 @@ export interface RandomNumberGenerator<T = number> {
   int(): number;
 
   /**
+   * Return a random 64-bit number.
+   */
+  int64(): bigint;
+
+  /**
    * Return a random double-precision floating point number between 0.0 and 1.0.
    */
   double(): number;
 }
 
-export interface StatefulRandomNumberGenerator<T, S = number> extends RandomNumberGenerator<S> {
+export interface StatefulRandomNumberGenerator<T> extends RandomNumberGenerator {
   /**
    * Get the internal registry state.
    *
@@ -36,14 +41,4 @@ export interface StatefulRandomNumberGenerator<T, S = number> extends RandomNumb
    * @param state - The internal registry state
    */
   setState: (state: T) => void;
-}
-
-/**
- * Implementation of the Alea random number generator.
- */
-export interface Int64RandomNumberGenerator extends RandomNumberGenerator<bigint> {
-  /**
-   * Return a random 64-bit number.
-   */
-  int64(): bigint;
 }

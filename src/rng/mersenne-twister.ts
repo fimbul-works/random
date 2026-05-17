@@ -4,7 +4,7 @@
  */
 import type { StatefulRandomNumberGenerator } from "../types.js";
 import { decorateRandom } from "../util.js";
-import { FRAC } from "./constants.js";
+import { FRAC } from "../constants.js";
 
 /**
  * Mersenne Twister internal state (state and state index).
@@ -12,11 +12,13 @@ import { FRAC } from "./constants.js";
 export type MersenneTwisterState = [number[], number];
 
 /**
- * Creates a new Mersenne Twister random number generator.
- * @param seed - Seed for the random number generator.
- * @returns A new random number generator.
+ * Creates a new Mersenne Twister PRNG.
+ * @param {number} seed - Seed number
+ * @returns A new PRNG
  */
-export function createMersenneTwister(seed: number = Date.now()): StatefulRandomNumberGenerator<MersenneTwisterState> {
+export function createMersenneTwister(
+  seed: number = Date.now(),
+): StatefulRandomNumberGenerator<MersenneTwisterState> {
   const N = 624;
   const M = 397;
   const MATRIX_A = 0x9908b0df;

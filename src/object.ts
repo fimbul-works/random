@@ -2,7 +2,7 @@
  * Pick a random key from an object with weight as the value.
  *
  * @param keyAndWeight - An object with keys and values as weight
- * @param random - Random number generator that returns a value between 0.0 and 1.0
+ * @param random - PRNG that returns a value between 0.0 and 1.0
  * @returns A random key, or null on error
  * @throws {Error} On invalid weighted key object
  */

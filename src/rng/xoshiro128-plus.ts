@@ -1,6 +1,6 @@
 import type { StatefulRandomNumberGenerator } from "../types.js";
-import { decorateRandom, expand32From64, rotl } from "../util.js";
-import { U32_2_POW_32 } from "./constants";
+import { decorateRandom, expand32, rotl } from "../util.js";
+import { FRAC } from "../constants.js";
 
 /**
  * Xiroshiro-128 internal registry state.
@@ -12,48 +12,46 @@ export type Xiroshiro128State = [number, number, number, number];
  * Reference: https://prng.di.unimi.it/xoshiro128plus.c
  *
  * @param {number} seed - Seed number
- * @returns A new random number generator
+ * @returns A new PRNG
  */
-export function createXoshiro128Plus(seed: number = Date.now()): StatefulRandomNumberGenerator<Xiroshiro128State> {
-  const s = expand32From64(seed, 4);
-  let s0: number = s[0] >>> 0;
-  let s1: number = s[1] >>> 0;
-  let s2: number = s[2] >>> 0;
-  let s3: number = s[3] >>> 0;
+export function createXoshiro128Plus(
+  seed: number = Date.now(),
+): StatefulRandomNumberGenerator<Xiroshiro128State> {
+  const s = expand32(seed, 4);
+  let r0: number = s[0] >>> 0;
+  let r1: number = s[1] >>> 0;
+  let r2: number = s[2] >>> 0;
+  let r3: number = s[3] >>> 0;
 
   // Avoid all-zero state
-  if ((s0 | s1 | s2 | s3) === 0) {
-    s0 = 1;
+  if ((r0 | r1 | r2 | r3) === 0) {
+    r0 = 1;
   }
 
-  const next = (): number => {
-    const result = (s0 + s3) >>> 0;
-    const t = (s1 << 9) >>> 0;
-    s2 ^= s0;
-    s3 ^= s1;
-    s1 ^= s2;
-    s0 ^= s3;
-    s2 ^= t;
-    s3 = rotl(s3, 11);
-    return result >>> 0;
-  };
-
   function random() {
-    return next() / U32_2_POW_32;
+    const result = (r0 + r3) >>> 0;
+    const t = (r1 << 9) >>> 0;
+    r2 ^= r0;
+    r3 ^= r1;
+    r1 ^= r2;
+    r0 ^= r3;
+    r2 ^= t;
+    r3 = rotl(r3, 11);
+    return (result >>> 0) * FRAC;
   }
 
   // Warm-up
   for (let i = 0; i < 16; i++) {
-    next();
+    random();
   }
 
   return decorateRandom<StatefulRandomNumberGenerator<Xiroshiro128State>>(random, seed, {
-    getState: () => [s0, s1, s2, s3],
+    getState: () => [r0, r1, r2, r3],
     setState: () => (state: Xiroshiro128State) => {
-      s0 = state[0];
-      s1 = state[1];
-      s2 = state[2];
-      s3 = state[3];
+      r0 = state[0];
+      r1 = state[1];
+      r2 = state[2];
+      r3 = state[3];
     },
   });
 }

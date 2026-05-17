@@ -3,7 +3,7 @@
  *
  * @param a - First value
  * @param b - Second value
- * @param random - Random number generator that returns a value between 0.0 and 1.0
+ * @param random - PRNG that returns a value between 0.0 and 1.0
  * @returns A random float
  */
 export const randomRange = (a: number, b: number, random: () => number = Math.random): number =>
@@ -14,7 +14,7 @@ export const randomRange = (a: number, b: number, random: () => number = Math.ra
  *
  * @param a - First value
  * @param b - Second value
- * @param random - Random number generator that returns a value between 0.0 and 1.0
+ * @param random - PRNG that returns a value between 0.0 and 1.0
  * @returns A random integer in [a, b] inclusive
  */
 export const randomIntRange = (a: number, b: number, random: () => number = Math.random): number =>

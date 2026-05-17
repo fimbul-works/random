@@ -4,14 +4,14 @@ import { defineConfig, type UserConfig } from "tsdown";
 
 const rngPath = "src/rng";
 
-const entryPoints = {
+const entryPoints: Record<string, string> = {
   bundle: "src/index.ts",
   rng: "src/rng/index.ts",
   util: "src/index.util.ts",
 };
 
 readdirSync(rngPath)
-  .filter((file: string) => !["index.ts", "constants.ts"].includes(file))
+  .filter((file: string) => !["index.ts", "constants.ts", "factory.ts"].includes(file))
   .forEach((file) => {
     entryPoints[basename(file, extname(file))] = join(rngPath, file);
   });
@@ -32,7 +32,7 @@ const commonConfig: UserConfig = {
     },
   },
   deps: {
-    alwaysBundle: ["@fimbul-works/util-hash"],
+    alwaysBundle: ["@fimbul-works/hash"],
   },
 };
 

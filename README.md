@@ -1,4 +1,4 @@
-# @fimbul-works/util-random
+# @fimbul-works/random
 
 A comprehensive utility library for random number generation, noise functions, and related algorithms.
 
