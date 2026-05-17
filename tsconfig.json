@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
     "target": "ESNext",
+    "module": "ESNext",
     "lib": ["ESNext", "DOM"],
-    "noEmit": false,
+    "types": ["node"],
+    "moduleResolution": "Bundler",
     "declaration": true,
+    "allowJs": true,
     "strict": true,
-    "outDir": "dist"
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist/esm",
+    "rootDir": "./src"
   },
   "include": ["src"],
   "exclude": ["src/**/*.test.ts", "node_modules"]
