@@ -1,25 +1,28 @@
-import type { RandomNumberGenerator } from "../types.js";
-import { decorateRandom } from "../util.js";
 import { FRAC, INT_32 } from "../constants.js";
+import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
+import type { RandomNumberGenerator } from "../types.js";
+import { normalizeSeed } from "../util.js";
 
 /**
- * XorShiftMash — A tiny stateful PRNG using xorShift mixed with Mash constants.
- * Highly deterministic and good for string-seeded procedural generation.
+ * Creates a new XorShiftMash PRNG.
  *
- * @param {number} seed - Seed number
- * @returns A new PRNG
+ * This is an implementation of the XorShift algorithm by George Marsaglia.
+ *
+ * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
+ * @returns {RandomNumberGenerator<number>} A new PRNG.
  */
-export const createXorShiftMash = (seed: number = Date.now()): RandomNumberGenerator => {
-  let x = seed >>> 0;
+export const createXorShiftMash = (seed: number = Date.now()): RandomNumberGenerator<number> => {
+  let s = normalizeSeed(seed);
 
   function random() {
-    x ^= x << 13;
-    x ^= x >>> 17;
-    x ^= x << 5;
+    s ^= s << 13;
+    s ^= s >>> 17;
+    s ^= s << 5;
 
-    // Mix with Mash multiplier (2^32 * 2^32 / 0x100000000)
-    let h = 0.02519603282416938 * (x >>> 0);
+    // Mash multiplier (2^32 * 2^32) / 0x100000000
+    let h = 0.02519603282416938 * (s >>> 0);
     let n = h >>> 0;
+
     h -= n;
     h *= n;
     n = h >>> 0;
@@ -28,5 +31,12 @@ export const createXorShiftMash = (seed: number = Date.now()): RandomNumberGener
     return ((n + h * INT_32) >>> 0) * FRAC;
   }
 
-  return decorateRandom(random, seed);
+  return decorateRandom(
+    defineRandomState<number>(
+      random,
+      seed,
+      () => s,
+      (state) => (s = state),
+    ),
+  );
 };

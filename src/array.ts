@@ -1,35 +1,61 @@
+import type { RandomFunction } from "./types";
+
 /**
  * A function that extracts a weight from an object of type T.
- * @param item - Object to extract a weight value from
- * @returns Number representing weight
+ *
+ * @template T - The type of the object to extract the weight from.
+ * @param {T} item - Object to extract a weight value from.
+ * @returns {number} Number representing weight.
  */
 export type WeightExtractor<T extends object> = (item: T) => number;
 
 /**
  * Return a random index using a length or an array as value.
  *
- * @param length - Number or array.
- * @param random - PRNG that returns a value between 0.0 and 1.0.
- * @returns A random integer, or -1 if length is zero.
+ * @template T - The type of an array item, if length is an array.
+ *
+ * @param {number | T[]} lengthOrArray - Number or array.
+ * @param {RandomFunction} [random=Math.random] - Function that returns a value in range [0, 1].
+ * @returns {number} A random integer, or -1 if length is zero.
  */
-export const randomIndex = <T>(length: number | T[], random: () => number = Math.random): number =>
-  Array.isArray(length)
-    ? randomIndex(length.length, random)
-    : length <= 0
+export const randomIndex = <T>(lengthOrArray: number | T[], random: RandomFunction = Math.random): number =>
+  Array.isArray(lengthOrArray)
+    ? randomIndex(lengthOrArray.length, random)
+    : lengthOrArray <= 0
       ? -1
-      : Math.floor(random() * length) % length;
+      : Math.floor(random() * lengthOrArray) % lengthOrArray;
+
+/**
+ * Pick a random item from an array.
+ *
+ * @template T - The type of the items in the array.
+ *
+ * @param {T[]} items - An array of options to pick from.
+ * @param {RandomFunction} [random=Math.random] - Function that returns a value in range [0, 1].
+ * @returns {T} Random item.
+ * @throws {Error} When passed an empty array.
+ */
+export const pickRandom = <T>(items: T[], random: RandomFunction = Math.random): T => {
+  if (!items.length) {
+    throw new Error("Cannot pick from an empty array");
+  }
+  return items[randomIndex(items, random)];
+};
 
 /**
  * Select a random index from an array of objects based on their weights.
- * @param items - An array of objects
- * @param getWeight - A function that extracts the weight from an item. Defaults to assuming the item is a number
- * @param random - PRNG that returns a value between 0.0 and 1.0
- * @returns Selected random index, or -1 if the array is empty
+ *
+ * @template T - The type of an array item.
+ *
+ * @param {T[]} items - An array of objects
+ * @param {WeightExtractor<T>} getWeight - A function that extracts the weight from an item. Defaults to assuming the item is a number.
+ * @param {RandomFunction} [random=Math.random] - Function that returns a value in range [0, 1].
+ * @returns {number} Selected random index, or -1 if the array is empty.
  */
 export const randomWeightedIndex = <T extends object>(
   items: T[],
   getWeight: WeightExtractor<T>,
-  random: () => number = Math.random,
+  random: RandomFunction = Math.random,
 ): number => {
   if (items.length === 0) {
     return -1;
@@ -53,37 +79,24 @@ export const randomWeightedIndex = <T extends object>(
 };
 
 /**
- * Pick a random item from an array.
- *
- * @param items - An array of choices.
- * @param random - PRNG that returns a value between 0.0 and 1.0
- * @returns Random item
- * @throws {Error} When passed an empty array
- */
-export const pickRandom = <T>(items: T[], random: () => number = Math.random): T => {
-  if (!items.length) {
-    throw new Error("Cannot pick from an empty array");
-  }
-  return items[randomIndex(items, random)];
-};
-
-/**
  * Pick a random item from an array of objects based on their weights.
  *
- * @param items - An array of objects
- * @param getWeight - A function that extracts the weight from an item. Defaults to assuming the item is a number
- * @param random - PRNG that returns a value between 0.0 and 1.0
- * @returns Selected random item, or null if the array is empty
- * @throws {Error} When passed an empty array
+ * @template T - The type of the objects in the array.
+ *
+ * @param {T[]} items - An array of objects.
+ * @param {WeightExtractor<T>} getWeight - A function that extracts the weight from an item. Defaults to assuming the item is a number.
+ * @param {RandomFunction} [random=Math.random] - Function that returns a value in range [0, 1].
+ * @returns {T} Selected random item.
+ * @throws {Error} When passed an empty array.
  */
 export const pickWeightedRandom = <T extends object>(
   items: T[],
   getWeight: WeightExtractor<T>,
-  random: () => number = Math.random,
+  random: RandomFunction = Math.random,
 ): T => {
   const index = randomWeightedIndex(items, getWeight, random);
   if (index === -1) {
-    throw new Error("Cannot pick from an invalid array");
+    throw new Error("Cannot pick from an empty array");
   }
   return items[index];
 };
@@ -91,11 +104,13 @@ export const pickWeightedRandom = <T extends object>(
 /**
  * Create a shuffled copy of an array.
  *
- * @param arr - The array to shuffle
- * @param random - PRNG that returns a value between 0.0 and 1.0
- * @returns A shuffled copy of the array
+ * @template T - The type of the items in the array.
+ *
+ * @param {T[]} arr - The array to shuffle
+ * @param {RandomFunction} [random=Math.random] - Function that returns a value in range [0, 1].
+ * @returns {T[]} A shuffled copy of the array.
  */
-export const shuffleArray = <T>(arr: T[], random: () => number = Math.random): T[] => {
+export const shuffleArray = <T>(arr: T[], random: RandomFunction = Math.random): T[] => {
   const copy: T[] = arr.slice();
   const result: T[] = [];
   while (copy.length) {

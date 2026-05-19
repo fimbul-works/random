@@ -7,11 +7,10 @@ const rngPath = "src/rng";
 const entryPoints: Record<string, string> = {
   bundle: "src/index.ts",
   rng: "src/rng/index.ts",
-  util: "src/index.util.ts",
 };
 
 readdirSync(rngPath)
-  .filter((file: string) => !["index.ts", "constants.ts", "factory.ts"].includes(file))
+  .filter((file: string) => !["index.ts", "constants.ts", "factory.ts", "types.ts"].includes(file))
   .forEach((file) => {
     entryPoints[basename(file, extname(file))] = join(rngPath, file);
   });

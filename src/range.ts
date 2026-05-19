@@ -1,21 +1,23 @@
+import type { RandomFunction } from "./types";
+
 /**
  * Return a random float in range.
  *
- * @param a - First value
- * @param b - Second value
- * @param random - PRNG that returns a value between 0.0 and 1.0
- * @returns A random float
+ * @param {number} a - First value.
+ * @param {number} b - Second value.
+ * @param {RandomFunction} [random=Math.random] - Function that returns a value in range [0, 1].
+ * @returns {number} A random float in [a, b] (inclusive of a, exclusive of b).
  */
-export const randomRange = (a: number, b: number, random: () => number = Math.random): number =>
+export const randomRange = (a: number, b: number, random: RandomFunction = Math.random): number =>
   a > b ? randomRange(b, a, random) : random() * (b - a) + a;
 
 /**
  * Return a random integer in range.
  *
- * @param a - First value
- * @param b - Second value
- * @param random - PRNG that returns a value between 0.0 and 1.0
- * @returns A random integer in [a, b] inclusive
+ * @param {number} a - First value.
+ * @param {number} b - Second value.
+ * @param {RandomFunction} [random=Math.random] - Function that returns a value in range [0, 1].
+ * @returns {number} A random integer in [a, b] inclusive.
  */
-export const randomIntRange = (a: number, b: number, random: () => number = Math.random): number =>
+export const randomIntRange = (a: number, b: number, random: RandomFunction = Math.random): number =>
   a > b ? randomIntRange(b, a, random) : Math.floor(random() * (b - a + 1) + a);

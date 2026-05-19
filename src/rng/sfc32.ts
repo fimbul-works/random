@@ -1,48 +1,41 @@
-import type { StatefulRandomNumberGenerator } from "../types.js";
-import { decorateRandom, expand32 } from "../util.js";
 import { FRAC } from "../constants.js";
+import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
+import type { RandomNumberGenerator } from "../types.js";
+import { expandSeed } from "../util.js";
+import type { SFC32State } from "./types.js";
 
 /**
- * SFC32 internal registry state.
- */
-export type SFC32State = [number, number, number, number];
-
-/**
- * SFC32 (Small Fast Chaotic) PRNG by Chris Doty-Humphrey.
- * Reference: https://github.com/bryc/code/blob/master/jshash/PRNGs.md
+ * Creates a new SFC32 PRNG.
  *
- * @param {number} seed - Seed number
- * @returns A new PRNG
+ * This is an implementation of the SFC32 (Small Fast Chaotic) PRNG by Chris Doty-Humphrey.
+ *
+ * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
+ * @returns {RandomNumberGenerator<SFC32State>} A new PRNG.
  */
-export function createSFC32(seed: number = Date.now()): StatefulRandomNumberGenerator<SFC32State> {
-  const s = expand32(seed, 4);
-  let r0 = s[0] >>> 0;
-  let r1 = s[1] >>> 0;
-  let r2 = s[2] >>> 0;
-  let r3 = s[3] >>> 0;
+export function createSFC32(seed: number = Date.now()): RandomNumberGenerator<SFC32State> {
+  let [s0, s1, s2, s3] = expandSeed(seed, 4);
 
   function random() {
-    const t = (r0 + r1 + r3) >>> 0;
-    r3 = (r3 + 1) >>> 0;
-    r0 = r1 ^ (r1 >>> 9);
-    r1 = (r2 + (r2 << 3)) >>> 0;
-    r2 = ((r2 << 21) | (r2 >>> 11)) >>> 0;
-    r2 = (r2 + t) >>> 0;
-    return (t >>> 0) * FRAC;
+    const t = (s0 + s1 + s3) >>> 0;
+    s3 = (s3 + 1) >>> 0;
+    s0 = s1 ^ (s1 >>> 9);
+    s1 = (s2 + (s2 << 3)) >>> 0;
+    s2 = ((s2 << 21) | (s2 >>> 11)) >>> 0;
+    s2 = (s2 + t) >>> 0;
+    return t * FRAC;
   }
 
-  // Warm-up
-  for (let i = 0; i < 12; i++) {
-    random();
-  }
-
-  return decorateRandom<StatefulRandomNumberGenerator<SFC32State>>(random, seed, {
-    getState: () => [r0 >>> 0, r1 >>> 0, r2 >>> 0, r3 >>> 0],
-    setState: () => (state: SFC32State) => {
-      r0 = state[0] >>> 0;
-      r1 = state[1] >>> 0;
-      r2 = state[2] >>> 0;
-      r3 = state[3] >>> 0;
-    },
-  });
+  return decorateRandom(
+    defineRandomState<SFC32State>(
+      random,
+      seed,
+      () => [s0, s1, s2, s3],
+      (state) => {
+        if (state.length !== 4) {
+          throw new Error("Invalid SFC32 state");
+        }
+        [s0, s1, s2, s3] = state;
+      },
+    ),
+  );
 }

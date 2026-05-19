@@ -1,4 +1,7 @@
 {
+  "files": {
+    "includes": ["**", "!**/node_modules/**", "!**/dist/**", "!**/bundles/**"]
+  },
   "formatter": {
     "indentStyle": "space",
     "indentWidth": 2,
@@ -15,7 +18,7 @@
       "style": {
         "useSingleVarDeclarator": "off",
         "noNonNullAssertion": "off"
-      },
+      }
     }
   }
 }

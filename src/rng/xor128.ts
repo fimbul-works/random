@@ -1,49 +1,40 @@
-import type { StatefulRandomNumberGenerator } from "../types.js";
-import { decorateRandom, nonZeroVector32 } from "../util.js";
 import { FRAC } from "../constants.js";
+import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
+import type { RandomNumberGenerator } from "../types.js";
+import { expandSeed } from "../util.js";
+import type { Xor128State } from "./types.js";
 
 /**
- * Xor128 internal registry state.
- */
-export type Xor128State = [number, number, number, number];
-
-/**
- * Xor128 PRNG by George Marsaglia.
- * Reference: https://doi.org/10.18637/jss.v008.i14
- * Reference: https://www.semanticscholar.org/paper/Xorshift-RNGs-RNGs-Marsaglia/2f8b197c3b34d86478f1eaed1fb61f5b1c556fa5
- * Reference: https://vigna.di.unimi.it/ftp/papers/xorshift.pdf
+ * Creates a new Xor128 PRNG.
  *
- * @param {number} seed - Seed number
- * @returns A new PRNG
+ * This is an implementation of the Xor128 algorithm by George Marsaglia.
+ *
+ * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
+ * @returns {RandomNumberGenerator<Xor128State>} A new PRNG.
  */
-export function createXor128(seed: number = Date.now()): StatefulRandomNumberGenerator<Xor128State> {
-  const s = nonZeroVector32(seed, 4);
-  let r0 = s[0] >>> 0;
-  let r1 = s[1] >>> 0;
-  let r2 = s[2] >>> 0;
-  let r3 = s[3] >>> 0;
+export function createXor128(seed: number = Date.now()): RandomNumberGenerator<Xor128State> {
+  let [s0, s1, s2, s3] = expandSeed(seed, 4);
 
   function random() {
-    const t = (r0 ^ (r0 << 11)) >>> 0;
-    r0 = r1 >>> 0;
-    r1 = r2 >>> 0;
-    r2 = r3 >>> 0;
-    r3 = (r3 ^ ((r3 >>> 19) ^ t ^ (t >>> 8))) >>> 0;
-    return (r3 >>> 0) * FRAC;
+    const t = (s0 ^ (s0 << 11)) >>> 0;
+    s0 = s1 >>> 0;
+    s1 = s2 >>> 0;
+    s2 = s3 >>> 0;
+    s3 = (s3 ^ ((s3 >>> 19) ^ t ^ (t >>> 8))) >>> 0;
+    return s3 * FRAC;
   }
 
-  // Warm-up
-  for (let i = 0; i < 64; i++) {
-    random();
-  }
-
-  return decorateRandom<StatefulRandomNumberGenerator<Xor128State>>(random, seed, {
-    getState: () => [r0 >>> 0, r1 >>> 0, r2 >>> 0, r3 >>> 0],
-    setState: () => (state: Xor128State) => {
-      r0 = state[0] >>> 0;
-      r1 = state[1] >>> 0;
-      r2 = state[2] >>> 0;
-      r3 = state[3] >>> 0;
-    },
-  });
+  return decorateRandom(
+    defineRandomState<Xor128State>(
+      random,
+      seed,
+      () => [s0, s1, s2, s3],
+      (state) => {
+        if (state.length !== 4) {
+          throw new Error("Invalid Xor128 state");
+        }
+        [s0, s1, s2, s3] = state;
+      },
+    ),
+  );
 }

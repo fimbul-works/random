@@ -1,53 +1,43 @@
-import type { StatefulRandomNumberGenerator } from "../types.js";
-import { decorateRandom, expand32, rotl } from "../util.js";
 import { FRAC } from "../constants.js";
-import type { Xiroshiro128State } from "./xoshiro128-plus.js";
+import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
+import type { RandomNumberGenerator } from "../types.js";
+import { expandSeed, rotl } from "../util.js";
+import type { Xoshiro128State } from "./types.js";
 
 /**
- * Xoshiro128++ PRNG by David Blackman and Sebastiano Vigna.
- * Reference: https://prng.di.unimi.it/xoshiro128plusplus.c
+ * Creates a new Xoshiro128++ PRNG.
  *
- * @param {number} seed - Seed number
- * @returns A new PRNG
+ * This is an implementation of the Xoshiro128++ algorithm by David Blackman and Sebastiano Vigna.
+ *
+ * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
+ * @returns {RandomNumberGenerator<Xoshiro128State>} A new PRNG.
  */
-export function createXoshiro128PlusPlus(
-  seed: number = Date.now(),
-): StatefulRandomNumberGenerator<Xiroshiro128State> {
-  const s = expand32(seed, 4);
-  let r0: number = s[0] >>> 0;
-  let r1: number = s[1] >>> 0;
-  let r2: number = s[2] >>> 0;
-  let r3: number = s[3] >>> 0;
-
-  // Avoid all-zero state
-  if ((r0 | r1 | r2 | r3) === 0) {
-    r0 = 1;
-  }
+export function createXoshiro128PlusPlus(seed: number = Date.now()): RandomNumberGenerator<Xoshiro128State> {
+  let [s0, s1, s2, s3] = expandSeed(seed, 4);
 
   function random() {
-    const result = (rotl((r1 * 5) >>> 0, 7) * 9) >>> 0;
-    const t = (r1 << 9) >>> 0;
-    r2 ^= r0;
-    r3 ^= r1;
-    r1 ^= r2;
-    r0 ^= r3;
-    r2 ^= t;
-    r3 = rotl(r3, 11);
-    return (result >>> 0) * FRAC;
+    const result = (rotl((s1 * 5) >>> 0, 7) * 9) >>> 0;
+    const t = (s1 << 9) >>> 0;
+    s2 ^= s0 >>> 0;
+    s3 ^= s1 >>> 0;
+    s1 ^= s2 >>> 0;
+    s0 ^= s3 >>> 0;
+    s2 ^= t;
+    s3 = rotl(s3, 11);
+    return result * FRAC;
   }
 
-  // Warm-up
-  for (let i = 0; i < 16; i++) {
-    random();
-  }
-
-  return decorateRandom<StatefulRandomNumberGenerator<Xiroshiro128State>>(random, seed, {
-    getState: () => [r0, r1, r2, r3],
-    setState: () => (state: Xiroshiro128State) => {
-      r0 = state[0];
-      r1 = state[1];
-      r2 = state[2];
-      r3 = state[3];
-    },
-  });
+  return decorateRandom(
+    defineRandomState<Xoshiro128State>(
+      random,
+      seed,
+      () => [s0, s1, s2, s3],
+      (state) => {
+        if (state.length !== 4) {
+          throw new Error("Invalid Xoshiro128++ state");
+        }
+        [s0, s1, s2, s3] = state;
+      },
+    ),
+  );
 }

@@ -5,6 +5,7 @@ export * from "./park-miller.js";
 export * from "./sfc32.js";
 export * from "./splitmix32.js";
 export * from "./tychei.js";
+export * from "./types.js";
 export * from "./xor-shift-mash.js";
 export * from "./xor-shift7.js";
 export * from "./xor-wow.js";

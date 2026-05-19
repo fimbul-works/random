@@ -1,58 +1,43 @@
-import type { StatefulRandomNumberGenerator } from "../types.js";
-import { decorateRandom } from "../util.js";
 import { FRAC } from "../constants.js";
+import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
+import type { RandomNumberGenerator } from "../types.js";
+import { expandSeed } from "../util.js";
+import type { TycheiState } from "./types.js";
 
 /**
- * Tyche-i internal registry state.
- */
-export type TycheiState = [number, number, number, number];
-
-/**
- * Tyche-i PRNG by Samuel Neves and Filipe Araujo.
- * Reference: https://link.springer.com/chapter/10.1007/978-3-642-31464-3_10
+ * Creates a new Tyche-i PRNG.
  *
- * @param {number} seed - Seed number
- * @returns A new PRNG
+ * This is an implementation of the Tyche-i algorithm by Samuel Neves and Filipe Araujo.
+ *
+ * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
+ * @returns {RandomNumberGenerator<TycheiState>} A new PRNG.
  */
-export function createTychei(seed: number = Date.now()): StatefulRandomNumberGenerator<TycheiState> {
-  let r0 = 0;
-  let r1 = 0;
-  let r2 = 2654435769 | 0;
-  let r3 = 1367130551;
+export function createTychei(seed: number = Date.now()): RandomNumberGenerator<TycheiState> {
+  let [s0, s1, s2, s3] = expandSeed(seed, 4);
 
   function random() {
-    r1 = (r1 << 25) ^ (r1 >>> 7) ^ r2;
-    r2 = (r2 - r3) | 0;
-    r3 = (r3 << 24) ^ (r3 >>> 8) ^ r0;
-    r0 = (r0 - r1) | 0;
-    r1 = (r1 << 20) ^ (r1 >>> 12) ^ r2;
-    r2 = (r2 - r3) | 0;
-    r3 = ((r3 >>> 16) | (r3 << 16)) ^ r0;
-    r0 = (r0 - r1) | 0;
-    return (r0 >>> 0) * FRAC;
+    s1 = (s1 << 25) ^ (s1 >>> 7) ^ s2;
+    s2 = (s2 - s3) | 0;
+    s3 = (s3 << 24) ^ (s3 >>> 8) ^ s0;
+    s0 = (s0 - s1) | 0;
+    s1 = (s1 << 20) ^ (s1 >>> 12) ^ s2;
+    s2 = (s2 - s3) | 0;
+    s3 = ((s3 >>> 16) | (s3 << 16)) ^ s0;
+    s0 = (s0 - s1) | 0;
+    return (s0 >>> 0) * FRAC;
   }
 
-  // Warm-up 1
-  if (Number.isInteger(seed)) {
-    const i = seed;
-    r0 = (i / 0x100000000) | 0;
-    r1 = i | 0;
-  }
-
-  // Warm-up 2
-  const str = seed.toString();
-  for (let k = 0; k < str.length + 20; k++) {
-    r1 ^= str.charCodeAt(k) | 0;
-    random();
-  }
-
-  return decorateRandom<StatefulRandomNumberGenerator<TycheiState>>(random, seed, {
-    getState: () => [r0, r1, r2, r3],
-    setState: () => (state: TycheiState) => {
-      r0 = state[0];
-      r1 = state[1];
-      r2 = state[2];
-      r3 = state[3];
-    },
-  });
+  return decorateRandom(
+    defineRandomState<TycheiState>(
+      random,
+      seed,
+      () => [s0, s1, s2, s3],
+      (state) => {
+        if (state.length !== 4) {
+          throw new Error("Invalid Tyche-i state");
+        }
+        [s0, s1, s2, s3] = state;
+      },
+    ),
+  );
 }

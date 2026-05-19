@@ -1,41 +1,31 @@
 /// <reference types="node" />
-import { bench, group, run } from "mitata";
-import randomFactories from '../src/rng/factory.js';
-import fs from 'fs';
-import path from 'path';
-import { RandomNumberGenerator } from "../src/types.js";
-import pc from "picocolors";
 
-const SEED_SAMPLES = 1000;
+import fs from "node:fs";
+import path from "node:path";
+import { bench, group, run } from "mitata";
+import pc from "picocolors";
+import randomFactories from "../src/rng/factory.js";
+import type { RandomFunction } from "../src/types.js";
+
 const GENERATION_SAMPLES = 10000;
 
-const algos = Object.entries(randomFactories).map(([name, fn]) => ({ name, fn })) as { name: string, fn: (seed: number | bigint) => RandomNumberGenerator }[];
+const algos = Object.entries(randomFactories).map(([name, fn]) => ({ name, fn })) as {
+  name: string;
+  fn: (seed: number) => RandomFunction;
+}[];
 
-// Check PRNG values
-if (false) {
-  const numSamples = 10;
-  for (const { name, fn } of algos) {
-    const random = fn(42);
-    const floats = Array.from({ length: numSamples }, () => random());
-    const ints = Array.from({ length: numSamples }, () => random.int());
-    const int64s = Array.from({ length: numSamples }, () => random.int64());
-    const doubles = Array.from({ length: numSamples }, () => random.double());
-    console.log({ name, seed: random.seed, floats, ints, int64s, doubles })
-  }
-  process.exit(0)
-}
+// const numSamples = 10;
+// for (const { name, fn } of algos) {
+//   const random = fn(42);
+//   const floats = Array.from({ length: numSamples }, () => random());
+//   const ints = Array.from({ length: numSamples }, () => random.int());
+//   const int64s = Array.from({ length: numSamples }, () => random.int64());
+//   const doubles = Array.from({ length: numSamples }, () => random.double());
+//   console.log({ name, seed: random.seed, floats, ints, int64s, doubles });
+// }
+// process.exit(0);
 
 console.log(`\n=== PRNG Speed Benchmark Suite ===`);
-
-group("Seeding", () => {
-  for (const { name, fn } of algos) {
-    bench(name, () => {
-      for (let i = 0; i < SEED_SAMPLES; i++) {
-        fn(i);
-      }
-    });
-  }
-});
 
 group("Generation", () => {
   for (const { name, fn } of algos) {
@@ -52,18 +42,18 @@ const result = await run();
 
 // 1. Read stored quality results
 const qualityJsonPath = path.resolve(process.cwd(), "benchmark-quality.json");
-let qualityScores: Record<string, { score: number; total: number; qualityScore: number }> = {};
+const qualityScores: Record<string, { score: number; total: number; qualityScore: number }> = {};
 
 if (fs.existsSync(qualityJsonPath)) {
   try {
     const data = JSON.parse(fs.readFileSync(qualityJsonPath, "utf-8"));
-    if (data && data.results) {
+    if (data?.results) {
       for (const [name, val] of Object.entries(data.results)) {
         const item = val as any;
         qualityScores[name] = {
           score: item.score ?? 0,
           total: item.total ?? 8,
-          qualityScore: item.qualityScore ?? 1.0
+          qualityScore: item.qualityScore ?? 1.0,
         };
       }
     }
@@ -88,9 +78,9 @@ if (result && typeof result === "object" && "benchmarks" in result) {
     groupsMap.get(groupName)!.push(b);
   }
 
-  console.log(pc.white('\n===================================================================='));
-  console.log(pc.white('           BENCHMARK RANKING REPORT (Fastest to Slowest)            '));
-  console.log(pc.white('===================================================================='));
+  console.log(pc.white("\n===================================================================="));
+  console.log(pc.white("           BENCHMARK RANKING REPORT (Fastest to Slowest)            "));
+  console.log(pc.white("===================================================================="));
 
   function formatTime(ns: number): string {
     if (ns < 0.001) return `${(ns * 1000000).toFixed(2)} fs`;
@@ -106,13 +96,13 @@ if (result && typeof result === "object" && "benchmarks" in result) {
 
     // Sort benches by average execution time
     const sorted = groupBenches
-      .map(b => {
+      .map((b) => {
         const runInfo = b.runs?.[0];
         const avg = runInfo?.stats?.avg ?? Infinity;
         const error = runInfo?.error;
         return { name: b.alias || "unknown", avg, error };
       })
-      .filter(item => !item.error)
+      .filter((item) => !item.error)
       .sort((a, b) => a.avg - b.avg);
 
     if (sorted.length === 0) {
@@ -122,8 +112,8 @@ if (result && typeof result === "object" && "benchmarks" in result) {
 
     const fastest = sorted[0].avg;
 
-    console.log(pc.bold('Rank  Algorithm                 Avg Time / Iter  Relative Speed'));
-    console.log('----------------------------------------------------------------');
+    console.log(pc.bold("Rank  Algorithm                 Avg Time / Iter  Relative Speed"));
+    console.log("----------------------------------------------------------------");
 
     sorted.forEach((item, index) => {
       const rank = (index + 1).toString().padEnd(4);
@@ -140,28 +130,40 @@ if (result && typeof result === "object" && "benchmarks" in result) {
 
       console.log(`${rank}  ${name} ${timeStr} ${relativeStr}`);
     });
-    console.log('----------------------------------------------------------------');
+    console.log("----------------------------------------------------------------");
   }
 
   // overall leaderboard
   const genGroup = groupsMap.get("Generation");
   if (genGroup) {
-    console.log(pc.yellowBright('\n======================================================================================================'));
-    console.log(pc.yellowBright('                           🏆 OVERALL PRNG EFFICIENCY & QUALITY LEADERBOARD                           '));
-    console.log(pc.yellowBright('======================================================================================================'));
+    console.log(
+      pc.yellowBright(
+        "\n======================================================================================================",
+      ),
+    );
+    console.log(
+      pc.yellowBright(
+        "                           🏆 OVERALL PRNG EFFICIENCY & QUALITY LEADERBOARD                           ",
+      ),
+    );
+    console.log(
+      pc.yellowBright(
+        "======================================================================================================",
+      ),
+    );
 
     const genBenches = genGroup
-      .map(b => {
+      .map((b) => {
         const runInfo = b.runs?.[0];
         const avg = runInfo?.stats?.avg ?? Infinity;
         const error = runInfo?.error;
         return { name: b.alias || "unknown", avg, error };
       })
-      .filter(item => !item.error);
+      .filter((item) => !item.error);
 
-    const fastestGen = Math.min(...genBenches.map(item => item.avg));
+    const fastestGen = Math.min(...genBenches.map((item) => item.avg));
 
-    const leaderboard = genBenches.map(item => {
+    const leaderboard = genBenches.map((item) => {
       const q = qualityScores[item.name] || { score: 0, total: 8, qualityScore: 1.0 };
       const speedFactor = fastestGen / item.avg;
       const overallScore = speedFactor * q.qualityScore;
@@ -172,14 +174,18 @@ if (result && typeof result === "object" && "benchmarks" in result) {
         total: q.total,
         qualityScore: q.qualityScore,
         speedFactor,
-        overallScore
+        overallScore,
       };
     });
 
     leaderboard.sort((a, b) => b.overallScore - a.overallScore);
 
-    console.log(pc.bold('Rank  Algorithm             Gen Speed         Quality Pass  Quality Score  Speed Factor  Overall Score'));
-    console.log('------------------------------------------------------------------------------------------------------');
+    console.log(
+      pc.bold("Rank  Algorithm             Gen Speed         Quality Pass  Quality Score  Speed Factor  Overall Score"),
+    );
+    console.log(
+      "------------------------------------------------------------------------------------------------------",
+    );
 
     leaderboard.forEach((item, index) => {
       const rank = (index + 1).toString().padEnd(4);
@@ -189,42 +195,48 @@ if (result && typeof result === "object" && "benchmarks" in result) {
       const qScoreStr = item.qualityScore.toFixed(2).padEnd(14);
       const speedFactorStr = `${(item.speedFactor * 100).toFixed(1)}%`.padEnd(13);
 
-      let colorFn = pc.red
+      let colorFn = pc.red;
       if (item.overallScore >= 6.0) colorFn = pc.green;
       else if (item.overallScore >= 3.0) colorFn = pc.yellow;
 
       const overallStr = colorFn(item.overallScore.toFixed(3));
       console.log(`${rank}  ${name} ${speedStr} ${passStr} ${qScoreStr} ${speedFactorStr} ${overallStr}`);
     });
-    console.log('------------------------------------------------------------------------------------------------------');
-    console.log('* Note: Overall Score = Speed Factor (relative to fastest) * Quality Score (1.0 - 10.0)               ');
-    console.log('======================================================================================================\n');
+    console.log(
+      "------------------------------------------------------------------------------------------------------",
+    );
+    console.log(
+      "* Note: Overall Score = Speed Factor (relative to fastest) * Quality Score (1.0 - 10.0)               ",
+    );
+    console.log(
+      "======================================================================================================\n",
+    );
   }
 
   // 2. Save speed benchmark results to benchmark-speed.json
   const speedJsonPath = path.resolve(process.cwd(), "benchmark-speed.json");
   const speedData = {
     timestamp: new Date().toISOString(),
-    groups: {} as Record<string, { name: string; avg: number }[]>
+    groups: {} as Record<string, { name: string; avg: number }[]>,
   };
 
   for (const [groupName, groupBenches] of groupsMap.entries()) {
     const sorted = groupBenches
-      .map(b => {
+      .map((b) => {
         const runInfo = b.runs?.[0];
         const avg = runInfo?.stats?.avg ?? Infinity;
         const error = runInfo?.error;
         return { name: b.alias || "unknown", avg, error };
       })
-      .filter(item => !item.error)
+      .filter((item) => !item.error)
       .sort((a, b) => a.avg - b.avg);
 
-    speedData.groups[groupName] = sorted.map(item => ({
+    speedData.groups[groupName] = sorted.map((item) => ({
       name: item.name,
-      avg: item.avg
+      avg: item.avg,
     }));
   }
 
   fs.writeFileSync(speedJsonPath, JSON.stringify(speedData, null, 2), "utf-8");
-  console.log(pc.greenBright('Saved speed benchmarks to benchmark-speed.json'));
+  console.log(pc.greenBright("Saved speed benchmarks to benchmark-speed.json"));
 }
