@@ -12,7 +12,7 @@ import { normalizeSeed } from "../util.js";
  * @returns {RandomNumberGenerator<number>} A new PRNG.
  */
 export const createXorShiftMash = (seed: number = Date.now()): RandomNumberGenerator<number> => {
-  let s = normalizeSeed(seed);
+  let s = normalizeSeed(seed) || 1;
 
   function random() {
     s ^= s << 13;

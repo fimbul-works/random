@@ -23,7 +23,7 @@ export const randomIndex = <T>(lengthOrArray: number | T[], random: RandomFuncti
     ? randomIndex(lengthOrArray.length, random)
     : lengthOrArray <= 0
       ? -1
-      : Math.floor(random() * lengthOrArray) % lengthOrArray;
+      : Math.floor(random() * lengthOrArray);
 
 /**
  * Pick a random item from an array.
@@ -39,7 +39,7 @@ export const pickRandom = <T>(items: T[], random: RandomFunction = Math.random):
   if (!items.length) {
     throw new Error("Cannot pick from an empty array");
   }
-  return items[randomIndex(items, random)];
+  return items[Math.floor(random() * items.length)];
 };
 
 /**
@@ -111,10 +111,12 @@ export const pickWeightedRandom = <T extends object>(
  * @returns {T[]} A shuffled copy of the array.
  */
 export const shuffleArray = <T>(arr: T[], random: RandomFunction = Math.random): T[] => {
-  const copy: T[] = arr.slice();
-  const result: T[] = [];
-  while (copy.length) {
-    result.push(copy.splice(randomIndex(copy, random), 1)[0]);
+  const result = arr.slice();
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    const tmp = result[i];
+    result[i] = result[j];
+    result[j] = tmp;
   }
   return result;
 };

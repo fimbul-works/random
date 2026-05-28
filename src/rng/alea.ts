@@ -21,8 +21,7 @@ export function createAlea(seed: number = Date.now()): RandomNumberGenerator<Ale
     s0 = s1;
     s1 = s2;
     i = t | 0;
-    s2 = t - i;
-    return s2;
+    return (s2 = t - i);
   }
 
   return decorateRandom(

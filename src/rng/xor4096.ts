@@ -40,7 +40,7 @@ export function createXor4096(seed: number = Date.now()): RandomNumberGenerator<
         if (state.length !== 3 || state[0].length !== 128) {
           throw new Error("Invalid Xor4096 state");
         }
-        S.splice(0, 128, ...state[0]);
+        s.splice(0, 128, ...state[0]);
         i = state[1];
         x = state[2];
       },

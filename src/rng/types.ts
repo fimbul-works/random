@@ -4,6 +4,11 @@
 export type AleaState = [number, number, number, number];
 
 /**
+ * JSF32 internal registry state.
+ */
+export type JSF32State = [number, number, number, number];
+
+/**
  * Mersenne Twister internal registry state.
  */
 export type MersenneTwisterState = [number[], number];

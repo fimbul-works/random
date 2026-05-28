@@ -1,4 +1,6 @@
 import { createAlea } from "./alea.js";
+import { createJSF32 } from "./jsf32.js";
+import { createJSF32b } from "./jsf32b.js";
 import { createMersenneTwister } from "./mersenne-twister.js";
 import { createMulberry32 } from "./mulberry32.js";
 import { createParkMiller } from "./park-miller.js";
@@ -15,19 +17,21 @@ import { createXoshiro128PlusPlus } from "./xoshiro128-plusplus.js";
 
 export const randomFactories = {
   Alea: createAlea,
+  JSF32: createJSF32,
+  JSF32b: createJSF32b,
   MersenneTwister: createMersenneTwister,
   Mulberry32: createMulberry32,
   ParkMiller: createParkMiller,
   SFC32: createSFC32,
   SplitMix32: createSplitMix32,
-  Tychei: createTychei,
-  XorshiftMash: createXorShiftMash,
-  Xorshift7: createXorshift7,
-  Xorwow: createXorwow,
-  Xor128: createXor128,
-  Xor4096: createXor4096,
-  "Xoshiro128+": createXoshiro128Plus,
-  "Xoshiro128++": createXoshiro128PlusPlus,
+  "Tyche-i": createTychei,
+  xorshiftMash: createXorShiftMash,
+  xorshift7: createXorshift7,
+  xorwow: createXorwow,
+  xor128: createXor128,
+  xor4096: createXor4096,
+  "xoshiro128+": createXoshiro128Plus,
+  "xoshiro128++": createXoshiro128PlusPlus,
 };
 
 export default randomFactories;

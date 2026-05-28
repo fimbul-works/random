@@ -1,4 +1,6 @@
 export * from "./alea.js";
+export * from "./jsf32.js";
+export * from "./jsf32b.js";
 export * from "./mersenne-twister.js";
 export * from "./mulberry32.js";
 export * from "./park-miller.js";

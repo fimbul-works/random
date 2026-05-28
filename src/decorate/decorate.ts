@@ -55,7 +55,7 @@ export const decorateRandom = <T extends RandomFunction>(
 ): T & DecoratedRandomFunction => {
   defineValue(random, "int", () => (random() * INT_32) >>> 0);
   defineValue(random, "int64", () => (BigInt((random() * INT_32) >>> 0) << 32n) | BigInt((random() * INT_32) >>> 0));
-  defineValue(random, "double", () => () => random() + ((random() * 0x200000) | 0) * 1.1102230246251565e-16);
+  defineValue(random, "double", () => random() + ((random() * 0x200000) | 0) * 1.1102230246251565e-16);
 
   // Custom properties
   for (const [name, value] of Object.entries(props)) {

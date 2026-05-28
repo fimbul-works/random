@@ -126,13 +126,25 @@ Alea internal registry state.
 
 ***
 
+### JSF32State
+
+```ts
+type JSF32State = [number, number, number, number];
+```
+
+Defined in: [rng/types.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L9)
+
+JSF32 internal registry state.
+
+***
+
 ### MersenneTwisterState
 
 ```ts
 type MersenneTwisterState = [number[], number];
 ```
 
-Defined in: [rng/types.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L9)
+Defined in: [rng/types.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L14)
 
 Mersenne Twister internal registry state.
 
@@ -176,7 +188,7 @@ Defined in: [types.ts:57](https://github.com/claus-codes/util-random/blob/main/s
 type SFC32State = [number, number, number, number];
 ```
 
-Defined in: [rng/types.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L14)
+Defined in: [rng/types.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L19)
 
 SFC32 internal registry state.
 
@@ -188,7 +200,7 @@ SFC32 internal registry state.
 type TycheiState = [number, number, number, number];
 ```
 
-Defined in: [rng/types.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L19)
+Defined in: [rng/types.ts:24](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L24)
 
 Tyche-i internal registry state.
 
@@ -242,7 +254,7 @@ A mapping of string keys to numeric weights, used for weighted random selection.
 type Xor128State = [number, number, number, number];
 ```
 
-Defined in: [rng/types.ts:34](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L34)
+Defined in: [rng/types.ts:39](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L39)
 
 Xor128 internal registry state.
 
@@ -254,7 +266,7 @@ Xor128 internal registry state.
 type Xor4096State = [number[], number, number];
 ```
 
-Defined in: [rng/types.ts:39](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L39)
+Defined in: [rng/types.ts:44](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L44)
 
 Xor4096 internal registry state.
 
@@ -266,7 +278,7 @@ Xor4096 internal registry state.
 type Xorshift7State = [number[], number];
 ```
 
-Defined in: [rng/types.ts:24](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L24)
+Defined in: [rng/types.ts:29](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L29)
 
 XorShift7 internal registry state.
 
@@ -278,7 +290,7 @@ XorShift7 internal registry state.
 type XorwowState = [number, number, number, number, number, number];
 ```
 
-Defined in: [rng/types.ts:29](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L29)
+Defined in: [rng/types.ts:34](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L34)
 
 XorWow internal registry state.
 
@@ -290,7 +302,7 @@ XorWow internal registry state.
 type Xoshiro128State = [number, number, number, number];
 ```
 
-Defined in: [rng/types.ts:44](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L44)
+Defined in: [rng/types.ts:49](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L49)
 
 Xoshiro128 internal registry state.
 
@@ -317,6 +329,58 @@ This code is an implementation of Alea algorithm by Johannes Baagøe.
 #### Returns
 
 [`RandomNumberGenerator`](#randomnumbergenerator)\<[`AleaState`](#aleastate)\>
+
+A new PRNG.
+
+***
+
+### createJSF32()
+
+```ts
+function createJSF32(seed?): RandomNumberGenerator<JSF32State>;
+```
+
+Defined in: rng/jsf32.ts:15
+
+Creates a new JSF32 PRNG.
+
+This is an implementation of the JSF32 PRNG by Bob Jenkin.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | `number` | Optional seed number. Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`JSF32State`](#jsf32state)\>
+
+A new PRNG.
+
+***
+
+### createJSF32b()
+
+```ts
+function createJSF32b(seed?): RandomNumberGenerator<JSF32State>;
+```
+
+Defined in: rng/jsf32b.ts:15
+
+Creates a new JSF32 PRNG.
+
+This is an implementation of the JSF32 PRNG by Bob Jenkin.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | `number` | Optional seed number. Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`JSF32State`](#jsf32state)\>
 
 A new PRNG.
 
@@ -691,10 +755,10 @@ Decorated random number generator.
 
 ***
 
-### decorateRandomState()
+### defineRandomState()
 
 ```ts
-function decorateRandomState<T, R>(
+function defineRandomState<T, R>(
    random, 
    seed, 
    getState, 
@@ -978,6 +1042,36 @@ Generate a random number from a logistic distribution.
 `number`
 
 A random number from the logistic distribution.
+
+***
+
+### randomPoisson()
+
+```ts
+function randomPoisson(lambda, random?): number;
+```
+
+Defined in: [distribution.ts:48](https://github.com/claus-codes/util-random/blob/main/src/distribution.ts#L48)
+
+Generate a random integer from a Poisson distribution.
+
+Models the number of events occurring in a fixed interval, given an average
+rate. Uses the Knuth method (product of uniforms).
+
+Accurate for small λ, but runs in O(λ) time - prefer a rejection-based method for λ > ~30.
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| `lambda` | `number` | `undefined` | Average number of events (λ > 0). |
+| `random?` | [`RandomFunction`](#randomfunction) | `Math.random` | Function that returns a value in range [0, 1]. |
+
+#### Returns
+
+`number`
+
+A non-negative integer sampled from the Poisson distribution.
 
 ***
 
