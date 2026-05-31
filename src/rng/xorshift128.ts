@@ -2,17 +2,17 @@ import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator } from "../types.js";
 import { expandSeed } from "../util.js";
-import type { Xor128State } from "./types.js";
+import type { Xorshift128State } from "./types.js";
 
 /**
- * Creates a new Xor128 PRNG.
+ * Creates a new Xorshift128 PRNG.
  *
- * This is an implementation of the Xor128 algorithm by George Marsaglia.
+ * This is an implementation of the Xorshift128 algorithm by George Marsaglia.
  *
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
- * @returns {RandomNumberGenerator<Xor128State>} A new PRNG.
+ * @returns {RandomNumberGenerator<Xorshift128State>} A new PRNG.
  */
-export function createXor128(seed: number = Date.now()): RandomNumberGenerator<Xor128State> {
+export function createXorshift128(seed: number = Date.now()): RandomNumberGenerator<Xorshift128State> {
   let [s0, s1, s2, s3] = expandSeed(seed, 4);
 
   function random() {
@@ -25,13 +25,13 @@ export function createXor128(seed: number = Date.now()): RandomNumberGenerator<X
   }
 
   return decorateRandom(
-    defineRandomState<Xor128State>(
+    defineRandomState<Xorshift128State>(
       random,
       seed,
       () => [s0, s1, s2, s3],
       (state) => {
         if (state.length !== 4) {
-          throw new Error("Invalid Xor128 state");
+          throw new Error("Invalid Xorshift128 state");
         }
         [s0, s1, s2, s3] = state;
       },

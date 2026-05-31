@@ -4,9 +4,9 @@ import type { RandomNumberGenerator } from "../types.js";
 import { normalizeSeed } from "../util.js";
 
 /**
- * Creates a new XorShiftMash PRNG.
+ * Creates a new XorshiftMash PRNG.
  *
- * This is an implementation of the XorShift algorithm by George Marsaglia.
+ * This is an implementation of the XorshiftMash algorithm by George Marsaglia.
  *
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<number>} A new PRNG.

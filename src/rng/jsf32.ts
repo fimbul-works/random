@@ -2,7 +2,7 @@ import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator } from "../types.js";
 import { expandSeed } from "../util.js";
-import type { JSF32State, SFC32State } from "./types.js";
+import type { JSF32State } from "./types.js";
 
 /**
  * Creates a new JSF32 PRNG.

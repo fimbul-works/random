@@ -24,19 +24,19 @@ export type SFC32State = [number, number, number, number];
 export type TycheiState = [number, number, number, number];
 
 /**
- * XorShift7 internal registry state.
+ * Xorshift7 internal registry state.
  */
 export type Xorshift7State = [number[], number];
 
 /**
- * XorWow internal registry state.
+ * Xorwow internal registry state.
  */
 export type XorwowState = [number, number, number, number, number, number];
 
 /**
- * Xor128 internal registry state.
+ * Xorshift128 internal registry state.
  */
-export type Xor128State = [number, number, number, number];
+export type Xorshift128State = [number, number, number, number];
 
 /**
  * Xor4096 internal registry state.

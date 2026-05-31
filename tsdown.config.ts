@@ -12,7 +12,11 @@ const entryPoints: Record<string, string> = {
 readdirSync(rngPath)
   .filter((file: string) => !["index.ts", "constants.ts", "factory.ts", "types.ts"].includes(file))
   .forEach((file) => {
-    entryPoints[basename(file, extname(file))] = join(rngPath, file);
+    const name = basename(file, extname(file));
+    if (name.includes(".test")) return;
+    if (name.includes("harness")) return
+    if (name.includes("factory")) return
+    entryPoints[name] = join(rngPath, file);
   });
 
 const commonConfig: UserConfig = {

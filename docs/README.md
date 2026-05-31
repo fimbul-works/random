@@ -248,18 +248,6 @@ A mapping of string keys to numeric weights, used for weighted random selection.
 
 ***
 
-### Xor128State
-
-```ts
-type Xor128State = [number, number, number, number];
-```
-
-Defined in: [rng/types.ts:39](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L39)
-
-Xor128 internal registry state.
-
-***
-
 ### Xor4096State
 
 ```ts
@@ -272,6 +260,18 @@ Xor4096 internal registry state.
 
 ***
 
+### Xorshift128State
+
+```ts
+type Xorshift128State = [number, number, number, number];
+```
+
+Defined in: [rng/types.ts:39](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L39)
+
+Xorshift128 internal registry state.
+
+***
+
 ### Xorshift7State
 
 ```ts
@@ -280,7 +280,7 @@ type Xorshift7State = [number[], number];
 
 Defined in: [rng/types.ts:29](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L29)
 
-XorShift7 internal registry state.
+Xorshift7 internal registry state.
 
 ***
 
@@ -292,7 +292,7 @@ type XorwowState = [number, number, number, number, number, number];
 
 Defined in: [rng/types.ts:34](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L34)
 
-XorWow internal registry state.
+Xorwow internal registry state.
 
 ***
 
@@ -340,7 +340,7 @@ A new PRNG.
 function createJSF32(seed?): RandomNumberGenerator<JSF32State>;
 ```
 
-Defined in: rng/jsf32.ts:15
+Defined in: [rng/jsf32.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/jsf32.ts#L15)
 
 Creates a new JSF32 PRNG.
 
@@ -366,7 +366,7 @@ A new PRNG.
 function createJSF32b(seed?): RandomNumberGenerator<JSF32State>;
 ```
 
-Defined in: rng/jsf32b.ts:15
+Defined in: [rng/jsf32b.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/jsf32b.ts#L15)
 
 Creates a new JSF32 PRNG.
 
@@ -542,32 +542,6 @@ A new PRNG.
 
 ***
 
-### createXor128()
-
-```ts
-function createXor128(seed?): RandomNumberGenerator<Xor128State>;
-```
-
-Defined in: [rng/xor128.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/xor128.ts#L15)
-
-Creates a new Xor128 PRNG.
-
-This is an implementation of the Xor128 algorithm by George Marsaglia.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| ------ | ------ | ------ |
-| `seed?` | `number` | Optional seed number. Defaults to current time if not provided. |
-
-#### Returns
-
-[`RandomNumberGenerator`](#randomnumbergenerator)\<[`Xor128State`](#xor128state)\>
-
-A new PRNG.
-
-***
-
 ### createXor4096()
 
 ```ts
@@ -594,13 +568,39 @@ A new PRNG.
 
 ***
 
+### createXorshift128()
+
+```ts
+function createXorshift128(seed?): RandomNumberGenerator<Xorshift128State>;
+```
+
+Defined in: [rng/xorshift128.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift128.ts#L15)
+
+Creates a new Xorshift128 PRNG.
+
+This is an implementation of the Xorshift128 algorithm by George Marsaglia.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | `number` | Optional seed number. Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`Xorshift128State`](#xorshift128state)\>
+
+A new PRNG.
+
+***
+
 ### createXorshift7()
 
 ```ts
 function createXorshift7(seed?): RandomNumberGenerator<Xorshift7State>;
 ```
 
-Defined in: [rng/xor-shift7.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/xor-shift7.ts#L15)
+Defined in: [rng/xorshift7.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift7.ts#L15)
 
 Creates a new Xorshift7 PRNG.
 
@@ -626,11 +626,11 @@ A new PRNG.
 function createXorShiftMash(seed?): RandomNumberGenerator<number>;
 ```
 
-Defined in: [rng/xor-shift-mash.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/xor-shift-mash.ts#L14)
+Defined in: [rng/xorshift-mash.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift-mash.ts#L14)
 
-Creates a new XorShiftMash PRNG.
+Creates a new XorshiftMash PRNG.
 
-This is an implementation of the XorShift algorithm by George Marsaglia.
+This is an implementation of the XorshiftMash algorithm by George Marsaglia.
 
 #### Parameters
 
@@ -652,7 +652,7 @@ A new PRNG.
 function createXorwow(seed?): RandomNumberGenerator<XorwowState>;
 ```
 
-Defined in: [rng/xor-wow.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/xor-wow.ts#L15)
+Defined in: [rng/xorwow.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/xorwow.ts#L15)
 
 Creates a new Xorwow PRNG.
 

@@ -20,7 +20,7 @@ export const expandSeed = (seed: number, n: number): number[] => {
   const v: number[] = [];
   let s = normalizeSeed(seed);
   for (let i = 0; i < n; i++) {
-    v[i] = s = fastMix(s, s + i) >>> 0;
+    v[i] = s = fastMix(s, i + 1) >>> 0;
   }
   return v;
 };

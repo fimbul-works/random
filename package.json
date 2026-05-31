@@ -46,7 +46,7 @@
     "build": "pnpm clean && pnpm build:esm && pnpm build:cjs && pnpm build:docs",
     "build:esm": "tsc -p tsconfig.json",
     "build:cjs": "tsc -p tsconfig.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json",
-    "build:bundles": "pnpm clean:bundles && tsdown",
+    "build:bundles": "pnpm clean:bundles && NODE_OPTIONS='--max-old-space-size=4096' tsdown",
     "build:all": "pnpm build && pnpm build:bundles && pnpm sizes",
     "build:docs": "typedoc",
     "format": "npx biome format --write",
@@ -71,6 +71,7 @@
     "typedoc": "^0.28.19",
     "typedoc-plugin-markdown": "^4.11.0",
     "typescript": "^6.0.3",
+    "vite": "^8.0.14",
     "vitest": "^4.1.6"
   }
 }

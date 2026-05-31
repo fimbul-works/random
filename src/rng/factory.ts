@@ -7,11 +7,11 @@ import { createParkMiller } from "./park-miller.js";
 import { createSFC32 } from "./sfc32.js";
 import { createSplitMix32 } from "./splitmix32.js";
 import { createTychei } from "./tychei.js";
-import { createXorShiftMash } from "./xor-shift-mash.js";
-import { createXorshift7 } from "./xor-shift7.js";
-import { createXorwow } from "./xor-wow.js";
-import { createXor128 } from "./xor128.js";
 import { createXor4096 } from "./xor4096.js";
+import { createXorShiftMash } from "./xorshift-mash.js";
+import { createXorshift7 } from "./xorshift7.js";
+import { createXorshift128 } from "./xorshift128.js";
+import { createXorwow } from "./xorwow.js";
 import { createXoshiro128Plus } from "./xoshiro128-plus.js";
 import { createXoshiro128PlusPlus } from "./xoshiro128-plusplus.js";
 
@@ -28,7 +28,7 @@ export const randomFactories = {
   xorshiftMash: createXorShiftMash,
   xorshift7: createXorshift7,
   xorwow: createXorwow,
-  xor128: createXor128,
+  xor128: createXorshift128,
   xor4096: createXor4096,
   "xoshiro128+": createXoshiro128Plus,
   "xoshiro128++": createXoshiro128PlusPlus,
