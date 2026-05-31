@@ -902,6 +902,31 @@ When passed an empty array.
 
 ***
 
+### randomBool()
+
+```ts
+function randomBool(bias?, random?): boolean;
+```
+
+Defined in: [range.ts:32](https://github.com/claus-codes/util-random/blob/main/src/range.ts#L32)
+
+Return a random boolean with an optional bias toward true.
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| `bias?` | `number` | `0.5` | Probability of returning true (range [0, 1]). |
+| `random?` | [`RandomFunction`](#randomfunction) | `Math.random` | Function that returns a value in range [0, 1]. |
+
+#### Returns
+
+`boolean`
+
+A random boolean.
+
+***
+
 ### randomExp()
 
 ```ts
@@ -1045,6 +1070,58 @@ A random number from the logistic distribution.
 
 ***
 
+### randomPointInCircle()
+
+```ts
+function randomPointInCircle(radius?, random?): [number, number];
+```
+
+Defined in: [geometry.ts:11](https://github.com/claus-codes/util-random/blob/main/src/geometry.ts#L11)
+
+Return a random 2D coordinate [x, y] distributed uniformly inside a circle of the specified radius.
+Uses the square root scaling to ensure uniform area distribution.
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| `radius?` | `number` | `1.0` | Radius of the circle. |
+| `random?` | [`RandomFunction`](#randomfunction) | `Math.random` | Function that returns a value in range [0, 1]. |
+
+#### Returns
+
+\[`number`, `number`\]
+
+[x, y] coordinates.
+
+***
+
+### randomPointOnSphere()
+
+```ts
+function randomPointOnSphere(radius?, random?): [number, number, number];
+```
+
+Defined in: [geometry.ts:25](https://github.com/claus-codes/util-random/blob/main/src/geometry.ts#L25)
+
+Return a random 3D coordinate [x, y, z] distributed uniformly on the surface of a sphere of the specified radius.
+Uses Archimedes' theorem for exact uniform distribution.
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| `radius?` | `number` | `1.0` | Radius of the sphere. |
+| `random?` | [`RandomFunction`](#randomfunction) | `Math.random` | Function that returns a value in range [0, 1]. |
+
+#### Returns
+
+\[`number`, `number`, `number`\]
+
+[x, y, z] coordinates.
+
+***
+
 ### randomPoisson()
 
 ```ts
@@ -1101,6 +1178,30 @@ Return a random float in range.
 `number`
 
 A random float in [a, b] (inclusive of a, exclusive of b).
+
+***
+
+### randomSign()
+
+```ts
+function randomSign(random?): number;
+```
+
+Defined in: [range.ts:40](https://github.com/claus-codes/util-random/blob/main/src/range.ts#L40)
+
+Return either 1 or -1 randomly.
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| `random?` | [`RandomFunction`](#randomfunction) | `Math.random` | Function that returns a value in range [0, 1]. |
+
+#### Returns
+
+`number`
+
+1 or -1.
 
 ***
 
@@ -1203,6 +1304,42 @@ When the weighted key object is invalid.
 
 ***
 
+### sampleRandom()
+
+```ts
+function sampleRandom<T>(
+   items, 
+   k, 
+   random?): T[];
+```
+
+Defined in: [array.ts:154](https://github.com/claus-codes/util-random/blob/main/src/array.ts#L154)
+
+Select k unique random items from an array without replacement.
+Uses a partial Fisher-Yates shuffle to run in O(k) time and O(n) space for cloning.
+
+#### Type Parameters
+
+| Type Parameter | Description |
+| ------ | ------ |
+| `T` | The type of the items in the array. |
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| `items` | `T`[] | `undefined` | An array of options to sample from. |
+| `k` | `number` | `undefined` | The number of unique items to pick. |
+| `random?` | [`RandomFunction`](#randomfunction) | `Math.random` | Function that returns a value in range [0, 1]. |
+
+#### Returns
+
+`T`[]
+
+An array containing k unique items.
+
+***
+
 ### shuffleArray()
 
 ```ts
@@ -1231,3 +1368,34 @@ Create a shuffled copy of an array.
 `T`[]
 
 A shuffled copy of the array.
+
+***
+
+### shuffleInPlace()
+
+```ts
+function shuffleInPlace<T>(arr, random?): T[];
+```
+
+Defined in: [array.ts:133](https://github.com/claus-codes/util-random/blob/main/src/array.ts#L133)
+
+Shuffle an array in-place, modifying the original array (no allocation).
+
+#### Type Parameters
+
+| Type Parameter | Description |
+| ------ | ------ |
+| `T` | The type of the items in the array. |
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| `arr` | `T`[] | `undefined` | The array to shuffle. |
+| `random?` | [`RandomFunction`](#randomfunction) | `Math.random` | Function that returns a value in range [0, 1]. |
+
+#### Returns
+
+`T`[]
+
+The same array instance, shuffled.

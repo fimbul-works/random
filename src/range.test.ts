@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { randomIntRange, randomRange } from "./range.js";
+import { randomBool, randomIntRange, randomRange, randomSign } from "./range.js";
 
 describe("randomRange", () => {
   it("should return a random float in range [a, b)", () => {
@@ -35,5 +35,29 @@ describe("randomIntRange", () => {
   it("should handle backwards parameters by swapping a and b", () => {
     const mockRandom = () => 0.5;
     expect(randomIntRange(8, 5, mockRandom)).toBe(7);
+  });
+});
+
+describe("randomBool", () => {
+  it("should return correct boolean based on bias and mock random", () => {
+    const mockRandomLow = () => 0.2;
+    const mockRandomHigh = () => 0.8;
+
+    // Standard 0.5 bias
+    expect(randomBool(0.5, mockRandomLow)).toBe(true);
+    expect(randomBool(0.5, mockRandomHigh)).toBe(false);
+
+    // Custom bias (e.g. 0.9)
+    expect(randomBool(0.9, mockRandomHigh)).toBe(true);
+  });
+});
+
+describe("randomSign", () => {
+  it("should return 1 or -1 based on mock random", () => {
+    const mockRandomLow = () => 0.2;
+    const mockRandomHigh = () => 0.8;
+
+    expect(randomSign(mockRandomLow)).toBe(1);
+    expect(randomSign(mockRandomHigh)).toBe(-1);
   });
 });

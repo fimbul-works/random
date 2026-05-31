@@ -120,3 +120,51 @@ export const shuffleArray = <T>(arr: T[], random: RandomFunction = Math.random):
   }
   return result;
 };
+
+/**
+ * Shuffle an array in-place, modifying the original array (no allocation).
+ *
+ * @template T - The type of the items in the array.
+ *
+ * @param {T[]} arr - The array to shuffle.
+ * @param {RandomFunction} [random=Math.random] - Function that returns a value in range [0, 1].
+ * @returns {T[]} The same array instance, shuffled.
+ */
+export const shuffleInPlace = <T>(arr: T[], random: RandomFunction = Math.random): T[] => {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    const tmp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = tmp;
+  }
+  return arr;
+};
+
+/**
+ * Select k unique random items from an array without replacement.
+ * Uses a partial Fisher-Yates shuffle to run in O(k) time and O(n) space for cloning.
+ *
+ * @template T - The type of the items in the array.
+ *
+ * @param {T[]} items - An array of options to sample from.
+ * @param {number} k - The number of unique items to pick.
+ * @param {RandomFunction} [random=Math.random] - Function that returns a value in range [0, 1].
+ * @returns {T[]} An array containing k unique items.
+ */
+export const sampleRandom = <T>(items: T[], k: number, random: RandomFunction = Math.random): T[] => {
+  const len = items.length;
+  if (k <= 0 || len === 0) {
+    return [];
+  }
+  if (k >= len) {
+    return items.slice();
+  }
+  const result = items.slice();
+  for (let i = 0; i < k; i++) {
+    const j = Math.floor(random() * (len - i)) + i;
+    const tmp = result[i];
+    result[i] = result[j];
+    result[j] = tmp;
+  }
+  return result.slice(0, k);
+};
