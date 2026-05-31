@@ -14,8 +14,8 @@ readdirSync(rngPath)
   .forEach((file) => {
     const name = basename(file, extname(file));
     if (name.includes(".test")) return;
-    if (name.includes("harness")) return
-    if (name.includes("factory")) return
+    if (name.includes("harness")) return;
+    if (name.includes("factory")) return;
     entryPoints[name] = join(rngPath, file);
   });
 
