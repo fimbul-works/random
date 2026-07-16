@@ -7,11 +7,15 @@ export * from "./park-miller.js";
 export * from "./sfc32.js";
 export * from "./splitmix32.js";
 export * from "./tychei.js";
-export * from "./types.js";
 export * from "./xor4096.js";
 export * from "./xorshift-mash.js";
 export * from "./xorshift7.js";
+export * from "./xorshift32.js";
+export * from "./xorshift32m.js";
+export * from "./xorshift32amx.js";
 export * from "./xorshift128.js";
 export * from "./xorwow.js";
 export * from "./xoshiro128-plus.js";
 export * from "./xoshiro128-plusplus.js";
+export * from "./xorshift32.js";
+export * from './xorshift32amx.js'

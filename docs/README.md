@@ -120,9 +120,21 @@ RandomFunction that allows reading and writing it's internal state to allow resu
 type AleaState = [number, number, number, number];
 ```
 
-Defined in: [rng/types.ts:4](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L4)
+Defined in: [rng/alea.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/alea.ts#L9)
 
 Alea internal registry state.
+
+***
+
+### JSF32BState
+
+```ts
+type JSF32BState = [number, number, number, number];
+```
+
+Defined in: [rng/jsf32b.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/jsf32b.ts#L9)
+
+JSF32 internal registry state.
 
 ***
 
@@ -132,7 +144,7 @@ Alea internal registry state.
 type JSF32State = [number, number, number, number];
 ```
 
-Defined in: [rng/types.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L9)
+Defined in: [rng/jsf32.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/jsf32.ts#L9)
 
 JSF32 internal registry state.
 
@@ -144,7 +156,7 @@ JSF32 internal registry state.
 type MersenneTwisterState = [number[], number];
 ```
 
-Defined in: [rng/types.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L14)
+Defined in: [rng/mersenne-twister.ts:8](https://github.com/claus-codes/util-random/blob/main/src/rng/mersenne-twister.ts#L8)
 
 Mersenne Twister internal registry state.
 
@@ -188,7 +200,7 @@ Defined in: [types.ts:57](https://github.com/claus-codes/util-random/blob/main/s
 type SFC32State = [number, number, number, number];
 ```
 
-Defined in: [rng/types.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L19)
+Defined in: [rng/sfc32.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/sfc32.ts#L9)
 
 SFC32 internal registry state.
 
@@ -200,7 +212,7 @@ SFC32 internal registry state.
 type TycheiState = [number, number, number, number];
 ```
 
-Defined in: [rng/types.ts:24](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L24)
+Defined in: [rng/tychei.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/tychei.ts#L9)
 
 Tyche-i internal registry state.
 
@@ -254,7 +266,7 @@ A mapping of string keys to numeric weights, used for weighted random selection.
 type Xor4096State = [number[], number, number];
 ```
 
-Defined in: [rng/types.ts:44](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L44)
+Defined in: [rng/xor4096.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/xor4096.ts#L9)
 
 Xor4096 internal registry state.
 
@@ -266,7 +278,7 @@ Xor4096 internal registry state.
 type Xorshift128State = [number, number, number, number];
 ```
 
-Defined in: [rng/types.ts:39](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L39)
+Defined in: [rng/xorshift128.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift128.ts#L9)
 
 Xorshift128 internal registry state.
 
@@ -278,7 +290,7 @@ Xorshift128 internal registry state.
 type Xorshift7State = [number[], number];
 ```
 
-Defined in: [rng/types.ts:29](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L29)
+Defined in: [rng/xorshift7.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift7.ts#L9)
 
 Xorshift7 internal registry state.
 
@@ -290,31 +302,43 @@ Xorshift7 internal registry state.
 type XorwowState = [number, number, number, number, number, number];
 ```
 
-Defined in: [rng/types.ts:34](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L34)
+Defined in: [rng/xorwow.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/xorwow.ts#L9)
 
 Xorwow internal registry state.
 
 ***
 
-### Xoshiro128State
+### Xoshiro128PlusPlusState
 
 ```ts
-type Xoshiro128State = [number, number, number, number];
+type Xoshiro128PlusPlusState = [number, number, number, number];
 ```
 
-Defined in: [rng/types.ts:49](https://github.com/claus-codes/util-random/blob/main/src/rng/types.ts#L49)
+Defined in: [rng/xoshiro128-plusplus.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/xoshiro128-plusplus.ts#L9)
 
-Xoshiro128 internal registry state.
+Xoshiro128+ internal registry state.
+
+***
+
+### Xoshiro128StatePlus
+
+```ts
+type Xoshiro128StatePlus = [number, number, number, number];
+```
+
+Defined in: [rng/xoshiro128-plus.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/xoshiro128-plus.ts#L9)
+
+Xoshiro128+ internal registry state.
 
 ## Functions
 
-### createAlea()
+### createRandomAlea()
 
 ```ts
-function createAlea(seed?): RandomNumberGenerator<AleaState>;
+function createRandomAlea(seed?): RandomNumberGenerator<AleaState>;
 ```
 
-Defined in: [rng/alea.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/alea.ts#L15)
+Defined in: [rng/alea.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/alea.ts#L19)
 
 Creates a new Alea PRNG.
 
@@ -334,13 +358,13 @@ A new PRNG.
 
 ***
 
-### createJSF32()
+### createRandomJSF32()
 
 ```ts
-function createJSF32(seed?): RandomNumberGenerator<JSF32State>;
+function createRandomJSF32(seed?): RandomNumberGenerator<JSF32State>;
 ```
 
-Defined in: [rng/jsf32.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/jsf32.ts#L15)
+Defined in: [rng/jsf32.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/jsf32.ts#L19)
 
 Creates a new JSF32 PRNG.
 
@@ -360,17 +384,17 @@ A new PRNG.
 
 ***
 
-### createJSF32b()
+### createRandomJSF32B()
 
 ```ts
-function createJSF32b(seed?): RandomNumberGenerator<JSF32State>;
+function createRandomJSF32B(seed?): RandomNumberGenerator<JSF32BState>;
 ```
 
-Defined in: [rng/jsf32b.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/jsf32b.ts#L15)
+Defined in: [rng/jsf32b.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/jsf32b.ts#L19)
 
-Creates a new JSF32 PRNG.
+Creates a new JSF32-B PRNG.
 
-This is an implementation of the JSF32 PRNG by Bob Jenkin.
+This is an implementation of the JSF32-B PRNG by Bob Jenkin.
 
 #### Parameters
 
@@ -380,19 +404,19 @@ This is an implementation of the JSF32 PRNG by Bob Jenkin.
 
 #### Returns
 
-[`RandomNumberGenerator`](#randomnumbergenerator)\<[`JSF32State`](#jsf32state)\>
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`JSF32BState`](#jsf32bstate)\>
 
 A new PRNG.
 
 ***
 
-### createMersenneTwister()
+### createRandomMersenneTwister()
 
 ```ts
-function createMersenneTwister(seed?): RandomNumberGenerator<MersenneTwisterState>;
+function createRandomMersenneTwister(seed?): RandomNumberGenerator<MersenneTwisterState>;
 ```
 
-Defined in: [rng/mersenne-twister.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/mersenne-twister.ts#L14)
+Defined in: [rng/mersenne-twister.ts:18](https://github.com/claus-codes/util-random/blob/main/src/rng/mersenne-twister.ts#L18)
 
 Creates a new Mersenne Twister PRNG.
 
@@ -412,10 +436,10 @@ A new PRNG.
 
 ***
 
-### createMulberry32()
+### createRandomMulberry32()
 
 ```ts
-function createMulberry32(seed?): RandomNumberGenerator<number>;
+function createRandomMulberry32(seed?): RandomNumberGenerator<number>;
 ```
 
 Defined in: [rng/mulberry32.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/mulberry32.ts#L14)
@@ -438,10 +462,10 @@ A new PRNG.
 
 ***
 
-### createParkMiller()
+### createRandomParkMiller()
 
 ```ts
-function createParkMiller(seed?): RandomNumberGenerator<number>;
+function createRandomParkMiller(seed?): RandomNumberGenerator<number>;
 ```
 
 Defined in: [rng/park-miller.ts:13](https://github.com/claus-codes/util-random/blob/main/src/rng/park-miller.ts#L13)
@@ -464,13 +488,13 @@ A new PRNG.
 
 ***
 
-### createSFC32()
+### createRandomSFC32()
 
 ```ts
-function createSFC32(seed?): RandomNumberGenerator<SFC32State>;
+function createRandomSFC32(seed?): RandomNumberGenerator<SFC32State>;
 ```
 
-Defined in: [rng/sfc32.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/sfc32.ts#L15)
+Defined in: [rng/sfc32.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/sfc32.ts#L19)
 
 Creates a new SFC32 PRNG.
 
@@ -490,10 +514,10 @@ A new PRNG.
 
 ***
 
-### createSplitMix32()
+### createRandomSplitMix32()
 
 ```ts
-function createSplitMix32(seed?): RandomNumberGenerator<number>;
+function createRandomSplitMix32(seed?): RandomNumberGenerator<number>;
 ```
 
 Defined in: [rng/splitmix32.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/splitmix32.ts#L14)
@@ -516,13 +540,13 @@ A new PRNG.
 
 ***
 
-### createTychei()
+### createRandomTychei()
 
 ```ts
-function createTychei(seed?): RandomNumberGenerator<TycheiState>;
+function createRandomTychei(seed?): RandomNumberGenerator<TycheiState>;
 ```
 
-Defined in: [rng/tychei.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/tychei.ts#L15)
+Defined in: [rng/tychei.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/tychei.ts#L19)
 
 Creates a new Tyche-i PRNG.
 
@@ -542,13 +566,13 @@ A new PRNG.
 
 ***
 
-### createXor4096()
+### createRandomXor4096()
 
 ```ts
-function createXor4096(seed?): RandomNumberGenerator<Xor4096State>;
+function createRandomXor4096(seed?): RandomNumberGenerator<Xor4096State>;
 ```
 
-Defined in: [rng/xor4096.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/xor4096.ts#L15)
+Defined in: [rng/xor4096.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/xor4096.ts#L19)
 
 Creates a new Xor4096 PRNG.
 
@@ -568,13 +592,13 @@ A new PRNG.
 
 ***
 
-### createXorshift128()
+### createRandomXorshift128()
 
 ```ts
-function createXorshift128(seed?): RandomNumberGenerator<Xorshift128State>;
+function createRandomXorshift128(seed?): RandomNumberGenerator<Xorshift128State>;
 ```
 
-Defined in: [rng/xorshift128.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift128.ts#L15)
+Defined in: [rng/xorshift128.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift128.ts#L19)
 
 Creates a new Xorshift128 PRNG.
 
@@ -594,13 +618,91 @@ A new PRNG.
 
 ***
 
-### createXorshift7()
+### createRandomXorshift32()
 
 ```ts
-function createXorshift7(seed?): RandomNumberGenerator<Xorshift7State>;
+function createRandomXorshift32(seed?): RandomNumberGenerator<number>;
 ```
 
-Defined in: [rng/xorshift7.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift7.ts#L15)
+Defined in: [rng/xorshift32.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift32.ts#L14)
+
+Creates a new Xorshift32 PRNG.
+
+This is an implementation of the Xorshift32 algorithm by George Marsaglia.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | `number` | Optional seed number. Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<`number`\>
+
+A new PRNG.
+
+***
+
+### createRandomXorshift32AMX()
+
+```ts
+function createRandomXorshift32AMX(seed?): RandomNumberGenerator<number>;
+```
+
+Defined in: [rng/xorshift32amx.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift32amx.ts#L14)
+
+Creates a new Xorshift32AMX PRNG.
+
+This implementation is based on work by Marc-B-Reynolds and Sebastiano Vigna.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | `number` | Optional seed number. Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<`number`\>
+
+A new PRNG.
+
+***
+
+### createRandomXorshift32M()
+
+```ts
+function createRandomXorshift32M(seed?): RandomNumberGenerator<number>;
+```
+
+Defined in: [rng/xorshift32m.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift32m.ts#L14)
+
+Creates a new Xorshift32M PRNG.
+
+This implementation is based on work by Marc-B-Reynolds and Sebastiano Vigna.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | `number` | Optional seed number. Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<`number`\>
+
+A new PRNG.
+
+***
+
+### createRandomXorshift7()
+
+```ts
+function createRandomXorshift7(seed?): RandomNumberGenerator<Xorshift7State>;
+```
+
+Defined in: [rng/xorshift7.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift7.ts#L19)
 
 Creates a new Xorshift7 PRNG.
 
@@ -620,10 +722,10 @@ A new PRNG.
 
 ***
 
-### createXorShiftMash()
+### createRandomXorShiftMash()
 
 ```ts
-function createXorShiftMash(seed?): RandomNumberGenerator<number>;
+function createRandomXorShiftMash(seed?): RandomNumberGenerator<number>;
 ```
 
 Defined in: [rng/xorshift-mash.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift-mash.ts#L14)
@@ -646,13 +748,13 @@ A new PRNG.
 
 ***
 
-### createXorwow()
+### createRandomXorwow()
 
 ```ts
-function createXorwow(seed?): RandomNumberGenerator<XorwowState>;
+function createRandomXorwow(seed?): RandomNumberGenerator<XorwowState>;
 ```
 
-Defined in: [rng/xorwow.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/xorwow.ts#L15)
+Defined in: [rng/xorwow.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/xorwow.ts#L19)
 
 Creates a new Xorwow PRNG.
 
@@ -672,13 +774,13 @@ A new PRNG
 
 ***
 
-### createXoshiro128Plus()
+### createRandomXoshiro128Plus()
 
 ```ts
-function createXoshiro128Plus(seed?): RandomNumberGenerator<Xoshiro128State>;
+function createRandomXoshiro128Plus(seed?): RandomNumberGenerator<Xoshiro128StatePlus>;
 ```
 
-Defined in: [rng/xoshiro128-plus.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/xoshiro128-plus.ts#L15)
+Defined in: [rng/xoshiro128-plus.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/xoshiro128-plus.ts#L19)
 
 Creates a new Xoshiro128+ PRNG.
 
@@ -692,19 +794,19 @@ This is an implementation of the Xoshiro128+ algorithm by David Blackman and Seb
 
 #### Returns
 
-[`RandomNumberGenerator`](#randomnumbergenerator)\<[`Xoshiro128State`](#xoshiro128state)\>
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`Xoshiro128StatePlus`](#xoshiro128stateplus)\>
 
 A new PRNG.
 
 ***
 
-### createXoshiro128PlusPlus()
+### createRandomXoshiro128PlusPlus()
 
 ```ts
-function createXoshiro128PlusPlus(seed?): RandomNumberGenerator<Xoshiro128State>;
+function createRandomXoshiro128PlusPlus(seed?): RandomNumberGenerator<Xoshiro128PlusPlusState>;
 ```
 
-Defined in: [rng/xoshiro128-plusplus.ts:15](https://github.com/claus-codes/util-random/blob/main/src/rng/xoshiro128-plusplus.ts#L15)
+Defined in: [rng/xoshiro128-plusplus.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/xoshiro128-plusplus.ts#L19)
 
 Creates a new Xoshiro128++ PRNG.
 
@@ -718,7 +820,7 @@ This is an implementation of the Xoshiro128++ algorithm by David Blackman and Se
 
 #### Returns
 
-[`RandomNumberGenerator`](#randomnumbergenerator)\<[`Xoshiro128State`](#xoshiro128state)\>
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`Xoshiro128PlusPlusState`](#xoshiro128plusplusstate)\>
 
 A new PRNG.
 

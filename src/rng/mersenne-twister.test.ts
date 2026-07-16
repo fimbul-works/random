@@ -1,4 +1,4 @@
-import { runRNGTests } from "./harness.js";
-import { createMersenneTwister } from "./mersenne-twister.js";
+import { runRNGTests } from "./test-harness.js";
+import { createRandomMersenneTwister } from "./mersenne-twister.js";
 
-runRNGTests("MersenneTwister", createMersenneTwister);
+runRNGTests("MersenneTwister", createRandomMersenneTwister);

@@ -1,4 +1,4 @@
-import { runRNGTests } from "./harness.js";
-import { createXor4096 } from "./xor4096.js";
+import { runRNGTests } from "./test-harness.js";
+import { createRandomXor4096 } from "./xor4096.js";
 
-runRNGTests("Xor4096", createXor4096);
+runRNGTests("Xor4096", createRandomXor4096);

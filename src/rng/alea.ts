@@ -2,7 +2,11 @@ import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator } from "../types.js";
 import { expandSeed } from "../util.js";
-import type { AleaState } from "./types.js";
+
+/**
+ * Alea internal registry state.
+ */
+export type AleaState = [number, number, number, number];
 
 /**
  * Creates a new Alea PRNG.
@@ -12,7 +16,7 @@ import type { AleaState } from "./types.js";
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<AleaState>} A new PRNG.
  */
-export function createAlea(seed: number = Date.now()): RandomNumberGenerator<AleaState> {
+export function createRandomAlea(seed: number = Date.now()): RandomNumberGenerator<AleaState> {
   let [s0, s1, s2] = expandSeed(seed, 3).map((s) => s * FRAC);
   let i = 1;
 

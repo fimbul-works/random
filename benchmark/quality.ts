@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import pc from "picocolors";
 import randomness from "randomness";
-import randomFactories from "../src/rng/factory.js";
+import randomFactories from "./factories.js";
 
 const randomnessTests = (randomness as any).default as Record<string, (typeof randomness)[keyof typeof randomness]>;
 

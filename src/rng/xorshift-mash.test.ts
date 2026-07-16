@@ -1,4 +1,4 @@
-import { runRNGTests } from "./harness.js";
-import { createXorShiftMash } from "./xorshift-mash.js";
+import { runRNGTests } from "./test-harness.js";
+import { createRandomXorShiftMash } from "./xorshift-mash.js";
 
-runRNGTests("XorShiftMash", createXorShiftMash);
+runRNGTests("XorShiftMash", createRandomXorShiftMash);

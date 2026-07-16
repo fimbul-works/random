@@ -1,4 +1,4 @@
-import { runRNGTests } from "./harness.js";
-import { createJSF32 } from "./jsf32.js";
+import { runRNGTests } from "./test-harness.js";
+import { createRandomJSF32 } from "./jsf32.js";
 
-runRNGTests("JSF32", createJSF32);
+runRNGTests("JSF32", createRandomJSF32);

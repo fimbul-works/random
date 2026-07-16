@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { bench, group, run } from "mitata";
 import pc from "picocolors";
-import randomFactories from "../src/rng/factory.js";
+import randomFactories from "./factories.js";
 import type { RandomFunction } from "../src/types.js";
 
 const GENERATION_SAMPLES = 10000;
@@ -29,7 +29,7 @@ console.log(`\n=== PRNG Speed Benchmark Suite ===`);
 
 group("Generation", () => {
   for (const { name, fn } of algos) {
-    const random = fn(0);
+    const random = fn(42);
     bench(name, () => {
       for (let i = 1; i < GENERATION_SAMPLES; i++) {
         random();

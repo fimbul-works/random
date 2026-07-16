@@ -2,7 +2,11 @@ import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator } from "../types.js";
 import { expandSeed } from "../util.js";
-import type { XorwowState } from "./types.js";
+
+/**
+ * Xorwow internal registry state.
+ */
+export type XorwowState = [number, number, number, number, number, number];
 
 /**
  * Creates a new Xorwow PRNG.
@@ -12,7 +16,7 @@ import type { XorwowState } from "./types.js";
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<XorwowState>} A new PRNG
  */
-export const createXorwow = (seed: number = Date.now()): RandomNumberGenerator<XorwowState> => {
+export const createRandomXorwow = (seed: number = Date.now()): RandomNumberGenerator<XorwowState> => {
   let [s0, s1, s2, s3, s4] = expandSeed(seed, 5);
   let w = 362437 | 0;
 

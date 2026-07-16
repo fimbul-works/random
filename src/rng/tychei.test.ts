@@ -1,4 +1,4 @@
-import { runRNGTests } from "./harness.js";
-import { createTychei } from "./tychei.js";
+import { runRNGTests } from "./test-harness.js";
+import { createRandomTychei } from "./tychei.js";
 
-runRNGTests("Tychei", createTychei);
+runRNGTests("Tychei", createRandomTychei);

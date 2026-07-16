@@ -2,17 +2,21 @@ import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator } from "../types.js";
 import { expandSeed } from "../util.js";
-import type { JSF32State } from "./types.js";
 
 /**
- * Creates a new JSF32 PRNG.
+ * JSF32 internal registry state.
+ */
+export type JSF32BState = [number, number, number, number];
+
+/**
+ * Creates a new JSF32-B PRNG.
  *
- * This is an implementation of the JSF32 PRNG by Bob Jenkin.
+ * This is an implementation of the JSF32-B PRNG by Bob Jenkin.
  *
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
- * @returns {RandomNumberGenerator<JSF32State>} A new PRNG.
+ * @returns {RandomNumberGenerator<JSF32BState>} A new PRNG.
  */
-export function createJSF32b(seed: number = Date.now()): RandomNumberGenerator<JSF32State> {
+export function createRandomJSF32B(seed: number = Date.now()): RandomNumberGenerator<JSF32BState> {
   let [s0, s1, s2, s3] = expandSeed(seed, 4).map((s) => s | 0);
 
   function random() {
@@ -25,7 +29,7 @@ export function createJSF32b(seed: number = Date.now()): RandomNumberGenerator<J
   }
 
   return decorateRandom(
-    defineRandomState<JSF32State>(
+    defineRandomState<JSF32BState>(
       random,
       seed,
       () => [s0, s1, s2, s3],

@@ -2,7 +2,11 @@ import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator } from "../types.js";
 import { expandSeed } from "../util.js";
-import type { Xor4096State } from "./types.js";
+
+/**
+ * Xor4096 internal registry state.
+ */
+export type Xor4096State = [number[], number, number];
 
 /**
  * Creates a new Xor4096 PRNG.
@@ -12,7 +16,7 @@ import type { Xor4096State } from "./types.js";
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<Xor4096State>} A new PRNG.
  */
-export function createXor4096(seed: number = Date.now()): RandomNumberGenerator<Xor4096State> {
+export function createRandomXor4096(seed: number = Date.now()): RandomNumberGenerator<Xor4096State> {
   const S = expandSeed(seed, 129);
   const s = S.slice(0, 128).map((v) => v | 0);
   let x = S[128];

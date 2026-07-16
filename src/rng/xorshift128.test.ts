@@ -1,4 +1,4 @@
-import { runRNGTests } from "./harness.js";
-import { createXorshift128 } from "./xorshift128.js";
+import { runRNGTests } from "./test-harness.js";
+import { createRandomXorshift128 } from "./xorshift128.js";
 
-runRNGTests("Xorshift128", createXorshift128);
+runRNGTests("Xorshift128", createRandomXorshift128);

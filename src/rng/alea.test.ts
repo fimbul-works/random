@@ -1,4 +1,4 @@
-import { createAlea } from "./alea.js";
-import { runRNGTests } from "./harness.js";
+import { createRandomAlea } from "./alea.js";
+import { runRNGTests } from "./test-harness.js";
 
-runRNGTests("Alea", createAlea);
+runRNGTests("Alea", createRandomAlea);

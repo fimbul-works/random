@@ -1,4 +1,4 @@
-import { runRNGTests } from "./harness.js";
-import { createSFC32 } from "./sfc32.js";
+import { runRNGTests } from "./test-harness.js";
+import { createRandomSFC32 } from "./sfc32.js";
 
-runRNGTests("SFC32", createSFC32);
+runRNGTests("SFC32", createRandomSFC32);

@@ -1,4 +1,4 @@
-import { runRNGTests } from "./harness.js";
-import { createMulberry32 } from "./mulberry32.js";
+import { runRNGTests } from "./test-harness.js";
+import { createRandomMulberry32 } from "./mulberry32.js";
 
-runRNGTests("Mulberry32", createMulberry32);
+runRNGTests("Mulberry32", createRandomMulberry32);

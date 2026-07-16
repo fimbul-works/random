@@ -2,7 +2,11 @@ import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator } from "../types.js";
 import { expandSeed } from "../util.js";
-import type { TycheiState } from "./types.js";
+
+/**
+ * Tyche-i internal registry state.
+ */
+export type TycheiState = [number, number, number, number];
 
 /**
  * Creates a new Tyche-i PRNG.
@@ -12,7 +16,7 @@ import type { TycheiState } from "./types.js";
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<TycheiState>} A new PRNG.
  */
-export function createTychei(seed: number = Date.now()): RandomNumberGenerator<TycheiState> {
+export function createRandomTychei(seed: number = Date.now()): RandomNumberGenerator<TycheiState> {
   let [s0, s1, s2, s3] = expandSeed(seed, 4);
 
   function random() {

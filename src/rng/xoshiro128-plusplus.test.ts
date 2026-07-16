@@ -1,4 +1,4 @@
-import { runRNGTests } from "./harness.js";
-import { createXoshiro128PlusPlus } from "./xoshiro128-plusplus.js";
+import { runRNGTests } from "./test-harness.js";
+import { createRandomXoshiro128PlusPlus } from "./xoshiro128-plusplus.js";
 
-runRNGTests("Xoshiro128PlusPlus", createXoshiro128PlusPlus);
+runRNGTests("Xoshiro128PlusPlus", createRandomXoshiro128PlusPlus);

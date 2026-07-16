@@ -11,7 +11,7 @@ import { normalizeSeed } from "../util.js";
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
  * @returns {DecoratedRandomFunction<number>} A new PRNG.
  */
-export function createSplitMix32(seed: number = Date.now()): RandomNumberGenerator<number> {
+export function createRandomSplitMix32(seed: number = Date.now()): RandomNumberGenerator<number> {
   let s = normalizeSeed(seed);
 
   function random() {

@@ -2,7 +2,11 @@ import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator } from "../types.js";
 import { expandSeed, rotl } from "../util.js";
-import type { Xoshiro128State } from "./types.js";
+
+/**
+ * Xoshiro128+ internal registry state.
+ */
+export type Xoshiro128StatePlus = [number, number, number, number];
 
 /**
  * Creates a new Xoshiro128+ PRNG.
@@ -10,9 +14,9 @@ import type { Xoshiro128State } from "./types.js";
  * This is an implementation of the Xoshiro128+ algorithm by David Blackman and Sebastiano Vigna.
  *
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
- * @returns {RandomNumberGenerator<Xoshiro128State>} A new PRNG.
+ * @returns {RandomNumberGenerator<Xoshiro128StatePlus>} A new PRNG.
  */
-export function createXoshiro128Plus(seed: number = Date.now()): RandomNumberGenerator<Xoshiro128State> {
+export function createRandomXoshiro128Plus(seed: number = Date.now()): RandomNumberGenerator<Xoshiro128StatePlus> {
   let [s0, s1, s2, s3] = expandSeed(seed, 4);
 
   function random() {
@@ -28,7 +32,7 @@ export function createXoshiro128Plus(seed: number = Date.now()): RandomNumberGen
   }
 
   return decorateRandom(
-    defineRandomState<Xoshiro128State>(
+    defineRandomState<Xoshiro128StatePlus>(
       random,
       seed,
       () => [s0, s1, s2, s3],

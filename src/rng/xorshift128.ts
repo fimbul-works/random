@@ -2,7 +2,11 @@ import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator } from "../types.js";
 import { expandSeed } from "../util.js";
-import type { Xorshift128State } from "./types.js";
+
+/**
+ * Xorshift128 internal registry state.
+ */
+export type Xorshift128State = [number, number, number, number];
 
 /**
  * Creates a new Xorshift128 PRNG.
@@ -12,7 +16,7 @@ import type { Xorshift128State } from "./types.js";
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<Xorshift128State>} A new PRNG.
  */
-export function createXorshift128(seed: number = Date.now()): RandomNumberGenerator<Xorshift128State> {
+export function createRandomXorshift128(seed: number = Date.now()): RandomNumberGenerator<Xorshift128State> {
   let [s0, s1, s2, s3] = expandSeed(seed, 4);
 
   function random() {

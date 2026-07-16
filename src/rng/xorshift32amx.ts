@@ -4,27 +4,29 @@ import type { RandomNumberGenerator } from "../types.js";
 import { normalizeSeed } from "../util.js";
 
 /**
- * Creates a new Mulberry32 PRNG.
+ * Creates a new Xorshift32AMX PRNG.
  *
- * This code is an implementation of the Mulberry32 algorithm by Tommy Ettinger.
+ * This implementation is based on work by Marc-B-Reynolds and Sebastiano Vigna.
  *
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
- * @returns {DecoratedRandomFunction<number>} A new PRNG.
+ * @returns {RandomNumberGenerator<number>} A new PRNG.
  */
-export function createRandomMulberry32(seed: number = Date.now()): RandomNumberGenerator<number> {
+export function createRandomXorshift32AMX(seed: number = Date.now()): RandomNumberGenerator<number> {
   let s = normalizeSeed(seed);
 
   function random() {
-    let t = (s += 0x6d2b79f5);
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) * FRAC;
+    var t = Math.imul(s, 1597334677);
+    t = (t >>> 24) | ((t >>> 8) & 65280) | ((t << 8) & 16711680) | (t << 24);
+    s ^= s << 13;
+    s ^= s >>> 17;
+    s ^= s << 5;
+    return ((s + t) >>> 0) * FRAC;
   }
 
   return decorateRandom(
     defineRandomState<number>(
       random,
-      s,
+      seed,
       () => s,
       (state) => (s = state),
     ),

@@ -11,7 +11,7 @@ import { normalizeSeed } from "../util.js";
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<number>} A new PRNG.
  */
-export const createXorShiftMash = (seed: number = Date.now()): RandomNumberGenerator<number> => {
+export const createRandomXorShiftMash = (seed: number = Date.now()): RandomNumberGenerator<number> => {
   let s = normalizeSeed(seed) || 1;
 
   function random() {

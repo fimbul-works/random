@@ -10,7 +10,7 @@ import { normalizeSeed } from "../util.js";
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<number>} A new PRNG.
  */
-export function createParkMiller(seed: number = Date.now()): RandomNumberGenerator<number> {
+export function createRandomParkMiller(seed: number = Date.now()): RandomNumberGenerator<number> {
   const M = 0x7fffffff;
   const MFRAC = 1 / M;
   const mapped = ((normalizeSeed(seed) % (M - 1)) + (M - 1)) % (M - 1);

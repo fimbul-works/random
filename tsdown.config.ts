@@ -11,7 +11,10 @@ const entryPoints: Record<string, string> = {
 };
 
 readdirSync(rngPath)
-  .filter((file: string) => !["index.ts", "constants.ts", "factory.ts", "types.ts", "factory.ts", "harness.ts"].includes(file))
+  .filter(
+    (file: string) =>
+      !["index.ts", "constants.ts", "test-harness.ts"].includes(file),
+  )
   .filter((file: string) => !file.includes(".test"))
   .forEach((file) => {
     const name = basename(file, extname(file));

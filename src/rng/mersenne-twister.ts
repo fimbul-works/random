@@ -1,7 +1,11 @@
 import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator } from "../types.js";
-import type { MersenneTwisterState } from "./types.js";
+
+/**
+ * Mersenne Twister internal registry state.
+ */
+export type MersenneTwisterState = [number[], number];
 
 /**
  * Creates a new Mersenne Twister PRNG.
@@ -11,7 +15,7 @@ import type { MersenneTwisterState } from "./types.js";
  * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
  * @returns {RandomFunction<MersenneTwisterState>} A new PRNG.
  */
-export function createMersenneTwister(seed: number = Date.now()): RandomNumberGenerator<MersenneTwisterState> {
+export function createRandomMersenneTwister(seed: number = Date.now()): RandomNumberGenerator<MersenneTwisterState> {
   const LOWER_MASK = 0x7fffffff;
   const UPPER_MASK = 0x80000000;
   const MAG = [0, 0x9908b0df];
