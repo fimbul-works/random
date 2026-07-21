@@ -1,4 +1,4 @@
 allowBuilds:
   esbuild: false
 minimumReleaseAgeExclude:
-  - tsdown@0.22.9
+  - tsdown@0.22.9 || 0.22.13

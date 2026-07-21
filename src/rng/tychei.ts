@@ -1,6 +1,6 @@
 import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
-import type { RandomNumberGenerator } from "../types.js";
+import type { RandomNumberGenerator, Seed } from "../types.js";
 import { expandSeed } from "../util.js";
 
 /**
@@ -13,10 +13,10 @@ export type TycheiState = [number, number, number, number];
  *
  * This is an implementation of the Tyche-i algorithm by Samuel Neves and Filipe Araujo.
  *
- * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
+ * @param {Seed} [seed=Date.now()] - Optional seed value (number or string). Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<TycheiState>} A new PRNG.
  */
-export function createRandomTychei(seed: number = Date.now()): RandomNumberGenerator<TycheiState> {
+export function createRandomTychei(seed: Seed = Date.now()): RandomNumberGenerator<TycheiState> {
   let [s0, s1, s2, s3] = expandSeed(seed, 4);
 
   function random() {

@@ -1,4 +1,4 @@
-import type { RandomFunction } from "./types";
+import type { RandomFunction } from "./types.js";
 
 /**
  * A mapping of string keys to numeric weights, used for weighted random selection.

@@ -6,15 +6,13 @@ const rngPath = "src/rng";
 
 const entryPoints: Record<string, string> = {
   bundle: "src/index.ts",
+  decorators: "src/decorate/index.ts",
   rng: "src/rng/index.ts",
   util: "src/index.util.ts",
 };
 
 readdirSync(rngPath)
-  .filter(
-    (file: string) =>
-      !["index.ts", "constants.ts", "test-harness.ts"].includes(file),
-  )
+  .filter((file: string) => !["index.ts", "test-harness.ts"].includes(file))
   .filter((file: string) => !file.includes(".test"))
   .forEach((file) => {
     const name = basename(file, extname(file));

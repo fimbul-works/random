@@ -1,7 +1,7 @@
 import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
-import type { RandomNumberGenerator } from "../types.js";
-import { expandSeed } from "../util.js";
+import type { RandomNumberGenerator, Seed } from "../types.js";
+import { expandSeed, rotl } from "../util.js";
 
 /**
  * SFC32 internal registry state.
@@ -13,10 +13,10 @@ export type SFC32State = [number, number, number, number];
  *
  * This is an implementation of the SFC32 (Small Fast Chaotic) PRNG by Chris Doty-Humphrey.
  *
- * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
+ * @param {Seed} [seed=Date.now()] - Optional seed value (number or string). Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<SFC32State>} A new PRNG.
  */
-export function createRandomSFC32(seed: number = Date.now()): RandomNumberGenerator<SFC32State> {
+export function createRandomSFC32(seed: Seed = Date.now()): RandomNumberGenerator<SFC32State> {
   let [s0, s1, s2, s3] = expandSeed(seed, 4);
 
   function random() {

@@ -1,4 +1,4 @@
-import type { RandomFunction } from "./types";
+import type { RandomFunction } from "./types.js";
 
 /**
  * Return a random float in range.

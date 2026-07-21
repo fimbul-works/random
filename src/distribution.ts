@@ -1,4 +1,4 @@
-import type { RandomFunction } from "./types";
+import type { RandomFunction } from "./types.js";
 
 /**
  * Get a random number from a Gaussian distribution.

@@ -1,5 +1,5 @@
 import { INT_32 } from "../constants.js";
-import type { DecoratedRandomFunction, RandomFunction, StatefulRandomFunction } from "../types.js";
+import type { DecoratedRandomFunction, RandomFunction, Seed, StatefulRandomFunction } from "../types.js";
 
 /**
  * Define a property on a target.
@@ -9,13 +9,13 @@ import type { DecoratedRandomFunction, RandomFunction, StatefulRandomFunction } 
  * @param {any} target - Target to add a property.
  * @param {string} name - Property name.
  * @param {T} value - Value getter function.
- * @param {boolean} [writable=true] - Whether the value is writable.
+ * @param {boolean} [writable=true] - Whether the value is writable. (Default: `true`)
  */
 export const defineValue = <T>(target: any, name: string, value: T, writable: boolean = true): void =>
   Object.defineProperty(target, name, {
     value,
-    enumerable: true,
     writable,
+    enumerable: true,
   });
 
 /**
@@ -25,12 +25,14 @@ export const defineValue = <T>(target: any, name: string, value: T, writable: bo
  * @template R - Type of RandomFunction.
  *
  * @param {R} random - Function that returns a value.
- * @param {number} seed - Seed value.
+ * @param {Seed} seed - Seed value (number or string).
+ * @param {() => T} getState - Get the internal registry state.
+ * @param {(state: T) => void} setState - Set the internal registry state.
  * @returns {R & StatefulRandomFunction<T>} Decorated random number generator.
  */
 export const defineRandomState = <T, R = RandomFunction>(
   random: R,
-  seed: number,
+  seed: Seed,
   getState: () => T,
   setState: (state: T) => void,
 ): R & StatefulRandomFunction<T> => {

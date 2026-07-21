@@ -1,6 +1,6 @@
 import { FRAC, INT_32 } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
-import type { RandomNumberGenerator } from "../types.js";
+import type { RandomNumberGenerator, Seed } from "../types.js";
 import { normalizeSeed } from "../util.js";
 
 /**
@@ -8,10 +8,10 @@ import { normalizeSeed } from "../util.js";
  *
  * This is an implementation of the XorshiftMash algorithm by George Marsaglia.
  *
- * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
+ * @param {Seed} [seed=Date.now()] - Optional seed value (number or string). Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<number>} A new PRNG.
  */
-export const createRandomXorShiftMash = (seed: number = Date.now()): RandomNumberGenerator<number> => {
+export const createRandomXorShiftMash = (seed: Seed = Date.now()): RandomNumberGenerator<number> => {
   let s = normalizeSeed(seed) || 1;
 
   function random() {

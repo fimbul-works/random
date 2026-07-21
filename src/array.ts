@@ -1,4 +1,4 @@
-import type { RandomFunction } from "./types";
+import type { RandomFunction } from "./types.js";
 
 /**
  * A function that extracts a weight from an object of type T.

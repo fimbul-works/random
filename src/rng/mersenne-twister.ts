@@ -1,6 +1,7 @@
 import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
-import type { RandomNumberGenerator } from "../types.js";
+import type { RandomNumberGenerator, Seed } from "../types.js";
+import { normalizeSeed } from "../util.js";
 
 /**
  * Mersenne Twister internal registry state.
@@ -12,10 +13,10 @@ export type MersenneTwisterState = [number[], number];
  *
  * This code is an implementation of the Mersenne Twister algorithm by Makoto Matsumoto and Takuji Nishimura.
  *
- * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
+ * @param {Seed} [seed=Date.now()] - Optional seed value (number or string). Defaults to current time if not provided.
  * @returns {RandomFunction<MersenneTwisterState>} A new PRNG.
  */
-export function createRandomMersenneTwister(seed: number = Date.now()): RandomNumberGenerator<MersenneTwisterState> {
+export function createRandomMersenneTwister(seed: Seed = Date.now()): RandomNumberGenerator<MersenneTwisterState> {
   const LOWER_MASK = 0x7fffffff;
   const UPPER_MASK = 0x80000000;
   const MAG = [0, 0x9908b0df];
@@ -29,7 +30,7 @@ export function createRandomMersenneTwister(seed: number = Date.now()): RandomNu
     s[0] = seed >>> 0;
     for (i = 1; i < N; i++) {
       seed = s[i - 1] ^ (s[i - 1] >>> 30);
-      s[i] = ((((seed & 0xffff0000) >>> 16) * 1812433253) << 16) + (seed & 0x0000ffff) * 1812433253 + i;
+      s[i] = ((((seed & 0xffff0000) >>> 16) * 0x6c078965) << 16) + (seed & 0x0000ffff) * 0x6c078965 + i;
       s[i] >>>= 0;
     }
   };
@@ -69,7 +70,7 @@ export function createRandomMersenneTwister(seed: number = Date.now()): RandomNu
     return (y >>> 0) * FRAC;
   }
 
-  initialize(seed);
+  initialize(normalizeSeed(seed));
 
   return decorateRandom(
     defineRandomState<MersenneTwisterState>(

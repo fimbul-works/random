@@ -1,6 +1,6 @@
 import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
-import type { RandomNumberGenerator } from "../types.js";
+import type { RandomNumberGenerator, Seed } from "../types.js";
 import { normalizeSeed } from "../util.js";
 
 /**
@@ -8,10 +8,10 @@ import { normalizeSeed } from "../util.js";
  *
  * This code is an implementation of the Mulberry32 algorithm by Tommy Ettinger.
  *
- * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
+ * @param {Seed} [seed=Date.now()] - Optional seed value (number or string). Defaults to current time if not provided.
  * @returns {DecoratedRandomFunction<number>} A new PRNG.
  */
-export function createRandomMulberry32(seed: number = Date.now()): RandomNumberGenerator<number> {
+export function createRandomMulberry32(seed: Seed = Date.now()): RandomNumberGenerator<number> {
   let s = normalizeSeed(seed);
 
   function random() {

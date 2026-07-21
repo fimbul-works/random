@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { RandomNumberGenerator } from "../types.js";
+import type { RandomNumberGenerator, Seed } from "../types.js";
 
 /**
  * Reusable test suite harness for a Pseudo-Random Number Generator.
@@ -7,7 +7,7 @@ import type { RandomNumberGenerator } from "../types.js";
  * @param name - The name of the PRNG algorithm.
  * @param createRNG - A factory function to instantiate the PRNG.
  */
-export function runRNGTests<T>(name: string, createRNG: (seed?: number) => RandomNumberGenerator<T>): void {
+export function runRNGTests<T>(name: string, createRNG: (seed?: Seed) => RandomNumberGenerator<T>): void {
   describe(name, () => {
     // 1. Output range check over 1000 iterations
     it("should produce values in range [0.0, 1.0) over 1000 iterations", () => {
@@ -24,15 +24,20 @@ export function runRNGTests<T>(name: string, createRNG: (seed?: number) => Rando
     it("should produce different sequences with different seeds", () => {
       const rng1 = createRNG(12345);
       const rng2 = createRNG(54321);
+      const rng3 = createRNG("seed");
 
       const seq1: number[] = [];
       const seq2: number[] = [];
+      const seq3: number[] = [];
       for (let i = 0; i < 50; i++) {
         seq1.push(rng1());
         seq2.push(rng2());
+        seq3.push(rng3());
       }
 
       expect(seq1).not.toEqual(seq2);
+      expect(seq1).not.toEqual(seq3);
+      expect(seq2).not.toEqual(seq3);
     });
 
     // 3. Capturing and restoring internal state

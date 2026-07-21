@@ -4,6 +4,11 @@
 export type RandomFunction = () => number;
 
 /**
+ * Type representing a seed value that can be either a number or a string.
+ */
+export type Seed = number | string;
+
+/**
  * RandomFunction that allows reading and writing it's internal state to allow resuming.
  *
  * @template T - The type of the internal state of the random number generator.

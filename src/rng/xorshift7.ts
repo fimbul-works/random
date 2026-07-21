@@ -1,6 +1,6 @@
 import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
-import type { RandomNumberGenerator } from "../types.js";
+import type { RandomNumberGenerator, Seed } from "../types.js";
 import { expandSeed } from "../util.js";
 
 /**
@@ -13,10 +13,10 @@ export type Xorshift7State = [number[], number];
  *
  * This is an implementation of the XorShift7 algorithm by François Panneton and Pierre L'Ecuyer.
  *
- * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
+ * @param {Seed} [seed=Date.now()] - Optional seed value (number or string). Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<Xorshift7State>} A new PRNG.
  */
-export const createRandomXorshift7 = (seed: number = Date.now()): RandomNumberGenerator<Xorshift7State> => {
+export const createRandomXorshift7 = (seed: Seed = Date.now()): RandomNumberGenerator<Xorshift7State> => {
   const s = expandSeed(seed, 8);
   let i = 0;
 

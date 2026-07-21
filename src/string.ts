@@ -1,4 +1,4 @@
-import type { RandomFunction } from "./types";
+import type { RandomFunction } from "./types.js";
 
 const DEFAULT_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 

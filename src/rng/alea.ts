@@ -1,6 +1,6 @@
 import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
-import type { RandomNumberGenerator } from "../types.js";
+import type { RandomNumberGenerator, Seed } from "../types.js";
 import { expandSeed } from "../util.js";
 
 /**
@@ -13,10 +13,10 @@ export type AleaState = [number, number, number, number];
  *
  * This code is an implementation of Alea algorithm by Johannes Baagøe.
  *
- * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
+ * @param {Seed} [seed=Date.now()] - Optional seed value (number or string). Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<AleaState>} A new PRNG.
  */
-export function createRandomAlea(seed: number = Date.now()): RandomNumberGenerator<AleaState> {
+export function createRandomAlea(seed: Seed = Date.now()): RandomNumberGenerator<AleaState> {
   let [s0, s1, s2] = expandSeed(seed, 3).map((s) => s * FRAC);
   let i = 1;
 

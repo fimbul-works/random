@@ -1,6 +1,6 @@
 import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
-import type { RandomNumberGenerator } from "../types.js";
+import type { RandomNumberGenerator, Seed } from "../types.js";
 import { normalizeSeed } from "../util.js";
 
 /**
@@ -8,10 +8,10 @@ import { normalizeSeed } from "../util.js";
  *
  * This is an implementation of the SplitMix32 algorithm by G. L. Steele, D. Lea and C. H. Flood.
  *
- * @param {number} [seed=Date.now()] - Optional seed number. Defaults to current time if not provided.
+ * @param {Seed} [seed=Date.now()] - Optional seed value (number or string). Defaults to current time if not provided.
  * @returns {DecoratedRandomFunction<number>} A new PRNG.
  */
-export function createRandomSplitMix32(seed: number = Date.now()): RandomNumberGenerator<number> {
+export function createRandomSplitMix32(seed: Seed = Date.now()): RandomNumberGenerator<number> {
   let s = normalizeSeed(seed);
 
   function random() {
