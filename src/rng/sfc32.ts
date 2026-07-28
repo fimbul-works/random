@@ -1,7 +1,7 @@
 import { FRAC } from "../constants.js";
 import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
-import { expandSeed, rotl } from "../util.js";
+import { expandSeed } from "../util.js";
 
 /**
  * SFC32 internal registry state.
