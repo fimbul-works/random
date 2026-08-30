@@ -149,7 +149,7 @@ const normalVal = rng.gaussian(100, 15);
 
 ## Documentation
 
-For full type signatures and module documentation, refer to the co-located [/docs](https://github.com/fimbul-works/random/tree/main/docs) folder.
+For full type signatures and module documentation, refer to the co-located [/docs](https://github.com/fimbul-works/hash/tree/main/docs) folder.
 
 ## License
 
