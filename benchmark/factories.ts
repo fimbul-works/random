@@ -3,7 +3,10 @@ import * as factories from "../src/index.js";
 export const randomFactories = Object.entries(factories).reduce(
   (acc, [name, factory]) => {
     if (typeof factory === "function" && name.startsWith("createRandom")) {
-      const algoName = name.replace(/^createRandom/, "").replaceAll("Plus", "+");
+      const algoName = name
+        .replace(/^createRandom/, "")
+        .replaceAll("Plus", "+")
+        .replaceAll("Star", "*");
       acc[algoName] = factory;
     }
     return acc;

@@ -4,7 +4,7 @@
 
 ### DecoratedRandomFunction()
 
-Defined in: [types.ts:39](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L39)
+Defined in: [types.ts:49](https://github.com/fimbul-works/random/blob/main/src/types.ts#L49)
 
 RandomFunction with additional functionality.
 
@@ -12,17 +12,41 @@ RandomFunction with additional functionality.
 
 - [`RandomFunction`](#randomfunction)
 
+#### Call Signature
+
 ```ts
 DecoratedRandomFunction(): number;
 ```
 
-Defined in: [types.ts:39](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L39)
+Defined in: [types.ts:55](https://github.com/fimbul-works/random/blob/main/src/types.ts#L55)
+
+Return a random 32-bit float in range [0.0, 1.0].
+
+##### Returns
+
+`number`
+
+A random 32-bit float in range [0.0, 1.0].
+
+#### Call Signature
+
+```ts
+DecoratedRandomFunction(): number;
+```
+
+Defined in: [types.ts:49](https://github.com/fimbul-works/random/blob/main/src/types.ts#L49)
 
 RandomFunction with additional functionality.
 
-#### Returns
+##### Returns
 
 `number`
+
+#### Properties
+
+| Property | Modifier | Type | Description | Defined in |
+| ------ | ------ | ------ | ------ | ------ |
+| <a id="property-bits"></a> `bits` | `readonly` | `number` | Number indicating how many bits this generator operates on. | [types.ts:81](https://github.com/fimbul-works/random/blob/main/src/types.ts#L81) |
 
 #### Methods
 
@@ -32,7 +56,7 @@ RandomFunction with additional functionality.
 double(): number;
 ```
 
-Defined in: [types.ts:59](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L59)
+Defined in: [types.ts:76](https://github.com/fimbul-works/random/blob/main/src/types.ts#L76)
 
 Return a random double-precision float in range [0.0, 1.0].
 
@@ -48,7 +72,7 @@ A random double-precision float in range [0.0, 1.0].
 int(): number;
 ```
 
-Defined in: [types.ts:45](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L45)
+Defined in: [types.ts:62](https://github.com/fimbul-works/random/blob/main/src/types.ts#L62)
 
 Return a random unsigned 32-bit integer.
 
@@ -64,7 +88,7 @@ A random unsigned 32-bit integer.
 int64(): bigint;
 ```
 
-Defined in: [types.ts:52](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L52)
+Defined in: [types.ts:69](https://github.com/fimbul-works/random/blob/main/src/types.ts#L69)
 
 Return a random unsigned 64-bit integer.
 
@@ -78,7 +102,7 @@ A random unsigned 64-bit integer.
 
 ### StatefulRandomFunction()
 
-Defined in: [types.ts:16](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L16)
+Defined in: [types.ts:26](https://github.com/fimbul-works/random/blob/main/src/types.ts#L26)
 
 RandomFunction that allows reading and writing it's internal state to allow resuming.
 
@@ -88,15 +112,15 @@ RandomFunction that allows reading and writing it's internal state to allow resu
 
 #### Type Parameters
 
-| Type Parameter | Description |
-| ------ | ------ |
-| `T` | The type of the internal state of the random number generator. |
+| Type Parameter | Default type | Description |
+| ------ | ------ | ------ |
+| `T` | `any` | The type of the internal state of the random number generator. |
 
 ```ts
 StatefulRandomFunction(): number;
 ```
 
-Defined in: [types.ts:16](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L16)
+Defined in: [types.ts:26](https://github.com/fimbul-works/random/blob/main/src/types.ts#L26)
 
 RandomFunction that allows reading and writing it's internal state to allow resuming.
 
@@ -108,9 +132,9 @@ RandomFunction that allows reading and writing it's internal state to allow resu
 
 | Property | Modifier | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ | ------ |
-| <a id="property-getstate"></a> `getState` | `public` | () => `T` | Get the internal registry state. | [types.ts:27](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L27) |
-| <a id="property-seed"></a> `seed?` | `readonly` | `number` | Read-only initial seed as an unsigned integer. | [types.ts:20](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L20) |
-| <a id="property-setstate"></a> `setState` | `public` | (`state`) => `void` | Set the internal registry state | [types.ts:33](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L33) |
+| <a id="property-getstate"></a> `getState` | `public` | () => `T` | Get the internal registry state. | [types.ts:37](https://github.com/fimbul-works/random/blob/main/src/types.ts#L37) |
+| <a id="property-seed"></a> `seed?` | `readonly` | `number` | Read-only initial seed as an unsigned integer. | [types.ts:30](https://github.com/fimbul-works/random/blob/main/src/types.ts#L30) |
+| <a id="property-setstate"></a> `setState` | `public` | (`state`) => `void` | Set the internal registry state | [types.ts:43](https://github.com/fimbul-works/random/blob/main/src/types.ts#L43) |
 
 ## Type Aliases
 
@@ -120,7 +144,7 @@ RandomFunction that allows reading and writing it's internal state to allow resu
 type AleaState = [number, number, number, number];
 ```
 
-Defined in: [rng/alea.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/alea.ts#L9)
+Defined in: [rng/alea.ts:9](https://github.com/fimbul-works/random/blob/main/src/rng/alea.ts#L9)
 
 Alea internal registry state.
 
@@ -132,7 +156,7 @@ Alea internal registry state.
 type GJRand32State = [number, number, number, number];
 ```
 
-Defined in: [rng/gjrand32.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/gjrand32.ts#L9)
+Defined in: [rng/gjrand32.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/gjrand32.ts#L8)
 
 GJRand32 internal registry state.
 
@@ -144,7 +168,7 @@ GJRand32 internal registry state.
 type JSF32BState = [number, number, number, number];
 ```
 
-Defined in: [rng/jsf32b.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/jsf32b.ts#L9)
+Defined in: [rng/jsf32b.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/jsf32b.ts#L8)
 
 JSF32 internal registry state.
 
@@ -156,9 +180,21 @@ JSF32 internal registry state.
 type JSF32State = [number, number, number, number];
 ```
 
-Defined in: [rng/jsf32.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/jsf32.ts#L9)
+Defined in: [rng/jsf32.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/jsf32.ts#L8)
 
 JSF32 internal registry state.
+
+***
+
+### Lehmer64State
+
+```ts
+type Lehmer64State = bigint;
+```
+
+Defined in: [rng/lehmer64.ts:9](https://github.com/fimbul-works/random/blob/main/src/rng/lehmer64.ts#L9)
+
+Lehmer64 internal registry state.
 
 ***
 
@@ -168,9 +204,33 @@ JSF32 internal registry state.
 type MersenneTwisterState = [number[], number];
 ```
 
-Defined in: [rng/mersenne-twister.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/mersenne-twister.ts#L9)
+Defined in: [rng/mersenne-twister.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/mersenne-twister.ts#L8)
 
 Mersenne Twister internal registry state.
+
+***
+
+### MiddleSquareWeylState
+
+```ts
+type MiddleSquareWeylState = [bigint, bigint, bigint];
+```
+
+Defined in: [rng/middle-square-weyl.ts:9](https://github.com/fimbul-works/random/blob/main/src/rng/middle-square-weyl.ts#L9)
+
+MiddleSquareWeyl internal registry state: [x, w, s].
+
+***
+
+### PCG32State
+
+```ts
+type PCG32State = bigint;
+```
+
+Defined in: [rng/pcg32.ts:9](https://github.com/fimbul-works/random/blob/main/src/rng/pcg32.ts#L9)
+
+PCG32 internal registry state.
 
 ***
 
@@ -188,7 +248,7 @@ type RandomArrayFunctions = {
 };
 ```
 
-Defined in: [decorate/array.ts:13](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L13)
+Defined in: [decorate/array.ts:13](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L13)
 
 #### Methods
 
@@ -198,7 +258,7 @@ Defined in: [decorate/array.ts:13](https://github.com/claus-codes/util-random/bl
 index<T>(lengthOrArray): number;
 ```
 
-Defined in: [decorate/array.ts:21](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L21)
+Defined in: [decorate/array.ts:21](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L21)
 
 Return a random index using a length or an array as value.
 
@@ -226,7 +286,7 @@ A random integer, or -1 if length is zero.
 pick<T>(items): T;
 ```
 
-Defined in: [decorate/array.ts:31](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L31)
+Defined in: [decorate/array.ts:31](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L31)
 
 Pick a random item from an array.
 
@@ -258,7 +318,7 @@ When passed an empty array.
 pickWeighted<T>(items, getWeight): T;
 ```
 
-Defined in: [decorate/array.ts:42](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L42)
+Defined in: [decorate/array.ts:42](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L42)
 
 Pick a random item from an array of objects based on their weights.
 
@@ -291,7 +351,7 @@ When passed an empty array.
 sample<T>(items, k): T[];
 ```
 
-Defined in: [decorate/array.ts:80](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L80)
+Defined in: [decorate/array.ts:80](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L80)
 
 Select k unique random items from an array without replacement.
 
@@ -320,7 +380,7 @@ An array containing k unique items.
 shuffle<T>(arr): T[];
 ```
 
-Defined in: [decorate/array.ts:61](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L61)
+Defined in: [decorate/array.ts:61](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L61)
 
 Create a shuffled copy of an array.
 
@@ -348,7 +408,7 @@ A shuffled copy of the array.
 shuffleInPlace<T>(arr): T[];
 ```
 
-Defined in: [decorate/array.ts:70](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L70)
+Defined in: [decorate/array.ts:70](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L70)
 
 Shuffle an array in-place, modifying the original array (no allocation).
 
@@ -376,7 +436,7 @@ The same array instance, shuffled.
 weightedIndex<T>(items, getWeight): number;
 ```
 
-Defined in: [decorate/array.ts:52](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L52)
+Defined in: [decorate/array.ts:52](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L52)
 
 Select a random index from an array of objects based on their weights.
 
@@ -412,7 +472,7 @@ type RandomDistributionFunctions = {
 };
 ```
 
-Defined in: [decorate/distribution.ts:5](https://github.com/claus-codes/util-random/blob/main/src/decorate/distribution.ts#L5)
+Defined in: [decorate/distribution.ts:5](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L5)
 
 #### Methods
 
@@ -422,7 +482,7 @@ Defined in: [decorate/distribution.ts:5](https://github.com/claus-codes/util-ran
 exp(lambda): number;
 ```
 
-Defined in: [decorate/distribution.ts:21](https://github.com/claus-codes/util-random/blob/main/src/decorate/distribution.ts#L21)
+Defined in: [decorate/distribution.ts:21](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L21)
 
 Generate a random number from an exponential distribution.
 
@@ -444,7 +504,7 @@ A random number from the exponential distribution.
 gaussian(mean?, stdev?): number;
 ```
 
-Defined in: [decorate/distribution.ts:13](https://github.com/claus-codes/util-random/blob/main/src/decorate/distribution.ts#L13)
+Defined in: [decorate/distribution.ts:13](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L13)
 
 Get a random number from a Gaussian distribution.
 
@@ -467,7 +527,7 @@ A random value between the specified mean and standard deviation.
 logistic(mu, s): number;
 ```
 
-Defined in: [decorate/distribution.ts:30](https://github.com/claus-codes/util-random/blob/main/src/decorate/distribution.ts#L30)
+Defined in: [decorate/distribution.ts:30](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L30)
 
 Generate a random number from a logistic distribution.
 
@@ -490,7 +550,7 @@ A random number from the logistic distribution.
 poisson(lambda): number;
 ```
 
-Defined in: [decorate/distribution.ts:38](https://github.com/claus-codes/util-random/blob/main/src/decorate/distribution.ts#L38)
+Defined in: [decorate/distribution.ts:38](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L38)
 
 Generate a random integer from a Poisson distribution.
 
@@ -514,7 +574,7 @@ A non-negative integer sampled from the Poisson distribution.
 type RandomFunction = () => number;
 ```
 
-Defined in: [types.ts:4](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L4)
+Defined in: [types.ts:9](https://github.com/fimbul-works/random/blob/main/src/types.ts#L9)
 
 Type for a function that returns a number in range [0.0, 1.0].
 
@@ -533,7 +593,7 @@ type RandomGeometryFunctions = {
 };
 ```
 
-Defined in: [decorate/geometry.ts:5](https://github.com/claus-codes/util-random/blob/main/src/decorate/geometry.ts#L5)
+Defined in: [decorate/geometry.ts:5](https://github.com/fimbul-works/random/blob/main/src/decorate/geometry.ts#L5)
 
 #### Methods
 
@@ -543,7 +603,7 @@ Defined in: [decorate/geometry.ts:5](https://github.com/claus-codes/util-random/
 pointInCircle(radius?): [number, number];
 ```
 
-Defined in: [decorate/geometry.ts:12](https://github.com/claus-codes/util-random/blob/main/src/decorate/geometry.ts#L12)
+Defined in: [decorate/geometry.ts:12](https://github.com/fimbul-works/random/blob/main/src/decorate/geometry.ts#L12)
 
 Return a random 2D coordinate [x, y] distributed uniformly inside a circle of the specified radius.
 
@@ -565,7 +625,7 @@ Return a random 2D coordinate [x, y] distributed uniformly inside a circle of th
 pointOnSphere(radius?): [number, number, number];
 ```
 
-Defined in: [decorate/geometry.ts:20](https://github.com/claus-codes/util-random/blob/main/src/decorate/geometry.ts#L20)
+Defined in: [decorate/geometry.ts:20](https://github.com/fimbul-works/random/blob/main/src/decorate/geometry.ts#L20)
 
 Return a random 3D coordinate [x, y, z] distributed uniformly on the surface of a sphere of the specified radius.
 
@@ -583,13 +643,45 @@ Return a random 3D coordinate [x, y, z] distributed uniformly on the surface of 
 
 ***
 
+### RandomInt32Function
+
+```ts
+type RandomInt32Function = () => number;
+```
+
+Defined in: [types.ts:14](https://github.com/fimbul-works/random/blob/main/src/types.ts#L14)
+
+Type for a function that returns a number in range [0, 2^32 - 1].
+
+#### Returns
+
+`number`
+
+***
+
+### RandomInt64Function
+
+```ts
+type RandomInt64Function = () => bigint;
+```
+
+Defined in: [types.ts:19](https://github.com/fimbul-works/random/blob/main/src/types.ts#L19)
+
+Type for a function that returns a number in range [0, 2^64 - 1].
+
+#### Returns
+
+`bigint`
+
+***
+
 ### RandomNumberGenerator
 
 ```ts
 type RandomNumberGenerator<T> = DecoratedRandomFunction & StatefulRandomFunction<T>;
 ```
 
-Defined in: [types.ts:62](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L62)
+Defined in: [types.ts:84](https://github.com/fimbul-works/random/blob/main/src/types.ts#L84)
 
 #### Type Parameters
 
@@ -607,7 +699,7 @@ type RandomObjectFunctions = {
 };
 ```
 
-Defined in: [decorate/object.ts:5](https://github.com/claus-codes/util-random/blob/main/src/decorate/object.ts#L5)
+Defined in: [decorate/object.ts:5](https://github.com/fimbul-works/random/blob/main/src/decorate/object.ts#L5)
 
 #### Methods
 
@@ -617,7 +709,7 @@ Defined in: [decorate/object.ts:5](https://github.com/claus-codes/util-random/bl
 weightedKey<T>(keyAndWeight): string;
 ```
 
-Defined in: [decorate/object.ts:14](https://github.com/claus-codes/util-random/blob/main/src/decorate/object.ts#L14)
+Defined in: [decorate/object.ts:14](https://github.com/fimbul-works/random/blob/main/src/decorate/object.ts#L14)
 
 Pick a random key from an object with weight as the value.
 
@@ -656,7 +748,7 @@ type RandomRangeFunctions = {
 };
 ```
 
-Defined in: [decorate/range.ts:5](https://github.com/claus-codes/util-random/blob/main/src/decorate/range.ts#L5)
+Defined in: [decorate/range.ts:5](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L5)
 
 #### Methods
 
@@ -666,7 +758,7 @@ Defined in: [decorate/range.ts:5](https://github.com/claus-codes/util-random/blo
 bool(bias?): boolean;
 ```
 
-Defined in: [decorate/range.ts:30](https://github.com/claus-codes/util-random/blob/main/src/decorate/range.ts#L30)
+Defined in: [decorate/range.ts:30](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L30)
 
 Return a random boolean with an optional bias toward true.
 
@@ -688,7 +780,7 @@ A random boolean.
 intRange(a, b): number;
 ```
 
-Defined in: [decorate/range.ts:22](https://github.com/claus-codes/util-random/blob/main/src/decorate/range.ts#L22)
+Defined in: [decorate/range.ts:22](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L22)
 
 Return a random integer in range.
 
@@ -711,7 +803,7 @@ A random integer in [a, b] inclusive.
 range(a, b): number;
 ```
 
-Defined in: [decorate/range.ts:13](https://github.com/claus-codes/util-random/blob/main/src/decorate/range.ts#L13)
+Defined in: [decorate/range.ts:13](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L13)
 
 Return a random float in range.
 
@@ -734,7 +826,7 @@ A random float in [a, b] (inclusive of a, exclusive of b).
 sign(): number;
 ```
 
-Defined in: [decorate/range.ts:37](https://github.com/claus-codes/util-random/blob/main/src/decorate/range.ts#L37)
+Defined in: [decorate/range.ts:37](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L37)
 
 Return either 1 or -1 randomly.
 
@@ -754,7 +846,7 @@ type RandomStringFunctions = {
 };
 ```
 
-Defined in: [decorate/string.ts:5](https://github.com/claus-codes/util-random/blob/main/src/decorate/string.ts#L5)
+Defined in: [decorate/string.ts:5](https://github.com/fimbul-works/random/blob/main/src/decorate/string.ts#L5)
 
 #### Methods
 
@@ -764,7 +856,7 @@ Defined in: [decorate/string.ts:5](https://github.com/claus-codes/util-random/bl
 string(len, alphabet?): string;
 ```
 
-Defined in: [decorate/string.ts:13](https://github.com/claus-codes/util-random/blob/main/src/decorate/string.ts#L13)
+Defined in: [decorate/string.ts:13](https://github.com/fimbul-works/random/blob/main/src/decorate/string.ts#L13)
 
 Generate a random string.
 
@@ -783,13 +875,49 @@ The generated string.
 
 ***
 
+### RomuDuoJrState
+
+```ts
+type RomuDuoJrState = [number, number];
+```
+
+Defined in: [rng/romu-duo-jr.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/romu-duo-jr.ts#L8)
+
+RomuDuoJr internal registry state: [x, y].
+
+***
+
+### RomuQuadState
+
+```ts
+type RomuQuadState = [number, number, number, number];
+```
+
+Defined in: [rng/romu-quad.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/romu-quad.ts#L8)
+
+RomuQuad internal registry state: [w, x, y, z].
+
+***
+
+### RomuTrioState
+
+```ts
+type RomuTrioState = [number, number, number];
+```
+
+Defined in: [rng/romu-trio.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/romu-trio.ts#L8)
+
+RomuTrio internal registry state: [x, y, z].
+
+***
+
 ### Seed
 
 ```ts
 type Seed = number | string;
 ```
 
-Defined in: [types.ts:9](https://github.com/claus-codes/util-random/blob/main/src/types.ts#L9)
+Defined in: [types.ts:4](https://github.com/fimbul-works/random/blob/main/src/types.ts#L4)
 
 Type representing a seed value that can be either a number or a string.
 
@@ -801,9 +929,21 @@ Type representing a seed value that can be either a number or a string.
 type SFC32State = [number, number, number, number];
 ```
 
-Defined in: [rng/sfc32.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/sfc32.ts#L9)
+Defined in: [rng/sfc32.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/sfc32.ts#L8)
 
 SFC32 internal registry state.
+
+***
+
+### SplitMix64State
+
+```ts
+type SplitMix64State = bigint;
+```
+
+Defined in: [rng/splitmix64.ts:9](https://github.com/fimbul-works/random/blob/main/src/rng/splitmix64.ts#L9)
+
+SplitMix64 internal registry state.
 
 ***
 
@@ -813,9 +953,9 @@ SFC32 internal registry state.
 type TycheiState = [number, number, number, number];
 ```
 
-Defined in: [rng/tychei.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/tychei.ts#L9)
+Defined in: [rng/tychei.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/tychei.ts#L8)
 
-Tyche-i internal registry state.
+Tychei internal registry state.
 
 ***
 
@@ -825,7 +965,7 @@ Tyche-i internal registry state.
 type WeightExtractor<T> = (item) => number;
 ```
 
-Defined in: [array.ts:10](https://github.com/claus-codes/util-random/blob/main/src/array.ts#L10)
+Defined in: [array.ts:10](https://github.com/fimbul-works/random/blob/main/src/array.ts#L10)
 
 A function that extracts a weight from an object of type T.
 
@@ -855,21 +995,69 @@ Number representing weight.
 type WeightMap = Record<string, number>;
 ```
 
-Defined in: [object.ts:6](https://github.com/claus-codes/util-random/blob/main/src/object.ts#L6)
+Defined in: [object.ts:6](https://github.com/fimbul-works/random/blob/main/src/object.ts#L6)
 
 A mapping of string keys to numeric weights, used for weighted random selection.
+
+***
+
+### WyrandState
+
+```ts
+type WyrandState = bigint;
+```
+
+Defined in: [rng/wyrand.ts:9](https://github.com/fimbul-works/random/blob/main/src/rng/wyrand.ts#L9)
+
+Wyrand internal registry state.
 
 ***
 
 ### Xor4096State
 
 ```ts
-type Xor4096State = [number[], number, number];
+type Xor4096State = [number, number[], number];
 ```
 
-Defined in: [rng/xor4096.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/xor4096.ts#L9)
+Defined in: [rng/xor4096.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/xor4096.ts#L8)
 
 Xor4096 internal registry state.
+
+***
+
+### Xoroshiro128StarStarState
+
+```ts
+type Xoroshiro128StarStarState = [bigint, bigint];
+```
+
+Defined in: [rng/xoroshiro128-starstar.ts:9](https://github.com/fimbul-works/random/blob/main/src/rng/xoroshiro128-starstar.ts#L9)
+
+Xoroshiro128** internal registry state: [s0, s1].
+
+***
+
+### Xoroshiro64PlusPlusState
+
+```ts
+type Xoroshiro64PlusPlusState = [number, number];
+```
+
+Defined in: [rng/xoroshiro64-plusplus.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/xoroshiro64-plusplus.ts#L8)
+
+Xoroshiro64++ internal registry state: [s0, s1].
+
+***
+
+### Xoroshiro64StarStarState
+
+```ts
+type Xoroshiro64StarStarState = [number, number];
+```
+
+Defined in: [rng/xoroshiro64-starstar.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/xoroshiro64-starstar.ts#L8)
+
+Xoroshiro64** internal registry state: [s0, s1].
 
 ***
 
@@ -879,21 +1067,21 @@ Xor4096 internal registry state.
 type Xorshift128State = [number, number, number, number];
 ```
 
-Defined in: [rng/xorshift128.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift128.ts#L9)
+Defined in: [rng/xorshift128.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/xorshift128.ts#L8)
 
-Xorshift128 internal registry state.
+Xorshift128 internal registry state: [s0, s1, s2, s3].
 
 ***
 
 ### Xorshift7State
 
 ```ts
-type Xorshift7State = [number[], number];
+type Xorshift7State = [number, number, number, number, number, number, number];
 ```
 
-Defined in: [rng/xorshift7.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift7.ts#L9)
+Defined in: [rng/xorshift7.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/xorshift7.ts#L8)
 
-Xorshift7 internal registry state.
+Xorshift7 internal registry state: [x, y, z, w, v, u, t].
 
 ***
 
@@ -903,9 +1091,9 @@ Xorshift7 internal registry state.
 type XorwowState = [number, number, number, number, number, number];
 ```
 
-Defined in: [rng/xorwow.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/xorwow.ts#L9)
+Defined in: [rng/xorwow.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/xorwow.ts#L8)
 
-Xorwow internal registry state.
+Xorwow internal registry state: [s0, s1, s2, s3, s4, d].
 
 ***
 
@@ -915,9 +1103,9 @@ Xorwow internal registry state.
 type Xoshiro128PlusPlusState = [number, number, number, number];
 ```
 
-Defined in: [rng/xoshiro128-plusplus.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/xoshiro128-plusplus.ts#L9)
+Defined in: [rng/xoshiro128-plusplus.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/xoshiro128-plusplus.ts#L8)
 
-Xoshiro128++ internal registry state.
+Xoshiro128++ internal registry state: [s0, s1, s2, s3].
 
 ***
 
@@ -927,9 +1115,59 @@ Xoshiro128++ internal registry state.
 type Xoshiro128StatePlus = [number, number, number, number];
 ```
 
-Defined in: [rng/xoshiro128-plus.ts:9](https://github.com/claus-codes/util-random/blob/main/src/rng/xoshiro128-plus.ts#L9)
+Defined in: [rng/xoshiro128-plus.ts:8](https://github.com/fimbul-works/random/blob/main/src/rng/xoshiro128-plus.ts#L8)
 
 Xoshiro128+ internal registry state.
+
+***
+
+### Xoshiro256PlusPlusState
+
+```ts
+type Xoshiro256PlusPlusState = [bigint, bigint, bigint, bigint];
+```
+
+Defined in: [rng/xoshiro256-plusplus.ts:9](https://github.com/fimbul-works/random/blob/main/src/rng/xoshiro256-plusplus.ts#L9)
+
+Xoshiro256++ internal registry state: [s0, s1, s2, s3].
+
+***
+
+### Xoshiro256StarStarState
+
+```ts
+type Xoshiro256StarStarState = [bigint, bigint, bigint, bigint];
+```
+
+Defined in: [rng/xoshiro256-starstar.ts:9](https://github.com/fimbul-works/random/blob/main/src/rng/xoshiro256-starstar.ts#L9)
+
+Xoshiro256** internal registry state: [s0, s1, s2, s3].
+
+## Variables
+
+### decorateRandom
+
+```ts
+const decorateRandom: (random) => DecoratedRandomFunction = decorateRandomFloat;
+```
+
+Defined in: [decorate/decorate.ts:72](https://github.com/fimbul-works/random/blob/main/src/decorate/decorate.ts#L72)
+
+Alias for [`decorateRandomFloat`](#decoraterandomfloat)
+
+Apply decorators to a standard floating-point [0, 1] RandomFunction.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
+
+#### Returns
+
+[`DecoratedRandomFunction`](#decoratedrandomfunction)
+
+Decorated random number generator.
 
 ## Functions
 
@@ -939,7 +1177,7 @@ Xoshiro128+ internal registry state.
 function createRandomAlea(seed?): RandomNumberGenerator<AleaState>;
 ```
 
-Defined in: [rng/alea.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/alea.ts#L19)
+Defined in: [rng/alea.ts:19](https://github.com/fimbul-works/random/blob/main/src/rng/alea.ts#L19)
 
 Creates a new Alea PRNG.
 
@@ -965,7 +1203,7 @@ A new PRNG.
 function createRandomGJRand32(seed?): RandomNumberGenerator<GJRand32State>;
 ```
 
-Defined in: [rng/gjrand32.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/gjrand32.ts#L19)
+Defined in: [rng/gjrand32.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/gjrand32.ts#L18)
 
 Creates a new GJrand32 PRNG.
 
@@ -991,11 +1229,11 @@ A new PRNG.
 function createRandomJSF32(seed?): RandomNumberGenerator<JSF32State>;
 ```
 
-Defined in: [rng/jsf32.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/jsf32.ts#L19)
+Defined in: [rng/jsf32.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/jsf32.ts#L18)
 
-Creates a new JSF32 PRNG.
+Creates a new JSF32 (Bob Jenkins Small Fast 32) PRNG.
 
-This is an implementation of the JSF32 PRNG by Bob Jenkin.
+This is an implementation of Bob Jenkins' 32-bit Small Noncryptographic PRNG.
 
 #### Parameters
 
@@ -1017,7 +1255,7 @@ A new PRNG.
 function createRandomJSF32B(seed?): RandomNumberGenerator<JSF32BState>;
 ```
 
-Defined in: [rng/jsf32b.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/jsf32b.ts#L19)
+Defined in: [rng/jsf32b.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/jsf32b.ts#L18)
 
 Creates a new JSF32-B PRNG.
 
@@ -1037,17 +1275,43 @@ A new PRNG.
 
 ***
 
+### createRandomLehmer64()
+
+```ts
+function createRandomLehmer64(seed?): RandomNumberGenerator<bigint>;
+```
+
+Defined in: [rng/lehmer64.ts:19](https://github.com/fimbul-works/random/blob/main/src/rng/lehmer64.ts#L19)
+
+Creates a new Lehmer64 PRNG.
+
+This is an implementation of the 64-bit Lehmer (multiplicative congruential) PRNG.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | [`Seed`](#seed) | Optional seed value (number or string). Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<`bigint`\>
+
+A new PRNG.
+
+***
+
 ### createRandomMersenneTwister()
 
 ```ts
 function createRandomMersenneTwister(seed?): RandomNumberGenerator<MersenneTwisterState>;
 ```
 
-Defined in: [rng/mersenne-twister.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/mersenne-twister.ts#L19)
+Defined in: [rng/mersenne-twister.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/mersenne-twister.ts#L18)
 
 Creates a new Mersenne Twister PRNG.
 
-This code is an implementation of the Mersenne Twister algorithm by Makoto Matsumoto and Takuji Nishimura.
+This code is an implementation of MT19937 algorithm by Makoto Matsumoto and Takuji Nishimura.
 
 #### Parameters
 
@@ -1063,17 +1327,43 @@ A new PRNG.
 
 ***
 
+### createRandomMiddleSquareWeyl()
+
+```ts
+function createRandomMiddleSquareWeyl(seed?): RandomNumberGenerator<MiddleSquareWeylState>;
+```
+
+Defined in: [rng/middle-square-weyl.ts:19](https://github.com/fimbul-works/random/blob/main/src/rng/middle-square-weyl.ts#L19)
+
+Creates a new Middle Square Weyl Sequence (MSWS) PRNG.
+
+This is an implementation of the Middle Square Weyl Sequence algorithm by Bernard Widynski (2017).
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | [`Seed`](#seed) | Optional seed value (number or string). Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`MiddleSquareWeylState`](#middlesquareweylstate)\>
+
+A new PRNG.
+
+***
+
 ### createRandomMulberry32()
 
 ```ts
 function createRandomMulberry32(seed?): RandomNumberGenerator<number>;
 ```
 
-Defined in: [rng/mulberry32.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/mulberry32.ts#L14)
+Defined in: [rng/mulberry32.ts:13](https://github.com/fimbul-works/random/blob/main/src/rng/mulberry32.ts#L13)
 
 Creates a new Mulberry32 PRNG.
 
-This code is an implementation of the Mulberry32 algorithm by Tommy Ettinger.
+This code is an implementation of Mulberry32 algorithm by Tommy Ettinger.
 
 #### Parameters
 
@@ -1095,11 +1385,11 @@ A new PRNG.
 function createRandomParkMiller(seed?): RandomNumberGenerator<number>;
 ```
 
-Defined in: [rng/park-miller.ts:13](https://github.com/claus-codes/util-random/blob/main/src/rng/park-miller.ts#L13)
+Defined in: [rng/park-miller.ts:13](https://github.com/fimbul-works/random/blob/main/src/rng/park-miller.ts#L13)
 
-Creates a new Park-Miller LCG (MINSTD) PRNG.
+Creates a new Park-Miller PRNG.
 
-This is an implementation of the Park-Miller LGC (MINSTD) algorithm by Stephen K. Park and Keith W. Miller.
+This code is an implementation of Park-Miller algorithm (MINSTD).
 
 #### Parameters
 
@@ -1115,17 +1405,121 @@ A new PRNG.
 
 ***
 
+### createRandomPCG32()
+
+```ts
+function createRandomPCG32(seed?): RandomNumberGenerator<bigint>;
+```
+
+Defined in: [rng/pcg32.ts:19](https://github.com/fimbul-works/random/blob/main/src/rng/pcg32.ts#L19)
+
+Creates a new PCG32 (PCG-XSH-RR 64/32) PRNG.
+
+This is an implementation of the PCG32 PRNG by Melissa O'Neill.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | [`Seed`](#seed) | Optional seed value (number or string). Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<`bigint`\>
+
+A new PRNG.
+
+***
+
+### createRandomRomuDuoJr()
+
+```ts
+function createRandomRomuDuoJr(seed?): RandomNumberGenerator<RomuDuoJrState>;
+```
+
+Defined in: [rng/romu-duo-jr.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/romu-duo-jr.ts#L18)
+
+Creates a new RomuDuoJr PRNG.
+
+This is an implementation of the 32-bit RomuDuoJr PRNG by Mark A. Overton.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | [`Seed`](#seed) | Optional seed value (number or string). Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`RomuDuoJrState`](#romuduojrstate)\>
+
+A new PRNG.
+
+***
+
+### createRandomRomuQuad()
+
+```ts
+function createRandomRomuQuad(seed?): RandomNumberGenerator<RomuQuadState>;
+```
+
+Defined in: [rng/romu-quad.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/romu-quad.ts#L18)
+
+Creates a new RomuQuad PRNG.
+
+This is an implementation of the 32-bit RomuQuad PRNG by Mark A. Overton.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | [`Seed`](#seed) | Optional seed value (number or string). Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`RomuQuadState`](#romuquadstate)\>
+
+A new PRNG.
+
+***
+
+### createRandomRomuTrio()
+
+```ts
+function createRandomRomuTrio(seed?): RandomNumberGenerator<RomuTrioState>;
+```
+
+Defined in: [rng/romu-trio.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/romu-trio.ts#L18)
+
+Creates a new RomuTrio PRNG.
+
+This is an implementation of the 32-bit RomuTrio PRNG by Mark A. Overton.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | [`Seed`](#seed) | Optional seed value (number or string). Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`RomuTrioState`](#romutriostate)\>
+
+A new PRNG.
+
+***
+
 ### createRandomSFC32()
 
 ```ts
 function createRandomSFC32(seed?): RandomNumberGenerator<SFC32State>;
 ```
 
-Defined in: [rng/sfc32.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/sfc32.ts#L19)
+Defined in: [rng/sfc32.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/sfc32.ts#L18)
 
 Creates a new SFC32 PRNG.
 
-This is an implementation of the SFC32 (Small Fast Chaotic) PRNG by Chris Doty-Humphrey.
+This code is an implementation of SFC32 algorithm by Chris Doty-Humphrey.
 
 #### Parameters
 
@@ -1147,11 +1541,11 @@ A new PRNG.
 function createRandomSplitMix32(seed?): RandomNumberGenerator<number>;
 ```
 
-Defined in: [rng/splitmix32.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/splitmix32.ts#L14)
+Defined in: [rng/splitmix32.ts:13](https://github.com/fimbul-works/random/blob/main/src/rng/splitmix32.ts#L13)
 
 Creates a new SplitMix32 PRNG.
 
-This is an implementation of the SplitMix32 algorithm by G. L. Steele, D. Lea and C. H. Flood.
+This code is an implementation of SplitMix32 algorithm by Guy Steele.
 
 #### Parameters
 
@@ -1167,17 +1561,43 @@ A new PRNG.
 
 ***
 
+### createRandomSplitMix64()
+
+```ts
+function createRandomSplitMix64(seed?): RandomNumberGenerator<bigint>;
+```
+
+Defined in: [rng/splitmix64.ts:19](https://github.com/fimbul-works/random/blob/main/src/rng/splitmix64.ts#L19)
+
+Creates a new SplitMix64 PRNG.
+
+This is an implementation of the 64-bit SplitMix64 algorithm by Guy L. Steele, Doug Lea, and Christine H. Flood.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | [`Seed`](#seed) | Optional seed value (number or string). Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<`bigint`\>
+
+A new PRNG.
+
+***
+
 ### createRandomTychei()
 
 ```ts
 function createRandomTychei(seed?): RandomNumberGenerator<TycheiState>;
 ```
 
-Defined in: [rng/tychei.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/tychei.ts#L19)
+Defined in: [rng/tychei.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/tychei.ts#L18)
 
 Creates a new Tyche-i PRNG.
 
-This is an implementation of the Tyche-i algorithm by Samuel Neves and Filipe Araujo.
+This code is an implementation of Tyche-i algorithm by Samuel Neves and Filipe Araujo.
 
 #### Parameters
 
@@ -1193,17 +1613,43 @@ A new PRNG.
 
 ***
 
+### createRandomWyrand()
+
+```ts
+function createRandomWyrand(seed?): RandomNumberGenerator<bigint>;
+```
+
+Defined in: [rng/wyrand.ts:19](https://github.com/fimbul-works/random/blob/main/src/rng/wyrand.ts#L19)
+
+Creates a new Wyrand PRNG.
+
+This is an implementation of the fast 64-bit Wyrand PRNG by Wang Yi (part of wyhash).
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | [`Seed`](#seed) | Optional seed value (number or string). Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<`bigint`\>
+
+A new PRNG.
+
+***
+
 ### createRandomXor4096()
 
 ```ts
 function createRandomXor4096(seed?): RandomNumberGenerator<Xor4096State>;
 ```
 
-Defined in: [rng/xor4096.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/xor4096.ts#L19)
+Defined in: [rng/xor4096.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/xor4096.ts#L18)
 
 Creates a new Xor4096 PRNG.
 
-This is an implementation of the Xor4096 algorithm by Richard Brent.
+This code is an implementation of Xor4096 algorithm by Richard P. Brent.
 
 #### Parameters
 
@@ -1219,17 +1665,97 @@ A new PRNG.
 
 ***
 
+### createRandomXoroshiro128StarStar()
+
+```ts
+function createRandomXoroshiro128StarStar(seed?): RandomNumberGenerator<Xoroshiro128StarStarState>;
+```
+
+Defined in: [rng/xoroshiro128-starstar.ts:19](https://github.com/fimbul-works/random/blob/main/src/rng/xoroshiro128-starstar.ts#L19)
+
+Creates a new Xoroshiro128** PRNG.
+
+This is an implementation of the Xoroshiro128** algorithm by David Blackman and Sebastiano Vigna.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | [`Seed`](#seed) | Optional seed value (number or string). Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`Xoroshiro128StarStarState`](#xoroshiro128starstarstate)\>
+
+A new PRNG.
+
+***
+
+### createRandomXoroshiro64PlusPlus()
+
+```ts
+function createRandomXoroshiro64PlusPlus(seed?): RandomNumberGenerator<Xoroshiro64PlusPlusState>;
+```
+
+Defined in: [rng/xoroshiro64-plusplus.ts:19](https://github.com/fimbul-works/random/blob/main/src/rng/xoroshiro64-plusplus.ts#L19)
+
+Creates a new Xoroshiro64++ PRNG.
+
+This is an implementation of the 64-bit state (32-bit output) Xoroshiro64++ algorithm
+by David Blackman and Sebastiano Vigna.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | [`Seed`](#seed) | Optional seed value (number or string). Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`Xoroshiro64PlusPlusState`](#xoroshiro64plusplusstate)\>
+
+A new PRNG.
+
+***
+
+### createRandomXoroshiro64StarStar()
+
+```ts
+function createRandomXoroshiro64StarStar(seed?): RandomNumberGenerator<Xoroshiro64StarStarState>;
+```
+
+Defined in: [rng/xoroshiro64-starstar.ts:19](https://github.com/fimbul-works/random/blob/main/src/rng/xoroshiro64-starstar.ts#L19)
+
+Creates a new Xoroshiro64** PRNG.
+
+This is an implementation of the 64-bit state (32-bit output) Xoroshiro64** algorithm
+by David Blackman and Sebastiano Vigna.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | [`Seed`](#seed) | Optional seed value (number or string). Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`Xoroshiro64StarStarState`](#xoroshiro64starstarstate)\>
+
+A new PRNG.
+
+***
+
 ### createRandomXorshift128()
 
 ```ts
 function createRandomXorshift128(seed?): RandomNumberGenerator<Xorshift128State>;
 ```
 
-Defined in: [rng/xorshift128.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift128.ts#L19)
+Defined in: [rng/xorshift128.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/xorshift128.ts#L18)
 
 Creates a new Xorshift128 PRNG.
 
-This is an implementation of the Xorshift128 algorithm by George Marsaglia.
+This code is an implementation of Xorshift128 algorithm by George Marsaglia.
 
 #### Parameters
 
@@ -1251,11 +1777,11 @@ A new PRNG.
 function createRandomXorshift32(seed?): RandomNumberGenerator<number>;
 ```
 
-Defined in: [rng/xorshift32.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift32.ts#L14)
+Defined in: [rng/xorshift32.ts:13](https://github.com/fimbul-works/random/blob/main/src/rng/xorshift32.ts#L13)
 
 Creates a new Xorshift32 PRNG.
 
-This is an implementation of the Xorshift32 algorithm by George Marsaglia.
+This code is an implementation of Xorshift32 algorithm by George Marsaglia.
 
 #### Parameters
 
@@ -1277,11 +1803,11 @@ A new PRNG.
 function createRandomXorshift32AMX(seed?): RandomNumberGenerator<number>;
 ```
 
-Defined in: [rng/xorshift32amx.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift32amx.ts#L14)
+Defined in: [rng/xorshift32amx.ts:13](https://github.com/fimbul-works/random/blob/main/src/rng/xorshift32amx.ts#L13)
 
 Creates a new Xorshift32AMX PRNG.
 
-This implementation is based on work by Marc-B-Reynolds and Sebastiano Vigna.
+This code is an implementation of Xorshift32AMX algorithm by George Marsaglia.
 
 #### Parameters
 
@@ -1303,11 +1829,11 @@ A new PRNG.
 function createRandomXorshift32M(seed?): RandomNumberGenerator<number>;
 ```
 
-Defined in: [rng/xorshift32m.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift32m.ts#L14)
+Defined in: [rng/xorshift32m.ts:13](https://github.com/fimbul-works/random/blob/main/src/rng/xorshift32m.ts#L13)
 
 Creates a new Xorshift32M PRNG.
 
-This implementation is based on work by Marc-B-Reynolds and Sebastiano Vigna.
+This code is an implementation of Xorshift32M algorithm by George Marsaglia.
 
 #### Parameters
 
@@ -1329,11 +1855,11 @@ A new PRNG.
 function createRandomXorshift7(seed?): RandomNumberGenerator<Xorshift7State>;
 ```
 
-Defined in: [rng/xorshift7.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift7.ts#L19)
+Defined in: [rng/xorshift7.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/xorshift7.ts#L18)
 
 Creates a new Xorshift7 PRNG.
 
-This is an implementation of the XorShift7 algorithm by François Panneton and Pierre L'Ecuyer.
+This code is an implementation of Xorshift7 algorithm by François Panneton and Pierre L'Ecuyer.
 
 #### Parameters
 
@@ -1355,11 +1881,11 @@ A new PRNG.
 function createRandomXorShiftMash(seed?): RandomNumberGenerator<number>;
 ```
 
-Defined in: [rng/xorshift-mash.ts:14](https://github.com/claus-codes/util-random/blob/main/src/rng/xorshift-mash.ts#L14)
+Defined in: [rng/xorshift-mash.ts:14](https://github.com/fimbul-works/random/blob/main/src/rng/xorshift-mash.ts#L14)
 
-Creates a new XorshiftMash PRNG.
+Creates a new XorShiftMash PRNG.
 
-This is an implementation of the XorshiftMash algorithm by George Marsaglia.
+This code is an implementation of XorShiftMash algorithm.
 
 #### Parameters
 
@@ -1381,11 +1907,11 @@ A new PRNG.
 function createRandomXorwow(seed?): RandomNumberGenerator<XorwowState>;
 ```
 
-Defined in: [rng/xorwow.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/xorwow.ts#L19)
+Defined in: [rng/xorwow.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/xorwow.ts#L18)
 
 Creates a new Xorwow PRNG.
 
-This is an implementation of the Xorwow algorithm by François Panneton and Pierre L'Ecuyer.
+This code is an implementation of Xorwow algorithm by George Marsaglia.
 
 #### Parameters
 
@@ -1397,7 +1923,7 @@ This is an implementation of the Xorwow algorithm by François Panneton and Pier
 
 [`RandomNumberGenerator`](#randomnumbergenerator)\<[`XorwowState`](#xorwowstate)\>
 
-A new PRNG
+A new PRNG.
 
 ***
 
@@ -1407,7 +1933,7 @@ A new PRNG
 function createRandomXoshiro128Plus(seed?): RandomNumberGenerator<Xoshiro128StatePlus>;
 ```
 
-Defined in: [rng/xoshiro128-plus.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/xoshiro128-plus.ts#L19)
+Defined in: [rng/xoshiro128-plus.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/xoshiro128-plus.ts#L18)
 
 Creates a new Xoshiro128+ PRNG.
 
@@ -1433,7 +1959,7 @@ A new PRNG.
 function createRandomXoshiro128PlusPlus(seed?): RandomNumberGenerator<Xoshiro128PlusPlusState>;
 ```
 
-Defined in: [rng/xoshiro128-plusplus.ts:19](https://github.com/claus-codes/util-random/blob/main/src/rng/xoshiro128-plusplus.ts#L19)
+Defined in: [rng/xoshiro128-plusplus.ts:18](https://github.com/fimbul-works/random/blob/main/src/rng/xoshiro128-plusplus.ts#L18)
 
 Creates a new Xoshiro128++ PRNG.
 
@@ -1453,13 +1979,65 @@ A new PRNG.
 
 ***
 
+### createRandomXoshiro256PlusPlus()
+
+```ts
+function createRandomXoshiro256PlusPlus(seed?): RandomNumberGenerator<Xoshiro256PlusPlusState>;
+```
+
+Defined in: [rng/xoshiro256-plusplus.ts:19](https://github.com/fimbul-works/random/blob/main/src/rng/xoshiro256-plusplus.ts#L19)
+
+Creates a new Xoshiro256++ PRNG.
+
+This is an implementation of the 256-bit state Xoshiro256++ algorithm by David Blackman and Sebastiano Vigna.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | [`Seed`](#seed) | Optional seed value (number or string). Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`Xoshiro256PlusPlusState`](#xoshiro256plusplusstate)\>
+
+A new PRNG.
+
+***
+
+### createRandomXoshiro256StarStar()
+
+```ts
+function createRandomXoshiro256StarStar(seed?): RandomNumberGenerator<Xoshiro256StarStarState>;
+```
+
+Defined in: [rng/xoshiro256-starstar.ts:19](https://github.com/fimbul-works/random/blob/main/src/rng/xoshiro256-starstar.ts#L19)
+
+Creates a new Xoshiro256** PRNG.
+
+This is an implementation of the 256-bit state Xoshiro256** algorithm by David Blackman and Sebastiano Vigna.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `seed?` | [`Seed`](#seed) | Optional seed value (number or string). Defaults to current time if not provided. |
+
+#### Returns
+
+[`RandomNumberGenerator`](#randomnumbergenerator)\<[`Xoshiro256StarStarState`](#xoshiro256starstarstate)\>
+
+A new PRNG.
+
+***
+
 ### curryBool()
 
 ```ts
 function curryBool(random): (bias) => boolean;
 ```
 
-Defined in: [decorate/range.ts:45](https://github.com/claus-codes/util-random/blob/main/src/decorate/range.ts#L45)
+Defined in: [decorate/range.ts:45](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L45)
 
 #### Parameters
 
@@ -1479,7 +2057,7 @@ Defined in: [decorate/range.ts:45](https://github.com/claus-codes/util-random/bl
 function curryExp(random): (lambda) => number;
 ```
 
-Defined in: [decorate/distribution.ts:46](https://github.com/claus-codes/util-random/blob/main/src/decorate/distribution.ts#L46)
+Defined in: [decorate/distribution.ts:46](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L46)
 
 #### Parameters
 
@@ -1499,7 +2077,7 @@ Defined in: [decorate/distribution.ts:46](https://github.com/claus-codes/util-ra
 function curryGaussian(random): (mean, stdev) => number;
 ```
 
-Defined in: [decorate/distribution.ts:42](https://github.com/claus-codes/util-random/blob/main/src/decorate/distribution.ts#L42)
+Defined in: [decorate/distribution.ts:42](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L42)
 
 #### Parameters
 
@@ -1519,7 +2097,7 @@ Defined in: [decorate/distribution.ts:42](https://github.com/claus-codes/util-ra
 function curryIndex(random): <T>(lengthOrArray) => number;
 ```
 
-Defined in: [decorate/array.ts:84](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L84)
+Defined in: [decorate/array.ts:84](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L84)
 
 #### Parameters
 
@@ -1539,7 +2117,7 @@ Defined in: [decorate/array.ts:84](https://github.com/claus-codes/util-random/bl
 function curryIntRange(random): (a, b) => number;
 ```
 
-Defined in: [decorate/range.ts:42](https://github.com/claus-codes/util-random/blob/main/src/decorate/range.ts#L42)
+Defined in: [decorate/range.ts:42](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L42)
 
 #### Parameters
 
@@ -1559,7 +2137,7 @@ Defined in: [decorate/range.ts:42](https://github.com/claus-codes/util-random/bl
 function curryLogistic(random): (mu, s) => number;
 ```
 
-Defined in: [decorate/distribution.ts:48](https://github.com/claus-codes/util-random/blob/main/src/decorate/distribution.ts#L48)
+Defined in: [decorate/distribution.ts:48](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L48)
 
 #### Parameters
 
@@ -1579,7 +2157,7 @@ Defined in: [decorate/distribution.ts:48](https://github.com/claus-codes/util-ra
 function curryPick(random): <T>(items) => T;
 ```
 
-Defined in: [decorate/array.ts:89](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L89)
+Defined in: [decorate/array.ts:89](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L89)
 
 #### Parameters
 
@@ -1599,7 +2177,7 @@ Defined in: [decorate/array.ts:89](https://github.com/claus-codes/util-random/bl
 function curryPickWeighted(random): <T>(items, getWeight) => T;
 ```
 
-Defined in: [decorate/array.ts:94](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L94)
+Defined in: [decorate/array.ts:94](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L94)
 
 #### Parameters
 
@@ -1619,7 +2197,7 @@ Defined in: [decorate/array.ts:94](https://github.com/claus-codes/util-random/bl
 function curryPointInCircle(random): (radius) => [number, number];
 ```
 
-Defined in: [decorate/geometry.ts:24](https://github.com/claus-codes/util-random/blob/main/src/decorate/geometry.ts#L24)
+Defined in: [decorate/geometry.ts:24](https://github.com/fimbul-works/random/blob/main/src/decorate/geometry.ts#L24)
 
 #### Parameters
 
@@ -1639,7 +2217,7 @@ Defined in: [decorate/geometry.ts:24](https://github.com/claus-codes/util-random
 function curryPointOnSphere(random): (radius) => [number, number, number];
 ```
 
-Defined in: [decorate/geometry.ts:29](https://github.com/claus-codes/util-random/blob/main/src/decorate/geometry.ts#L29)
+Defined in: [decorate/geometry.ts:29](https://github.com/fimbul-works/random/blob/main/src/decorate/geometry.ts#L29)
 
 #### Parameters
 
@@ -1659,7 +2237,7 @@ Defined in: [decorate/geometry.ts:29](https://github.com/claus-codes/util-random
 function curryPoisson(random): (lambda) => number;
 ```
 
-Defined in: [decorate/distribution.ts:50](https://github.com/claus-codes/util-random/blob/main/src/decorate/distribution.ts#L50)
+Defined in: [decorate/distribution.ts:50](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L50)
 
 #### Parameters
 
@@ -1679,7 +2257,7 @@ Defined in: [decorate/distribution.ts:50](https://github.com/claus-codes/util-ra
 function curryRange(random): (a, b) => number;
 ```
 
-Defined in: [decorate/range.ts:40](https://github.com/claus-codes/util-random/blob/main/src/decorate/range.ts#L40)
+Defined in: [decorate/range.ts:40](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L40)
 
 #### Parameters
 
@@ -1699,7 +2277,7 @@ Defined in: [decorate/range.ts:40](https://github.com/claus-codes/util-random/bl
 function currySample(random): <T>(items, k) => T[];
 ```
 
-Defined in: [decorate/array.ts:114](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L114)
+Defined in: [decorate/array.ts:114](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L114)
 
 #### Parameters
 
@@ -1719,7 +2297,7 @@ Defined in: [decorate/array.ts:114](https://github.com/claus-codes/util-random/b
 function curryShuffle(random): <T>(arr) => T[];
 ```
 
-Defined in: [decorate/array.ts:104](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L104)
+Defined in: [decorate/array.ts:104](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L104)
 
 #### Parameters
 
@@ -1739,7 +2317,7 @@ Defined in: [decorate/array.ts:104](https://github.com/claus-codes/util-random/b
 function curryShuffleInPlace(random): <T>(arr) => T[];
 ```
 
-Defined in: [decorate/array.ts:109](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L109)
+Defined in: [decorate/array.ts:109](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L109)
 
 #### Parameters
 
@@ -1759,7 +2337,7 @@ Defined in: [decorate/array.ts:109](https://github.com/claus-codes/util-random/b
 function currySign(random): () => number;
 ```
 
-Defined in: [decorate/range.ts:49](https://github.com/claus-codes/util-random/blob/main/src/decorate/range.ts#L49)
+Defined in: [decorate/range.ts:49](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L49)
 
 #### Parameters
 
@@ -1779,7 +2357,7 @@ Defined in: [decorate/range.ts:49](https://github.com/claus-codes/util-random/bl
 function curryString(random): (length, alphabet?) => string;
 ```
 
-Defined in: [decorate/string.ts:16](https://github.com/claus-codes/util-random/blob/main/src/decorate/string.ts#L16)
+Defined in: [decorate/string.ts:16](https://github.com/fimbul-works/random/blob/main/src/decorate/string.ts#L16)
 
 #### Parameters
 
@@ -1799,7 +2377,7 @@ Defined in: [decorate/string.ts:16](https://github.com/claus-codes/util-random/b
 function curryWeightedIndex(random): <T>(items, getWeight) => number;
 ```
 
-Defined in: [decorate/array.ts:99](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L99)
+Defined in: [decorate/array.ts:99](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L99)
 
 #### Parameters
 
@@ -1819,7 +2397,7 @@ Defined in: [decorate/array.ts:99](https://github.com/claus-codes/util-random/bl
 function curryWeightedKey(random): <T>(keyAndWeight) => string;
 ```
 
-Defined in: [decorate/object.ts:18](https://github.com/claus-codes/util-random/blob/main/src/decorate/object.ts#L18)
+Defined in: [decorate/object.ts:18](https://github.com/fimbul-works/random/blob/main/src/decorate/object.ts#L18)
 
 #### Parameters
 
@@ -1833,32 +2411,73 @@ Defined in: [decorate/object.ts:18](https://github.com/claus-codes/util-random/b
 
 ***
 
-### decorateRandom()
+### decorateRandomFloat()
 
 ```ts
-function decorateRandom<T>(random, props?): T & DecoratedRandomFunction;
+function decorateRandomFloat(random): DecoratedRandomFunction;
 ```
 
-Defined in: [decorate/decorate.ts:54](https://github.com/claus-codes/util-random/blob/main/src/decorate/decorate.ts#L54)
+Defined in: [decorate/decorate.ts:60](https://github.com/fimbul-works/random/blob/main/src/decorate/decorate.ts#L60)
 
-Apply decorators to a RandomFunction.
-
-#### Type Parameters
-
-| Type Parameter | Description |
-| ------ | ------ |
-| `T` *extends* [`RandomFunction`](#randomfunction) | Type of RandomFunction. |
+Apply decorators to a standard floating-point [0, 1] RandomFunction.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `random` | `T` | Function that returns a value. |
-| `props` | `Record`\<`string`, () => `any`\> | Additional properties. |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
 
-`T` & [`DecoratedRandomFunction`](#decoratedrandomfunction)
+[`DecoratedRandomFunction`](#decoratedrandomfunction)
+
+Decorated random number generator.
+
+***
+
+### decorateRandomInt32()
+
+```ts
+function decorateRandomInt32(raw): DecoratedRandomFunction;
+```
+
+Defined in: [decorate/decorate.ts:80](https://github.com/fimbul-works/random/blob/main/src/decorate/decorate.ts#L80)
+
+Apply 32-bit decorators to a raw 32-bit integer RandomFunction.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `raw` | [`RandomInt32Function`](#randomint32function) | Function that returns an unsigned 32-bit integer in range [0, 2^32 - 1]. |
+
+#### Returns
+
+[`DecoratedRandomFunction`](#decoratedrandomfunction)
+
+Decorated random number generator.
+
+***
+
+### decorateRandomInt64()
+
+```ts
+function decorateRandomInt64(raw64): DecoratedRandomFunction;
+```
+
+Defined in: [decorate/decorate.ts:97](https://github.com/fimbul-works/random/blob/main/src/decorate/decorate.ts#L97)
+
+Apply 64-bit decorators to a raw 64-bit integer RandomFunction.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `raw64` | [`RandomInt64Function`](#randomint64function) | Generator function returning a native 64-bit integer (bigint). |
+
+#### Returns
+
+[`DecoratedRandomFunction`](#decoratedrandomfunction)
 
 Decorated random number generator.
 
@@ -1870,7 +2489,7 @@ Decorated random number generator.
 function decorateRandomWithArray<T>(random): T & RandomArrayFunctions;
 ```
 
-Defined in: [decorate/array.ts:125](https://github.com/claus-codes/util-random/blob/main/src/decorate/array.ts#L125)
+Defined in: [decorate/array.ts:125](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L125)
 
 Apply array function decorators to a RandomFunction.
 
@@ -1900,7 +2519,7 @@ Decorated random number generator with array functions.
 function decorateRandomWithDistribution<T>(random): T & RandomDistributionFunctions;
 ```
 
-Defined in: [decorate/distribution.ts:59](https://github.com/claus-codes/util-random/blob/main/src/decorate/distribution.ts#L59)
+Defined in: [decorate/distribution.ts:59](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L59)
 
 Apply distribution function decorators to a RandomFunction.
 
@@ -1930,7 +2549,7 @@ Decorated random number generator with distribution functions.
 function decorateRandomWithGeometry<T>(random): T & RandomGeometryFunctions;
 ```
 
-Defined in: [decorate/geometry.ts:40](https://github.com/claus-codes/util-random/blob/main/src/decorate/geometry.ts#L40)
+Defined in: [decorate/geometry.ts:40](https://github.com/fimbul-works/random/blob/main/src/decorate/geometry.ts#L40)
 
 Apply geometry function decorators to a RandomFunction.
 
@@ -1960,7 +2579,7 @@ Decorated random number generator with geometry functions.
 function decorateRandomWithObject<T>(random): T & RandomObjectFunctions;
 ```
 
-Defined in: [decorate/object.ts:29](https://github.com/claus-codes/util-random/blob/main/src/decorate/object.ts#L29)
+Defined in: [decorate/object.ts:29](https://github.com/fimbul-works/random/blob/main/src/decorate/object.ts#L29)
 
 Apply object function decorators to a RandomFunction.
 
@@ -1990,7 +2609,7 @@ Decorated random number generator with object functions.
 function decorateRandomWithRange<T>(random): T & RandomRangeFunctions;
 ```
 
-Defined in: [decorate/range.ts:58](https://github.com/claus-codes/util-random/blob/main/src/decorate/range.ts#L58)
+Defined in: [decorate/range.ts:58](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L58)
 
 Apply range function decorators to a RandomFunction.
 
@@ -2020,7 +2639,7 @@ Decorated random number generator with range functions.
 function decorateRandomWithString<T>(random): T & RandomStringFunctions;
 ```
 
-Defined in: [decorate/string.ts:26](https://github.com/claus-codes/util-random/blob/main/src/decorate/string.ts#L26)
+Defined in: [decorate/string.ts:26](https://github.com/fimbul-works/random/blob/main/src/decorate/string.ts#L26)
 
 Apply string function decorators to a RandomFunction.
 
@@ -2048,13 +2667,13 @@ Decorated random number generator with string functions.
 
 ```ts
 function defineRandomState<T, R>(
-   random, 
+   target, 
    seed, 
    getState, 
 setState): R & StatefulRandomFunction<T>;
 ```
 
-Defined in: [decorate/decorate.ts:33](https://github.com/claus-codes/util-random/blob/main/src/decorate/decorate.ts#L33)
+Defined in: [decorate/decorate.ts:40](https://github.com/fimbul-works/random/blob/main/src/decorate/decorate.ts#L40)
 
 Make a random number generator stateful.
 
@@ -2063,13 +2682,13 @@ Make a random number generator stateful.
 | Type Parameter | Default type | Description |
 | ------ | ------ | ------ |
 | `T` | - | Internal state type. |
-| `R` | [`RandomFunction`](#randomfunction) | Type of RandomFunction. |
+| `R` | `any` | Type of function. |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `random` | `R` | Function that returns a value. |
+| `target` | `R` | Function that returns a value. |
 | `seed` | [`Seed`](#seed) | Seed value (number or string). |
 | `getState` | () => `T` | Get the internal registry state. |
 | `setState` | (`state`) => `void` | Set the internal registry state. |
@@ -2092,7 +2711,7 @@ function defineValue<T>(
    writable?): void;
 ```
 
-Defined in: [decorate/decorate.ts:14](https://github.com/claus-codes/util-random/blob/main/src/decorate/decorate.ts#L14)
+Defined in: [decorate/decorate.ts:21](https://github.com/fimbul-works/random/blob/main/src/decorate/decorate.ts#L21)
 
 Define a property on a target.
 
@@ -2123,7 +2742,7 @@ Define a property on a target.
 function pickRandom<T>(items, random?): T;
 ```
 
-Defined in: [array.ts:38](https://github.com/claus-codes/util-random/blob/main/src/array.ts#L38)
+Defined in: [array.ts:38](https://github.com/fimbul-works/random/blob/main/src/array.ts#L38)
 
 Pick a random item from an array.
 
@@ -2161,7 +2780,7 @@ function pickWeightedRandom<T>(
    random?): T;
 ```
 
-Defined in: [array.ts:92](https://github.com/claus-codes/util-random/blob/main/src/array.ts#L92)
+Defined in: [array.ts:92](https://github.com/fimbul-works/random/blob/main/src/array.ts#L92)
 
 Pick a random item from an array of objects based on their weights.
 
@@ -2197,7 +2816,7 @@ When passed an empty array.
 function randomBool(bias?, random?): boolean;
 ```
 
-Defined in: [range.ts:32](https://github.com/claus-codes/util-random/blob/main/src/range.ts#L32)
+Defined in: [range.ts:32](https://github.com/fimbul-works/random/blob/main/src/range.ts#L32)
 
 Return a random boolean with an optional bias toward true.
 
@@ -2222,7 +2841,7 @@ A random boolean.
 function randomExp(lambda, random?): number;
 ```
 
-Defined in: [distribution.ts:21](https://github.com/claus-codes/util-random/blob/main/src/distribution.ts#L21)
+Defined in: [distribution.ts:21](https://github.com/fimbul-works/random/blob/main/src/distribution.ts#L21)
 
 Generate a random number from an exponential distribution.
 
@@ -2250,7 +2869,7 @@ function randomGaussian(
    random?): number;
 ```
 
-Defined in: [distribution.ts:11](https://github.com/claus-codes/util-random/blob/main/src/distribution.ts#L11)
+Defined in: [distribution.ts:11](https://github.com/fimbul-works/random/blob/main/src/distribution.ts#L11)
 
 Get a random number from a Gaussian distribution.
 
@@ -2276,7 +2895,7 @@ A random value between the specified mean and standard deviation.
 function randomIndex<T>(lengthOrArray, random?): number;
 ```
 
-Defined in: [array.ts:21](https://github.com/claus-codes/util-random/blob/main/src/array.ts#L21)
+Defined in: [array.ts:21](https://github.com/fimbul-works/random/blob/main/src/array.ts#L21)
 
 Return a random index using a length or an array as value.
 
@@ -2310,7 +2929,7 @@ function randomIntRange(
    random?): number;
 ```
 
-Defined in: [range.ts:22](https://github.com/claus-codes/util-random/blob/main/src/range.ts#L22)
+Defined in: [range.ts:22](https://github.com/fimbul-works/random/blob/main/src/range.ts#L22)
 
 Return a random integer in range.
 
@@ -2339,7 +2958,7 @@ function randomLogistic(
    random?): number;
 ```
 
-Defined in: [distribution.ts:31](https://github.com/claus-codes/util-random/blob/main/src/distribution.ts#L31)
+Defined in: [distribution.ts:31](https://github.com/fimbul-works/random/blob/main/src/distribution.ts#L31)
 
 Generate a random number from a logistic distribution.
 
@@ -2365,7 +2984,7 @@ A random number from the logistic distribution.
 function randomPointInCircle(radius?, random?): [number, number];
 ```
 
-Defined in: [geometry.ts:11](https://github.com/claus-codes/util-random/blob/main/src/geometry.ts#L11)
+Defined in: [geometry.ts:11](https://github.com/fimbul-works/random/blob/main/src/geometry.ts#L11)
 
 Return a random 2D coordinate [x, y] distributed uniformly inside a circle of the specified radius.
 Uses the square root scaling to ensure uniform area distribution.
@@ -2391,7 +3010,7 @@ Uses the square root scaling to ensure uniform area distribution.
 function randomPointOnSphere(radius?, random?): [number, number, number];
 ```
 
-Defined in: [geometry.ts:25](https://github.com/claus-codes/util-random/blob/main/src/geometry.ts#L25)
+Defined in: [geometry.ts:25](https://github.com/fimbul-works/random/blob/main/src/geometry.ts#L25)
 
 Return a random 3D coordinate [x, y, z] distributed uniformly on the surface of a sphere of the specified radius.
 Uses Archimedes' theorem for exact uniform distribution.
@@ -2417,7 +3036,7 @@ Uses Archimedes' theorem for exact uniform distribution.
 function randomPoisson(lambda, random?): number;
 ```
 
-Defined in: [distribution.ts:48](https://github.com/claus-codes/util-random/blob/main/src/distribution.ts#L48)
+Defined in: [distribution.ts:48](https://github.com/fimbul-works/random/blob/main/src/distribution.ts#L48)
 
 Generate a random integer from a Poisson distribution.
 
@@ -2450,7 +3069,7 @@ function randomRange(
    random?): number;
 ```
 
-Defined in: [range.ts:11](https://github.com/claus-codes/util-random/blob/main/src/range.ts#L11)
+Defined in: [range.ts:11](https://github.com/fimbul-works/random/blob/main/src/range.ts#L11)
 
 Return a random float in range.
 
@@ -2476,7 +3095,7 @@ A random float in [a, b] (inclusive of a, exclusive of b).
 function randomSign(random?): number;
 ```
 
-Defined in: [range.ts:40](https://github.com/claus-codes/util-random/blob/main/src/range.ts#L40)
+Defined in: [range.ts:40](https://github.com/fimbul-works/random/blob/main/src/range.ts#L40)
 
 Return either 1 or -1 randomly.
 
@@ -2503,7 +3122,7 @@ function randomString(
    random?): string;
 ```
 
-Defined in: [string.ts:13](https://github.com/claus-codes/util-random/blob/main/src/string.ts#L13)
+Defined in: [string.ts:13](https://github.com/fimbul-works/random/blob/main/src/string.ts#L13)
 
 Generate a random string.
 
@@ -2532,7 +3151,7 @@ function randomWeightedIndex<T>(
    random?): number;
 ```
 
-Defined in: [array.ts:55](https://github.com/claus-codes/util-random/blob/main/src/array.ts#L55)
+Defined in: [array.ts:55](https://github.com/fimbul-works/random/blob/main/src/array.ts#L55)
 
 Select a random index from an array of objects based on their weights.
 
@@ -2564,7 +3183,7 @@ Selected random index, or -1 if the array is empty.
 function randomWeightedKey<T>(keyAndWeight, random?): string;
 ```
 
-Defined in: [object.ts:18](https://github.com/claus-codes/util-random/blob/main/src/object.ts#L18)
+Defined in: [object.ts:18](https://github.com/fimbul-works/random/blob/main/src/object.ts#L18)
 
 Pick a random key from an object with weight as the value.
 
@@ -2602,7 +3221,7 @@ function sampleRandom<T>(
    random?): T[];
 ```
 
-Defined in: [array.ts:154](https://github.com/claus-codes/util-random/blob/main/src/array.ts#L154)
+Defined in: [array.ts:154](https://github.com/fimbul-works/random/blob/main/src/array.ts#L154)
 
 Select k unique random items from an array without replacement.
 Uses a partial Fisher-Yates shuffle to run in O(k) time and O(n) space for cloning.
@@ -2635,7 +3254,7 @@ An array containing k unique items.
 function shuffleArray<T>(arr, random?): T[];
 ```
 
-Defined in: [array.ts:113](https://github.com/claus-codes/util-random/blob/main/src/array.ts#L113)
+Defined in: [array.ts:113](https://github.com/fimbul-works/random/blob/main/src/array.ts#L113)
 
 Create a shuffled copy of an array.
 
@@ -2666,7 +3285,7 @@ A shuffled copy of the array.
 function shuffleInPlace<T>(arr, random?): T[];
 ```
 
-Defined in: [array.ts:133](https://github.com/claus-codes/util-random/blob/main/src/array.ts#L133)
+Defined in: [array.ts:133](https://github.com/fimbul-works/random/blob/main/src/array.ts#L133)
 
 Shuffle an array in-place, modifying the original array (no allocation).
 

@@ -1,5 +1,4 @@
-import { FRAC } from "../constants.js";
-import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
+import { decorateRandomInt32, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
 import { expandSeed, rotl } from "../util.js";
 
@@ -19,7 +18,7 @@ export type Xoshiro128StatePlus = [number, number, number, number];
 export function createRandomXoshiro128Plus(seed: Seed = Date.now()): RandomNumberGenerator<Xoshiro128StatePlus> {
   let [s0, s1, s2, s3] = expandSeed(seed, 4);
 
-  function random() {
+  function random(): number {
     const result = (s0 + s3) >>> 0;
     const t = (s1 << 9) >>> 0;
     s2 ^= s0 >>> 0;
@@ -28,20 +27,18 @@ export function createRandomXoshiro128Plus(seed: Seed = Date.now()): RandomNumbe
     s0 ^= s3 >>> 0;
     s2 ^= t;
     s3 = rotl(s3, 11);
-    return result * FRAC;
+    return result;
   }
 
-  return decorateRandom(
-    defineRandomState<Xoshiro128StatePlus>(
-      random,
-      seed,
-      () => [s0, s1, s2, s3],
-      (state) => {
-        if (state.length !== 4) {
-          throw new Error("Invalid Xoshiro128+ state");
-        }
-        [s0, s1, s2, s3] = state;
-      },
-    ),
+  return defineRandomState<Xoshiro128StatePlus>(
+    decorateRandomInt32(random),
+    seed,
+    () => [s0, s1, s2, s3],
+    (state) => {
+      if (state.length !== 4) {
+        throw new Error("Invalid Xoshiro128+ state");
+      }
+      [s0, s1, s2, s3] = state;
+    },
   );
 }

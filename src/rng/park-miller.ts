@@ -1,33 +1,33 @@
-import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
+import { decorateRandomInt32, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
 import { normalizeSeed } from "../util.js";
 
 /**
- * Creates a new Park-Miller LCG (MINSTD) PRNG.
+ * Creates a new Park-Miller PRNG.
  *
- * This is an implementation of the Park-Miller LGC (MINSTD) algorithm by Stephen K. Park and Keith W. Miller.
+ * This code is an implementation of Park-Miller algorithm (MINSTD).
  *
  * @param {Seed} [seed=Date.now()] - Optional seed value (number or string). Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<number>} A new PRNG.
  */
 export function createRandomParkMiller(seed: Seed = Date.now()): RandomNumberGenerator<number> {
-  const M = 0x7fffffff;
-  const MFRAC = 1 / M;
-  const mapped = ((normalizeSeed(seed) % (M - 1)) + (M - 1)) % (M - 1);
+  const A = 48271;
+  const M = 2147483647;
 
-  let s = (mapped + 1) >>> 0;
+  let s = normalizeSeed(seed) % M;
+  if (s <= 0) s += M - 1;
 
-  function random() {
-    s = ((48271 * s) % M) | 0;
-    return s * MFRAC;
+  function random(): number {
+    s = (s * A) % M;
+    return s >>> 0;
   }
 
-  return decorateRandom(
-    defineRandomState<number>(
-      random,
-      seed,
-      () => s,
-      (state) => (s = state),
-    ),
+  return defineRandomState<number>(
+    decorateRandomInt32(random),
+    seed,
+    () => s,
+    (state) => {
+      s = state;
+    },
   );
 }

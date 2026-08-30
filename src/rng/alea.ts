@@ -1,5 +1,5 @@
 import { FRAC } from "../constants.js";
-import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
+import { decorateRandomFloat, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
 import { expandSeed } from "../util.js";
 
@@ -20,7 +20,7 @@ export function createRandomAlea(seed: Seed = Date.now()): RandomNumberGenerator
   let [s0, s1, s2] = expandSeed(seed, 3).map((s) => s * FRAC);
   let i = 1;
 
-  function random() {
+  function random(): number {
     const t = 2091639 * s0 + i * FRAC;
     s0 = s1;
     s1 = s2;
@@ -28,17 +28,15 @@ export function createRandomAlea(seed: Seed = Date.now()): RandomNumberGenerator
     return (s2 = t - i);
   }
 
-  return decorateRandom(
-    defineRandomState<AleaState>(
-      random,
-      seed,
-      () => [s0, s1, s2, i],
-      (state) => {
-        if (state.length !== 4) {
-          throw new Error("Invalid Alea state");
-        }
-        [s0, s1, s2, i] = state;
-      },
-    ),
+  return defineRandomState<AleaState>(
+    decorateRandomFloat(random),
+    seed,
+    () => [s0, s1, s2, i],
+    (state) => {
+      if (state.length !== 4) {
+        throw new Error("Invalid Alea state");
+      }
+      [s0, s1, s2, i] = state;
+    },
   );
 }

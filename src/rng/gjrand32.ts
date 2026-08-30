@@ -1,5 +1,4 @@
-import { FRAC } from "../constants.js";
-import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
+import { decorateRandomInt32, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
 import { expandSeed } from "../util.js";
 
@@ -31,20 +30,18 @@ export function createRandomGJRand32(seed: Seed = Date.now()): RandomNumberGener
     s2 = (s2 + s0) | 0;
     s3 = (s3 + 0x96a5) | 0;
     s1 = (s1 + s3) | 0;
-    return (s0 >>> 0) * FRAC;
+    return s0 >>> 0;
   }
 
-  return decorateRandom(
-    defineRandomState<GJRand32State>(
-      random,
-      seed,
-      () => [s0, s1, s2, s3],
-      (state) => {
-        if (state.length !== 4) {
-          throw new Error("Invalid GJRand32 state");
-        }
-        [s0, s1, s2, s3] = state;
-      },
-    ),
+  return defineRandomState<GJRand32State>(
+    decorateRandomInt32(random),
+    seed,
+    () => [s0, s1, s2, s3],
+    (state) => {
+      if (state.length !== 4) {
+        throw new Error("Invalid GJRand32 state");
+      }
+      [s0, s1, s2, s3] = state;
+    },
   );
 }

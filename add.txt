@@ -1,5 +1,0 @@
-RomuTrio / RomuQuad
-PCG32
-wyrand
-MiddleSquareWeyl
-xoroshiro128**

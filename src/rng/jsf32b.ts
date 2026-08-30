@@ -1,5 +1,4 @@
-import { FRAC } from "../constants.js";
-import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
+import { decorateRandomInt32, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
 import { expandSeed } from "../util.js";
 
@@ -19,26 +18,24 @@ export type JSF32BState = [number, number, number, number];
 export function createRandomJSF32B(seed: Seed = Date.now()): RandomNumberGenerator<JSF32BState> {
   let [s0, s1, s2, s3] = expandSeed(seed, 4).map((s) => s | 0);
 
-  function random() {
+  function random(): number {
     const t = (s0 - ((s1 << 23) | (s1 >>> 9))) | 0;
     s0 = (s1 ^ ((s2 << 16) | (s2 >>> 16))) | 0;
     s1 = (s2 + ((s3 << 11) | (s3 >>> 21))) | 0;
     s2 = (s3 + t) | 0;
     s3 = (s0 + t) | 0;
-    return (s3 >>> 0) * FRAC;
+    return s3 >>> 0;
   }
 
-  return decorateRandom(
-    defineRandomState<JSF32BState>(
-      random,
-      seed,
-      () => [s0, s1, s2, s3],
-      (state) => {
-        if (state.length !== 4) {
-          throw new Error("Invalid JSF32 state");
-        }
-        [s0, s1, s2, s3] = state;
-      },
-    ),
+  return defineRandomState<JSF32BState>(
+    decorateRandomInt32(random),
+    seed,
+    () => [s0, s1, s2, s3],
+    (state) => {
+      if (state.length !== 4) {
+        throw new Error("Invalid JSF32 state");
+      }
+      [s0, s1, s2, s3] = state;
+    },
   );
 }

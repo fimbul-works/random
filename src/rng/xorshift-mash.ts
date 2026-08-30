@@ -1,42 +1,42 @@
-import { FRAC, INT_32 } from "../constants.js";
-import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
+import { INT_32 } from "../constants.js";
+import { decorateRandomInt32, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
 import { normalizeSeed } from "../util.js";
 
 /**
- * Creates a new XorshiftMash PRNG.
+ * Creates a new XorShiftMash PRNG.
  *
- * This is an implementation of the XorshiftMash algorithm by George Marsaglia.
+ * This code is an implementation of XorShiftMash algorithm.
  *
  * @param {Seed} [seed=Date.now()] - Optional seed value (number or string). Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<number>} A new PRNG.
  */
-export const createRandomXorShiftMash = (seed: Seed = Date.now()): RandomNumberGenerator<number> => {
-  let s = normalizeSeed(seed) || 1;
+export function createRandomXorShiftMash(seed: Seed = Date.now()): RandomNumberGenerator<number> {
+  let s = normalizeSeed(seed);
 
-  function random() {
-    s ^= s << 13;
-    s ^= s >>> 17;
-    s ^= s << 5;
+  function random(): number {
+    let n = 0xefc8249d;
+    let h = 0;
 
-    // Mash multiplier (2^32 * 2^32) / 0x100000000
-    let h = 0.02519603282416938 * (s >>> 0);
-    let n = h >>> 0;
-
+    s = (s + 0x9e3779b9) | 0;
+    n += s;
+    h = 0.02519603282416938 * n;
+    n = h >>> 0;
     h -= n;
     h *= n;
     n = h >>> 0;
     h -= n;
+    n += h * 0x100000000;
 
-    return ((n + h * INT_32) >>> 0) * FRAC;
+    return (n + h * INT_32) >>> 0;
   }
 
-  return decorateRandom(
-    defineRandomState<number>(
-      random,
-      seed,
-      () => s,
-      (state) => (s = state),
-    ),
+  return defineRandomState<number>(
+    decorateRandomInt32(random),
+    seed,
+    () => s,
+    (state) => {
+      s = state;
+    },
   );
-};
+}

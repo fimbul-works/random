@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@fimbul-works/hash':
-        specifier: ^1.0.5
-        version: 1.0.5
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.5.4
@@ -18,6 +14,9 @@ importers:
       '@fimbul-works/bundle-size':
         specifier: ^1.0.0
         version: 1.0.0
+      '@fimbul-works/hash':
+        specifier: ^1.0.5
+        version: 1.0.5
       '@types/node':
         specifier: ^26.1.1
         version: 26.1.1

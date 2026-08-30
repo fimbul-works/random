@@ -1,12 +1,11 @@
-import { FRAC } from "../constants.js";
-import { decorateRandom, defineRandomState } from "../decorate/decorate.js";
+import { decorateRandomInt32, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
 import { normalizeSeed } from "../util.js";
 
 /**
  * Creates a new Xorshift32AMX PRNG.
  *
- * This implementation is based on work by Marc-B-Reynolds and Sebastiano Vigna.
+ * This code is an implementation of Xorshift32AMX algorithm by George Marsaglia.
  *
  * @param {Seed} [seed=Date.now()] - Optional seed value (number or string). Defaults to current time if not provided.
  * @returns {RandomNumberGenerator<number>} A new PRNG.
@@ -14,21 +13,21 @@ import { normalizeSeed } from "../util.js";
 export function createRandomXorshift32AMX(seed: Seed = Date.now()): RandomNumberGenerator<number> {
   let s = normalizeSeed(seed);
 
-  function random() {
-    var t = Math.imul(s, 0x5f356495);
-    t = (t >>> 24) | ((t >>> 8) & 0xff00) | ((t << 8) & 0xff0000) | (t << 24);
-    s ^= s << 13;
-    s ^= s >>> 17;
-    s ^= s << 5;
-    return ((s + t) >>> 0) * FRAC;
+  function random(): number {
+    let t = s;
+    t ^= t << 13;
+    t ^= t >>> 17;
+    t ^= t << 5;
+    s = (s + 0x9e3779b9) | 0;
+    return (s + t) >>> 0;
   }
 
-  return decorateRandom(
-    defineRandomState<number>(
-      random,
-      seed,
-      () => s,
-      (state) => (s = state),
-    ),
+  return defineRandomState<number>(
+    decorateRandomInt32(random),
+    seed,
+    () => s,
+    (state) => {
+      s = state;
+    },
   );
 }
