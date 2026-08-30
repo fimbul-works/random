@@ -37,16 +37,46 @@ export type RandomRangeFunctions = {
   sign(): number;
 };
 
-export const curryRange = (random: RandomFunction) => (a: number, b: number) => randomRange(a, b, random);
+/**
+ * Curried version of {@linkcode randomRange} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(a: number, b: number) => number} Function returning a random float in [a, b).
+ */
+export const curryRange =
+  (random: RandomFunction) =>
+  (a: number, b: number): number =>
+    randomRange(a, b, random);
 
-export const curryIntRange = (random: RandomFunction) => (a: number, b: number) => randomIntRange(a, b, random);
+/**
+ * Curried version of {@linkcode randomIntRange} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(a: number, b: number) => number} Function returning a random integer in [a, b] inclusive.
+ */
+export const curryIntRange =
+  (random: RandomFunction) =>
+  (a: number, b: number): number =>
+    randomIntRange(a, b, random);
 
+/**
+ * Curried version of {@linkcode randomBool} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(bias?: number) => boolean} Function returning a random boolean with optional bias.
+ */
 export const curryBool =
   (random: RandomFunction) =>
-  (bias: number = 0.5) =>
+  (bias: number = 0.5): boolean =>
     randomBool(bias, random);
 
-export const currySign = (random: RandomFunction) => () => randomSign(random);
+/**
+ * Curried version of {@linkcode randomSign} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {() => number} Function returning either 1 or -1 randomly.
+ */
+export const currySign = (random: RandomFunction) => (): number => randomSign(random);
 
 /**
  * Apply range function decorators to a RandomFunction.

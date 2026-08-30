@@ -20,14 +20,26 @@ export type RandomGeometryFunctions = {
   pointOnSphere(radius?: number): [number, number, number];
 };
 
+/**
+ * Curried version of {@linkcode randomPointInCircle} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(radius?: number) => [number, number]} Function generating a uniform point in a circle.
+ */
 export const curryPointInCircle =
   (random: RandomFunction) =>
-  (radius: number = 1.0) =>
+  (radius: number = 1.0): [number, number] =>
     randomPointInCircle(radius, random);
 
+/**
+ * Curried version of {@linkcode randomPointOnSphere} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(radius?: number) => [number, number, number]} Function generating a uniform point on a sphere surface.
+ */
 export const curryPointOnSphere =
   (random: RandomFunction) =>
-  (radius: number = 1.0) =>
+  (radius: number = 1.0): [number, number, number] =>
     randomPointOnSphere(radius, random);
 
 /**

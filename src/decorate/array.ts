@@ -80,39 +80,81 @@ export type RandomArrayFunctions = {
   sample<T>(items: T[], k: number): T[];
 };
 
+/**
+ * Curried version of {@linkcode randomIndex} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(lengthOrArray: number | T[]) => number} Function returning a random index.
+ */
 export const curryIndex =
   (random: RandomFunction) =>
-  <T>(lengthOrArray: number | T[]) =>
+  <T>(lengthOrArray: number | T[]): number =>
     randomIndex(lengthOrArray, random);
 
+/**
+ * Curried version of {@linkcode pickRandom} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(items: T[]) => T} Function returning a random item from an array.
+ */
 export const curryPick =
   (random: RandomFunction) =>
-  <T>(items: T[]) =>
+  <T>(items: T[]): T =>
     pickRandom(items, random);
 
+/**
+ * Curried version of {@linkcode pickWeightedRandom} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(items: T[], getWeight: (item: T) => number) => T} Function returning a weighted random item.
+ */
 export const curryPickWeighted =
   (random: RandomFunction) =>
-  <T extends object>(items: T[], getWeight: (item: T) => number) =>
+  <T extends object>(items: T[], getWeight: (item: T) => number): T =>
     pickWeightedRandom(items, getWeight, random);
 
+/**
+ * Curried version of {@linkcode randomWeightedIndex} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(items: T[], getWeight: (item: T) => number) => number} Function returning a weighted random index.
+ */
 export const curryWeightedIndex =
   (random: RandomFunction) =>
-  <T extends object>(items: T[], getWeight: (item: T) => number) =>
+  <T extends object>(items: T[], getWeight: (item: T) => number): number =>
     randomWeightedIndex(items, getWeight, random);
 
+/**
+ * Curried version of {@linkcode shuffleArray} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(arr: T[]) => T[]} Function returning a shuffled copy of an array.
+ */
 export const curryShuffle =
   (random: RandomFunction) =>
-  <T>(arr: T[]) =>
+  <T>(arr: T[]): T[] =>
     shuffleArray(arr, random);
 
+/**
+ * Curried version of {@linkcode shuffleInPlace} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(arr: T[]) => T[]} Function shuffling an array in-place.
+ */
 export const curryShuffleInPlace =
   (random: RandomFunction) =>
-  <T>(arr: T[]) =>
+  <T>(arr: T[]): T[] =>
     shuffleInPlace(arr, random);
 
+/**
+ * Curried version of {@linkcode sampleRandom} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(items: T[], k: number) => T[]} Function sampling k unique items from an array.
+ */
 export const currySample =
   (random: RandomFunction) =>
-  <T>(items: T[], k: number) =>
+  <T>(items: T[], k: number): T[] =>
     sampleRandom(items, k, random);
 
 /**

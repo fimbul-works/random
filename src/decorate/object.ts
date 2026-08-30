@@ -14,9 +14,15 @@ export type RandomObjectFunctions = {
   weightedKey<T extends WeightMap>(keyAndWeight: T): string;
 };
 
+/**
+ * Curried version of {@linkcode randomWeightedKey} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {<T extends WeightMap>(keyAndWeight: T) => string} Function returning a weighted random key from an object.
+ */
 export const curryWeightedKey =
   (random: RandomFunction) =>
-  <T extends WeightMap>(keyAndWeight: T) =>
+  <T extends WeightMap>(keyAndWeight: T): string =>
     randomWeightedKey(keyAndWeight, random);
 
 /**

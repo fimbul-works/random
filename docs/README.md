@@ -2037,15 +2037,19 @@ A new PRNG.
 function curryBool(random): (bias) => boolean;
 ```
 
-Defined in: [decorate/range.ts:45](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L45)
+Defined in: [decorate/range.ts:69](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L69)
+
+Curried version of [`randomBool`](#randombool) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function returning a random boolean with optional bias.
 
 (`bias`) => `boolean`
 
@@ -2057,15 +2061,19 @@ Defined in: [decorate/range.ts:45](https://github.com/fimbul-works/random/blob/m
 function curryExp(random): (lambda) => number;
 ```
 
-Defined in: [decorate/distribution.ts:46](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L46)
+Defined in: [decorate/distribution.ts:59](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L59)
+
+Curried version of [`randomExp`](#randomexp) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function sampling from exponential distribution.
 
 (`lambda`) => `number`
 
@@ -2077,15 +2085,19 @@ Defined in: [decorate/distribution.ts:46](https://github.com/fimbul-works/random
 function curryGaussian(random): (mean, stdev) => number;
 ```
 
-Defined in: [decorate/distribution.ts:42](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L42)
+Defined in: [decorate/distribution.ts:48](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L48)
+
+Curried version of [`randomGaussian`](#randomgaussian) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function sampling from Gaussian distribution.
 
 (`mean`, `stdev`) => `number`
 
@@ -2097,15 +2109,19 @@ Defined in: [decorate/distribution.ts:42](https://github.com/fimbul-works/random
 function curryIndex(random): <T>(lengthOrArray) => number;
 ```
 
-Defined in: [decorate/array.ts:84](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L84)
+Defined in: [decorate/array.ts:90](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L90)
+
+Curried version of [`randomIndex`](#randomindex) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function returning a random index.
 
 \<`T`\>(`lengthOrArray`) => `number`
 
@@ -2117,15 +2133,19 @@ Defined in: [decorate/array.ts:84](https://github.com/fimbul-works/random/blob/m
 function curryIntRange(random): (a, b) => number;
 ```
 
-Defined in: [decorate/range.ts:42](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L42)
+Defined in: [decorate/range.ts:58](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L58)
+
+Curried version of [`randomIntRange`](#randomintrange) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function returning a random integer in [a, b] inclusive.
 
 (`a`, `b`) => `number`
 
@@ -2137,15 +2157,19 @@ Defined in: [decorate/range.ts:42](https://github.com/fimbul-works/random/blob/m
 function curryLogistic(random): (mu, s) => number;
 ```
 
-Defined in: [decorate/distribution.ts:48](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L48)
+Defined in: [decorate/distribution.ts:70](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L70)
+
+Curried version of [`randomLogistic`](#randomlogistic) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function sampling from logistic distribution.
 
 (`mu`, `s`) => `number`
 
@@ -2157,15 +2181,19 @@ Defined in: [decorate/distribution.ts:48](https://github.com/fimbul-works/random
 function curryPick(random): <T>(items) => T;
 ```
 
-Defined in: [decorate/array.ts:89](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L89)
+Defined in: [decorate/array.ts:101](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L101)
+
+Curried version of [`pickRandom`](#pickrandom) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function returning a random item from an array.
 
 \<`T`\>(`items`) => `T`
 
@@ -2177,15 +2205,19 @@ Defined in: [decorate/array.ts:89](https://github.com/fimbul-works/random/blob/m
 function curryPickWeighted(random): <T>(items, getWeight) => T;
 ```
 
-Defined in: [decorate/array.ts:94](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L94)
+Defined in: [decorate/array.ts:112](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L112)
+
+Curried version of [`pickWeightedRandom`](#pickweightedrandom) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function returning a weighted random item.
 
 \<`T`\>(`items`, `getWeight`) => `T`
 
@@ -2197,15 +2229,19 @@ Defined in: [decorate/array.ts:94](https://github.com/fimbul-works/random/blob/m
 function curryPointInCircle(random): (radius) => [number, number];
 ```
 
-Defined in: [decorate/geometry.ts:24](https://github.com/fimbul-works/random/blob/main/src/decorate/geometry.ts#L24)
+Defined in: [decorate/geometry.ts:30](https://github.com/fimbul-works/random/blob/main/src/decorate/geometry.ts#L30)
+
+Curried version of [`randomPointInCircle`](#randompointincircle) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function generating a uniform point in a circle.
 
 (`radius`) => \[`number`, `number`\]
 
@@ -2217,15 +2253,19 @@ Defined in: [decorate/geometry.ts:24](https://github.com/fimbul-works/random/blo
 function curryPointOnSphere(random): (radius) => [number, number, number];
 ```
 
-Defined in: [decorate/geometry.ts:29](https://github.com/fimbul-works/random/blob/main/src/decorate/geometry.ts#L29)
+Defined in: [decorate/geometry.ts:41](https://github.com/fimbul-works/random/blob/main/src/decorate/geometry.ts#L41)
+
+Curried version of [`randomPointOnSphere`](#randompointonsphere) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function generating a uniform point on a sphere surface.
 
 (`radius`) => \[`number`, `number`, `number`\]
 
@@ -2237,15 +2277,19 @@ Defined in: [decorate/geometry.ts:29](https://github.com/fimbul-works/random/blo
 function curryPoisson(random): (lambda) => number;
 ```
 
-Defined in: [decorate/distribution.ts:50](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L50)
+Defined in: [decorate/distribution.ts:81](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L81)
+
+Curried version of [`randomPoisson`](#randompoisson) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function sampling from Poisson distribution.
 
 (`lambda`) => `number`
 
@@ -2257,15 +2301,19 @@ Defined in: [decorate/distribution.ts:50](https://github.com/fimbul-works/random
 function curryRange(random): (a, b) => number;
 ```
 
-Defined in: [decorate/range.ts:40](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L40)
+Defined in: [decorate/range.ts:47](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L47)
+
+Curried version of [`randomRange`](#randomrange) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function returning a random float in [a, b).
 
 (`a`, `b`) => `number`
 
@@ -2277,15 +2325,19 @@ Defined in: [decorate/range.ts:40](https://github.com/fimbul-works/random/blob/m
 function currySample(random): <T>(items, k) => T[];
 ```
 
-Defined in: [decorate/array.ts:114](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L114)
+Defined in: [decorate/array.ts:156](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L156)
+
+Curried version of [`sampleRandom`](#samplerandom) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function sampling k unique items from an array.
 
 \<`T`\>(`items`, `k`) => `T`[]
 
@@ -2297,15 +2349,19 @@ Defined in: [decorate/array.ts:114](https://github.com/fimbul-works/random/blob/
 function curryShuffle(random): <T>(arr) => T[];
 ```
 
-Defined in: [decorate/array.ts:104](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L104)
+Defined in: [decorate/array.ts:134](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L134)
+
+Curried version of [`shuffleArray`](#shufflearray) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function returning a shuffled copy of an array.
 
 \<`T`\>(`arr`) => `T`[]
 
@@ -2317,15 +2373,19 @@ Defined in: [decorate/array.ts:104](https://github.com/fimbul-works/random/blob/
 function curryShuffleInPlace(random): <T>(arr) => T[];
 ```
 
-Defined in: [decorate/array.ts:109](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L109)
+Defined in: [decorate/array.ts:145](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L145)
+
+Curried version of [`shuffleInPlace`](#shuffleinplace-1) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function shuffling an array in-place.
 
 \<`T`\>(`arr`) => `T`[]
 
@@ -2337,15 +2397,19 @@ Defined in: [decorate/array.ts:109](https://github.com/fimbul-works/random/blob/
 function currySign(random): () => number;
 ```
 
-Defined in: [decorate/range.ts:49](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L49)
+Defined in: [decorate/range.ts:79](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L79)
+
+Curried version of [`randomSign`](#randomsign) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function returning either 1 or -1 randomly.
 
 () => `number`
 
@@ -2357,15 +2421,19 @@ Defined in: [decorate/range.ts:49](https://github.com/fimbul-works/random/blob/m
 function curryString(random): (length, alphabet?) => string;
 ```
 
-Defined in: [decorate/string.ts:16](https://github.com/fimbul-works/random/blob/main/src/decorate/string.ts#L16)
+Defined in: [decorate/string.ts:23](https://github.com/fimbul-works/random/blob/main/src/decorate/string.ts#L23)
+
+Curried version of [`randomString`](#randomstring) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function generating a random string.
 
 (`length`, `alphabet?`) => `string`
 
@@ -2377,15 +2445,19 @@ Defined in: [decorate/string.ts:16](https://github.com/fimbul-works/random/blob/
 function curryWeightedIndex(random): <T>(items, getWeight) => number;
 ```
 
-Defined in: [decorate/array.ts:99](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L99)
+Defined in: [decorate/array.ts:123](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L123)
+
+Curried version of [`randomWeightedIndex`](#randomweightedindex) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function returning a weighted random index.
 
 \<`T`\>(`items`, `getWeight`) => `number`
 
@@ -2397,15 +2469,19 @@ Defined in: [decorate/array.ts:99](https://github.com/fimbul-works/random/blob/m
 function curryWeightedKey(random): <T>(keyAndWeight) => string;
 ```
 
-Defined in: [decorate/object.ts:18](https://github.com/fimbul-works/random/blob/main/src/decorate/object.ts#L18)
+Defined in: [decorate/object.ts:24](https://github.com/fimbul-works/random/blob/main/src/decorate/object.ts#L24)
+
+Curried version of [`randomWeightedKey`](#randomweightedkey) bound to a PRNG function.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `random` | [`RandomFunction`](#randomfunction) |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `random` | [`RandomFunction`](#randomfunction) | Function that returns a floating point number in range [0, 1]. |
 
 #### Returns
+
+Function returning a weighted random key from an object.
 
 \<`T`\>(`keyAndWeight`) => `string`
 
@@ -2489,7 +2565,7 @@ Decorated random number generator.
 function decorateRandomWithArray<T>(random): T & RandomArrayFunctions;
 ```
 
-Defined in: [decorate/array.ts:125](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L125)
+Defined in: [decorate/array.ts:167](https://github.com/fimbul-works/random/blob/main/src/decorate/array.ts#L167)
 
 Apply array function decorators to a RandomFunction.
 
@@ -2519,7 +2595,7 @@ Decorated random number generator with array functions.
 function decorateRandomWithDistribution<T>(random): T & RandomDistributionFunctions;
 ```
 
-Defined in: [decorate/distribution.ts:59](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L59)
+Defined in: [decorate/distribution.ts:92](https://github.com/fimbul-works/random/blob/main/src/decorate/distribution.ts#L92)
 
 Apply distribution function decorators to a RandomFunction.
 
@@ -2549,7 +2625,7 @@ Decorated random number generator with distribution functions.
 function decorateRandomWithGeometry<T>(random): T & RandomGeometryFunctions;
 ```
 
-Defined in: [decorate/geometry.ts:40](https://github.com/fimbul-works/random/blob/main/src/decorate/geometry.ts#L40)
+Defined in: [decorate/geometry.ts:52](https://github.com/fimbul-works/random/blob/main/src/decorate/geometry.ts#L52)
 
 Apply geometry function decorators to a RandomFunction.
 
@@ -2579,7 +2655,7 @@ Decorated random number generator with geometry functions.
 function decorateRandomWithObject<T>(random): T & RandomObjectFunctions;
 ```
 
-Defined in: [decorate/object.ts:29](https://github.com/fimbul-works/random/blob/main/src/decorate/object.ts#L29)
+Defined in: [decorate/object.ts:35](https://github.com/fimbul-works/random/blob/main/src/decorate/object.ts#L35)
 
 Apply object function decorators to a RandomFunction.
 
@@ -2609,7 +2685,7 @@ Decorated random number generator with object functions.
 function decorateRandomWithRange<T>(random): T & RandomRangeFunctions;
 ```
 
-Defined in: [decorate/range.ts:58](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L58)
+Defined in: [decorate/range.ts:88](https://github.com/fimbul-works/random/blob/main/src/decorate/range.ts#L88)
 
 Apply range function decorators to a RandomFunction.
 
@@ -2639,7 +2715,7 @@ Decorated random number generator with range functions.
 function decorateRandomWithString<T>(random): T & RandomStringFunctions;
 ```
 
-Defined in: [decorate/string.ts:26](https://github.com/fimbul-works/random/blob/main/src/decorate/string.ts#L26)
+Defined in: [decorate/string.ts:34](https://github.com/fimbul-works/random/blob/main/src/decorate/string.ts#L34)
 
 Apply string function decorators to a RandomFunction.
 

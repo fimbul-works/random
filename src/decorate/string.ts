@@ -13,8 +13,16 @@ export type RandomStringFunctions = {
   string(len: number, alphabet?: string): string;
 };
 
-export const curryString = (random: RandomFunction) => (length: number, alphabet?: string) =>
-  randomString(length, alphabet, random);
+/**
+ * Curried version of {@linkcode randomString} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(length: number, alphabet?: string) => string} Function generating a random string.
+ */
+export const curryString =
+  (random: RandomFunction) =>
+  (length: number, alphabet?: string): string =>
+    randomString(length, alphabet, random);
 
 /**
  * Apply string function decorators to a RandomFunction.

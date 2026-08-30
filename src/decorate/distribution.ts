@@ -38,16 +38,49 @@ export type RandomDistributionFunctions = {
   poisson(lambda: number): number;
 };
 
+/**
+ * Curried version of {@linkcode randomGaussian} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(mean?: number, stdev?: number) => number} Function sampling from Gaussian distribution.
+ */
 export const curryGaussian =
   (random: RandomFunction) =>
-  (mean: number = 0, stdev: number = 1.0) =>
+  (mean: number = 0, stdev: number = 1.0): number =>
     randomGaussian(mean, stdev, random);
 
-export const curryExp = (random: RandomFunction) => (lambda: number) => randomExp(lambda, random);
+/**
+ * Curried version of {@linkcode randomExp} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(lambda: number) => number} Function sampling from exponential distribution.
+ */
+export const curryExp =
+  (random: RandomFunction) =>
+  (lambda: number): number =>
+    randomExp(lambda, random);
 
-export const curryLogistic = (random: RandomFunction) => (mu: number, s: number) => randomLogistic(mu, s, random);
+/**
+ * Curried version of {@linkcode randomLogistic} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(mu: number, s: number) => number} Function sampling from logistic distribution.
+ */
+export const curryLogistic =
+  (random: RandomFunction) =>
+  (mu: number, s: number): number =>
+    randomLogistic(mu, s, random);
 
-export const curryPoisson = (random: RandomFunction) => (lambda: number) => randomPoisson(lambda, random);
+/**
+ * Curried version of {@linkcode randomPoisson} bound to a PRNG function.
+ *
+ * @param {RandomFunction} random - Function that returns a floating point number in range [0, 1].
+ * @returns {(lambda: number) => number} Function sampling from Poisson distribution.
+ */
+export const curryPoisson =
+  (random: RandomFunction) =>
+  (lambda: number): number =>
+    randomPoisson(lambda, random);
 
 /**
  * Apply distribution function decorators to a RandomFunction.
