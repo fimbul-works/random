@@ -2,3 +2,4 @@ allowBuilds:
   esbuild: false
 minimumReleaseAgeExclude:
   - tsdown@0.22.9 || 0.22.13
+  - '@fimbul-works/hash@1.1.0'

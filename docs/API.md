@@ -2746,7 +2746,8 @@ function defineRandomState<T, R>(
    target, 
    seed, 
    getState, 
-setState): R & StatefulRandomFunction<T>;
+   setState
+): R & StatefulRandomFunction<T>;
 ```
 
 Defined in: [decorate/decorate.ts:40](https://github.com/fimbul-works/random/blob/main/src/decorate/decorate.ts#L40)
@@ -2784,7 +2785,8 @@ function defineValue<T>(
    target, 
    name, 
    value, 
-   writable?): void;
+   writable?
+): void;
 ```
 
 Defined in: [decorate/decorate.ts:21](https://github.com/fimbul-works/random/blob/main/src/decorate/decorate.ts#L21)
@@ -2853,7 +2855,8 @@ When passed an empty array.
 function pickWeightedRandom<T>(
    items, 
    getWeight, 
-   random?): T;
+   random?
+): T;
 ```
 
 Defined in: [array.ts:92](https://github.com/fimbul-works/random/blob/main/src/array.ts#L92)
@@ -2942,7 +2945,8 @@ A random number from the exponential distribution.
 function randomGaussian(
    mean?, 
    stdev?, 
-   random?): number;
+   random?
+): number;
 ```
 
 Defined in: [distribution.ts:11](https://github.com/fimbul-works/random/blob/main/src/distribution.ts#L11)
@@ -3002,7 +3006,8 @@ A random integer, or -1 if length is zero.
 function randomIntRange(
    a, 
    b, 
-   random?): number;
+   random?
+): number;
 ```
 
 Defined in: [range.ts:22](https://github.com/fimbul-works/random/blob/main/src/range.ts#L22)
@@ -3031,7 +3036,8 @@ A random integer in [a, b] inclusive.
 function randomLogistic(
    mu, 
    s, 
-   random?): number;
+   random?
+): number;
 ```
 
 Defined in: [distribution.ts:31](https://github.com/fimbul-works/random/blob/main/src/distribution.ts#L31)
@@ -3142,7 +3148,8 @@ A non-negative integer sampled from the Poisson distribution.
 function randomRange(
    a, 
    b, 
-   random?): number;
+   random?
+): number;
 ```
 
 Defined in: [range.ts:11](https://github.com/fimbul-works/random/blob/main/src/range.ts#L11)
@@ -3195,7 +3202,8 @@ Return either 1 or -1 randomly.
 function randomString(
    len, 
    alphabet?, 
-   random?): string;
+   random?
+): string;
 ```
 
 Defined in: [string.ts:13](https://github.com/fimbul-works/random/blob/main/src/string.ts#L13)
@@ -3224,7 +3232,8 @@ The generated string.
 function randomWeightedIndex<T>(
    items, 
    getWeight, 
-   random?): number;
+   random?
+): number;
 ```
 
 Defined in: [array.ts:55](https://github.com/fimbul-works/random/blob/main/src/array.ts#L55)
@@ -3294,7 +3303,8 @@ When the weighted key object is invalid.
 function sampleRandom<T>(
    items, 
    k, 
-   random?): T[];
+   random?
+): T[];
 ```
 
 Defined in: [array.ts:154](https://github.com/fimbul-works/random/blob/main/src/array.ts#L154)
