@@ -1,6 +1,6 @@
 import { decorateRandomInt32, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
-import { expandSeed } from "../util.js";
+import { expandSeed } from "../seed.js";
 
 /**
  * Tychei internal registry state.

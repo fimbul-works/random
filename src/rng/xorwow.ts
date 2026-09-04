@@ -1,6 +1,6 @@
 import { decorateRandomInt32, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
-import { expandSeed } from "../util.js";
+import { expandSeed } from "../seed.js";
 
 /**
  * Xorwow internal registry state: [s0, s1, s2, s3, s4, d].

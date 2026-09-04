@@ -54,11 +54,3 @@ export const expandSeed = (seed: Seed, n: number): number[] => {
 
   return v;
 };
-
-/**
- * Rotate bits left around 32 bits.
- *
- * @param {number} x - Number to rotate bits in.
- * @param {number} k - How many bits we shift left.
- */
-export const rotl = (x: number, k: number): number => ((x << k) | (x >>> (32 - k))) >>> 0;

@@ -1,4 +1,4 @@
-import { randomWeightedKey, type WeightMap } from "../object.js";
+import { randomWeightedKey, type WeightMap } from "../util/object.js";
 import type { RandomFunction } from "../types.js";
 import { defineValue } from "./decorate.js";
 

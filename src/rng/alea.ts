@@ -1,7 +1,7 @@
 import { FRAC } from "../constants.js";
 import { decorateRandomFloat, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
-import { expandSeed } from "../util.js";
+import { expandSeed } from "../seed.js";
 
 /**
  * Alea internal registry state.

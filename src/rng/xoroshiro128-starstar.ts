@@ -1,7 +1,8 @@
 import { MASK_64 } from "../constants.js";
 import { decorateRandomInt64, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
-import { expandSeed } from "../util.js";
+import { expandSeed } from "../seed.js";
+import { rotl64 } from "./util.js";
 
 /**
  * Xoroshiro128** internal registry state: [s0, s1].
@@ -19,8 +20,6 @@ export type Xoroshiro128StarStarState = [bigint, bigint];
 export function createRandomXoroshiro128StarStar(
   seed: Seed = Date.now(),
 ): RandomNumberGenerator<Xoroshiro128StarStarState> {
-  const rotl64 = (x: bigint, k: bigint): bigint => ((x << k) | (x >> (64n - k))) & MASK_64;
-
   const [w0, w1, w2, w3] = expandSeed(seed, 4);
   let s0 = ((BigInt(w0) << 32n) | BigInt(w1)) & MASK_64;
   let s1 = ((BigInt(w2) << 32n) | BigInt(w3)) & MASK_64;

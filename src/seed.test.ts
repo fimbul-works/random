@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { expandSeed, hashString, normalizeSeed, rotl } from "./util.js";
+import { expandSeed, hashString, normalizeSeed } from "./seed.js";
 
 describe("hashString", () => {
   it("should return a function that generates 32-bit unsigned integers", () => {
@@ -124,18 +124,5 @@ describe("expandSeed", () => {
     const vec1 = expandSeed("seed-one", 4);
     const vec2 = expandSeed("seed-two", 4);
     expect(vec1).not.toEqual(vec2);
-  });
-});
-
-describe("rotl", () => {
-  it("should shift bits left and rotate excess bits correctly in 32-bit space", () => {
-    // 1 << 4 = 16
-    expect(rotl(1, 4)).toBe(16);
-
-    // 0x80000000 rotated left by 1 should become 1 (since high bit wraps around to low bit)
-    expect(rotl(0x80000000, 1)).toBe(1);
-
-    // 0xf0000000 rotated left by 4 should become 0xf
-    expect(rotl(0xf0000000, 4)).toBe(0xf);
   });
 });

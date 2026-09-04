@@ -1,4 +1,4 @@
-import { randomExp, randomGaussian, randomLogistic, randomPoisson } from "../distribution.js";
+import { randomExp, randomGaussian, randomLogistic, randomPoisson } from "../util/distribution.js";
 import type { RandomFunction } from "../types.js";
 import { defineValue } from "./decorate.js";
 

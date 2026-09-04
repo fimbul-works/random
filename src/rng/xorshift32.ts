@@ -1,6 +1,6 @@
 import { decorateRandomInt32, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
-import { normalizeSeed } from "../util.js";
+import { normalizeSeed } from "../seed.js";
 
 /**
  * Creates a new Xorshift32 PRNG.

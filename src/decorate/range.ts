@@ -1,4 +1,4 @@
-import { randomBool, randomIntRange, randomRange, randomSign } from "../range.js";
+import { randomBool, randomIntRange, randomRange, randomSign } from "../util/range.js";
 import type { RandomFunction } from "../types.js";
 import { defineValue } from "./decorate.js";
 

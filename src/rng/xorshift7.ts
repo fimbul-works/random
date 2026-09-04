@@ -1,6 +1,6 @@
 import { decorateRandomInt32, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
-import { expandSeed } from "../util.js";
+import { expandSeed } from "../seed.js";
 
 /**
  * Xorshift7 internal registry state: [x, y, z, w, v, u, t].

@@ -1,4 +1,4 @@
-import { randomPointInCircle, randomPointOnSphere } from "../geometry.js";
+import { randomPointInCircle, randomPointOnSphere } from "../util/geometry.js";
 import type { RandomFunction } from "../types.js";
 import { defineValue } from "./decorate.js";
 

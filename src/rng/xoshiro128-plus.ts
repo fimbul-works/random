@@ -1,6 +1,7 @@
 import { decorateRandomInt32, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
-import { expandSeed, rotl } from "../util.js";
+import { expandSeed } from "../seed.js";
+import { rotl } from "./util.js";
 
 /**
  * Xoshiro128+ internal registry state.

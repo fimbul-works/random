@@ -1,7 +1,7 @@
 import { MASK_64 } from "../constants.js";
 import { decorateRandomInt64, defineRandomState } from "../decorate/decorate.js";
 import type { RandomNumberGenerator, Seed } from "../types.js";
-import { expandSeed } from "../util.js";
+import { expandSeed } from "../seed.js";
 
 /**
  * Wyrand internal registry state.

@@ -6,7 +6,7 @@ import {
   sampleRandom,
   shuffleArray,
   shuffleInPlace,
-} from "../array.js";
+} from "../util/array.js";
 import type { RandomFunction } from "../types.js";
 import { defineValue } from "./decorate.js";
 
