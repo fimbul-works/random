@@ -31,3 +31,4 @@ export * from "./xoshiro128-plus.js";
 export * from "./xoshiro128-plusplus.js";
 export * from "./xoshiro256-plusplus.js";
 export * from "./xoshiro256-starstar.js";
+export * from "./avalancher.js";

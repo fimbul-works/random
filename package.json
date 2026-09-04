@@ -1,7 +1,7 @@
 {
   "name": "@fimbul-works/random",
   "description": "A comprehensive collection of high-performance 32-bit and 64-bit pseudo-random number generators (PRNG), statistical distributions, and procedural generation utilities for TypeScript and JavaScript",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "private": false,
   "license": "MIT",
